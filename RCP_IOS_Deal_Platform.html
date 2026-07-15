@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RCP · IOS Deal Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="data.js"></script>
+<script>
+// Live Google Sheets sync via local sync_server.py
+// Falls back to data.js snapshot if server not running
+const SYNC_URL = 'http://localhost:5173/deals';
+const SYNC_INTERVAL = 180000; // 3 minutes
+
+async function tryLiveSync(silent=false) {
+  try {
+    const r = await fetch(SYNC_URL, {signal: AbortSignal.timeout(3000)});
+    if (!r.ok) return false;
+    const j = await r.json();
+    if (!j.deals || !j.deals.length) return false;
+    // Merge live data into RCP_DATA
+    RCP_DATA.deals = j.deals;
+    RCP_DATA.meta.built = j.ts.slice(0,10);
+    RCP_DATA.meta.count = j.count;
+    if (!silent) window._liveSync = true;
+    return true;
+  } catch { return false; }
+}
+
+// Try live sync on load, then every 3 minutes
+(async () => {
+  const ok = await tryLiveSync();
+  if (ok) {
+    console.log('[RCP] Live sync connected — pulling from Google Sheet');
+    if (typeof buildIndex === 'function') buildIndex();
+    if (typeof route === 'function') route();
+    if (typeof stamp === 'function') stamp();
+  } else {
+    console.log('[RCP] Sync server not running — using data.js snapshot');
+    console.log('[RCP] To enable live sync: python3 ~/ios-acq-bot/sync_server.py');
+  }
+  setInterval(() => tryLiveSync(true).then(ok => {
+    if (ok && typeof buildIndex === 'function') { buildIndex(); if (typeof route === 'function') route(); stamp(); }
+  }), SYNC_INTERVAL);
+})();
+</script>
+<style>
+:root{
+  --bg:#0a1220;--bg2:#0e1729;--surf:#111e33;--surf2:#172741;--line:rgba(148,178,224,.13);
+  --txt:#e9effa;--dim:#8fa3c0;--faint:#5e7396;
+  --gold:#d9a441;--acc:#4494f8;--accsoft:rgba(68,148,248,.12);
+  --green:#2fbf8f;--greensoft:rgba(47,191,143,.14);--red:#e5636c;--redsoft:rgba(229,99,108,.13);
+  --amber:#e0b357;--ambersoft:rgba(224,179,87,.14);
+  --shadow:0 10px 34px rgba(2,8,20,.45);--r:12px;
+}
+html[data-theme=light]{
+  --bg:#eef1f6;--bg2:#f6f8fb;--surf:#ffffff;--surf2:#f1f4f9;--line:rgba(30,55,90,.12);
+  --txt:#152238;--dim:#51648a;--faint:#8494b2;
+  --gold:#b07f1e;--acc:#1f6fe0;--accsoft:rgba(31,111,224,.09);
+  --green:#118a63;--greensoft:rgba(17,138,99,.11);--red:#c93a45;--redsoft:rgba(201,58,69,.09);
+  --amber:#9a7412;--ambersoft:rgba(154,116,18,.12);
+  --shadow:0 10px 30px rgba(20,40,80,.12);
+}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{background:var(--bg);color:var(--txt);font:14px/1.5 Inter,'Segoe UI',system-ui,sans-serif;-webkit-font-smoothing:antialiased;transition:background .25s,color .25s}
+h1,h2,h3{font-weight:700;letter-spacing:-.01em}
+button{font:inherit;cursor:pointer;color:inherit}
+input,select{font:inherit}
+a{color:var(--acc);text-decoration:none}
+.num{font-variant-numeric:tabular-nums}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-thumb{background:var(--surf2);border-radius:6px;border:2px solid var(--bg)}
+::-webkit-scrollbar-track{background:transparent}
+
+/* header */
+#top{position:sticky;top:0;z-index:900;display:flex;align-items:center;gap:22px;padding:0 26px;height:62px;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+#brand{display:flex;align-items:center;gap:12px;white-space:nowrap}
+#brand .mark{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;background:linear-gradient(135deg,#16294a,#0d1830);border:1px solid rgba(217,164,65,.55);color:var(--gold);font-weight:800;font-size:13px;letter-spacing:.02em}
+html[data-theme=light] #brand .mark{background:linear-gradient(135deg,#122443,#1d3a6b);color:#e8c476}
+#brand .t1{font-size:13.5px;font-weight:800;letter-spacing:.14em}
+#brand .t2{font-size:10.5px;color:var(--dim);letter-spacing:.22em;font-weight:600;margin-top:1px}
+nav{display:flex;gap:4px;margin-left:6px}
+nav a{padding:7px 13px;border-radius:8px;color:var(--dim);font-weight:600;font-size:13.5px;transition:.15s;border:1px solid transparent}
+nav a:hover{color:var(--txt);background:var(--surf)}
+nav a.on{color:var(--txt);background:var(--surf);border-color:var(--line);box-shadow:0 1px 0 rgba(217,164,65,.5) inset}
+#topright{margin-left:auto;display:flex;align-items:center;gap:10px}
+#datastamp{font-size:11.5px;color:var(--faint);text-align:right;line-height:1.3}
+#datastamp b{color:var(--dim);font-weight:600}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--faint);margin-right:5px}
+.dot.live{background:var(--green);box-shadow:0 0 6px var(--green)}
+.btn{border:1px solid var(--line);background:var(--surf);border-radius:9px;padding:7.5px 14px;font-weight:600;font-size:13px;transition:.15s;display:inline-flex;align-items:center;gap:7px}
+.btn:hover{border-color:var(--acc);color:var(--acc)}
+.btn.primary{background:var(--acc);border-color:var(--acc);color:#fff}
+.btn.primary:hover{filter:brightness(1.1);color:#fff}
+.btn.ghost{background:transparent}
+.btn.sm{padding:5px 10px;font-size:12px;border-radius:7px}
+
+/* layout */
+#view{max-width:1560px;margin:0 auto;padding:22px 26px 60px;animation:fadein .25s ease}
+@keyframes fadein{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+.pagehead{display:flex;align-items:end;gap:14px;margin:4px 0 18px;flex-wrap:wrap}
+.pagehead h2{font-size:21px}
+.pagehead .sub{color:var(--dim);font-size:13px;margin-bottom:2px}
+.pagehead .spacer{flex:1}
+
+/* KPI cards */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:12px;margin-bottom:18px}
+.kpi{background:linear-gradient(180deg,var(--surf),var(--bg2));border:1px solid var(--line);border-radius:var(--r);padding:15px 17px;position:relative;overflow:hidden;transition:.2s}
+.kpi:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.kpi::after{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--kc,var(--acc));opacity:.85}
+.kpi .v{font-size:25px;font-weight:800;letter-spacing:-.02em}
+.kpi .l{font-size:10.5px;color:var(--dim);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-top:3px}
+
+/* toolbar */
+.toolbar{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.inp,.sel{background:var(--surf);border:1px solid var(--line);color:var(--txt);padding:7.5px 12px;border-radius:9px;font-size:13px;outline:none;transition:.15s}
+.inp:focus,.sel:focus{border-color:var(--acc);box-shadow:0 0 0 3px var(--accsoft)}
+.inp::placeholder{color:var(--faint)}
+.sel option{background:var(--surf);color:var(--txt)}
+.chip{border:1px solid var(--line);background:var(--surf);border-radius:999px;padding:6px 13px;font-size:12.5px;font-weight:600;color:var(--dim);transition:.15s}
+.chip:hover{color:var(--txt);border-color:var(--acc)}
+.chip.on{background:var(--accsoft);border-color:var(--acc);color:var(--acc)}
+.count{color:var(--faint);font-size:12.5px;margin-left:2px}
+
+/* pills */
+.pill{display:inline-flex;align-items:center;justify-content:center;min-width:27px;border-radius:999px;padding:2px 9px;font-weight:700;font-size:12px;line-height:1.5}
+.p-hi{background:var(--greensoft);color:var(--green)}
+.p-md{background:var(--ambersoft);color:var(--amber)}
+.p-lo{background:var(--redsoft);color:var(--red)}
+.p-na{background:var(--surf2);color:var(--faint)}
+.p-acc{background:var(--accsoft);color:var(--acc)}
+.pass{color:var(--green);font-weight:700}.fail{color:var(--red);font-weight:600}
+.utag{color:var(--gold);font-weight:800}
+.srctag{font-size:10.5px;font-weight:700;letter-spacing:.06em;padding:2px 7px;border-radius:5px}
+.src-bot{background:var(--surf2);color:var(--dim)}
+.src-costar{background:var(--accsoft);color:var(--acc)}
+
+/* table */
+.tablewrap{background:var(--surf);border:1px solid var(--line);border-radius:var(--r);overflow:auto;max-height:calc(100vh - 320px);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:13px;min-width:1180px}
+th{position:sticky;top:0;z-index:5;background:var(--surf2);color:var(--dim);text-align:left;padding:10px 12px;cursor:pointer;white-space:nowrap;user-select:none;font-size:11px;text-transform:uppercase;letter-spacing:.09em;font-weight:700;border-bottom:1px solid var(--line)}
+th:hover{color:var(--txt)}
+th .arr{color:var(--gold)}
+td{padding:8.5px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+tr.deal{cursor:pointer;transition:background .1s}
+tr.deal:hover td{background:var(--surf2)}
+td.addr{max-width:330px;overflow:hidden;text-overflow:ellipsis;font-weight:600}
+td.dimc{color:var(--dim)}
+.sentinel{height:1px}
+
+/* toast */
+#toasts{position:fixed;bottom:22px;right:22px;z-index:9999;display:flex;flex-direction:column;gap:8px}
+.toast{background:var(--surf);border:1px solid var(--line);border-left:3px solid var(--acc);border-radius:10px;padding:11px 16px;font-size:13px;box-shadow:var(--shadow);animation:slidein .25s ease;max-width:380px}
+.toast.good{border-left-color:var(--green)}
+.toast.bad{border-left-color:var(--red)}
+@keyframes slidein{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:none}}
+
+/* deal page */
+#dealpage{max-width:1560px;margin:0 auto;padding:22px 26px 60px}
+.crumb{color:var(--dim);font-size:13px;margin-bottom:14px;display:flex;gap:10px;align-items:center}
+.crumb a{color:var(--dim)}.crumb a:hover{color:var(--acc)}
+.dealhero{display:flex;gap:16px;align-items:start;flex-wrap:wrap;margin-bottom:18px}
+.dealhero h2{font-size:24px;letter-spacing:-.02em}
+.dealhero .mkt{color:var(--dim);font-size:13.5px;margin-top:4px}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.dealgrid{display:grid;grid-template-columns:1.05fr .95fr;gap:16px}
+@media(max-width:1000px){.dealgrid{grid-template-columns:1fr}}
+.card{background:var(--surf);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;box-shadow:var(--shadow)}
+.card h3{font-size:11px;color:var(--gold);text-transform:uppercase;letter-spacing:.14em;margin-bottom:12px;font-weight:700}
+.card+.card{margin-top:16px}
+.statgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
+.stat .k{font-size:10.5px;color:var(--faint);text-transform:uppercase;letter-spacing:.1em;font-weight:600}
+.stat .v{font-size:15.5px;font-weight:700;margin-top:2px}
+.kv{display:grid;grid-template-columns:190px 1fr;gap:5px 14px;font-size:13.5px}
+.kv .k{color:var(--dim)}
+.kv .v{word-break:break-word;font-weight:500}
+.note{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13px;margin-top:10px;line-height:1.55}
+.note b{color:var(--dim);font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:4px}
+.mapframe{width:100%;height:340px;border:0;border-radius:10px;background:var(--surf2)}
+.linkrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+#minimap{height:230px;border-radius:10px;margin-top:14px;border:1px solid var(--line)}
+.stagesel{background:var(--surf2);border:1px solid var(--line);color:var(--txt);border-radius:8px;padding:6px 10px;font-size:13px;font-weight:600}
+
+/* map */
+#bigmapwrap{position:relative;height:calc(100vh - 250px);min-height:480px;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow)}
+#bigmap{height:100%;background:var(--bg2)}
+.mapctl{position:absolute;top:12px;right:12px;z-index:800;display:flex;flex-direction:column;gap:8px}
+.maplegend{position:absolute;bottom:14px;left:14px;z-index:800;background:color-mix(in srgb,var(--surf) 88%,transparent);backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:12px}
+.maplegend .row{display:flex;align-items:center;gap:8px;margin:2px 0}
+.lswatch{width:11px;height:11px;border-radius:50%}
+.leaflet-popup-content-wrapper{background:var(--surf);color:var(--txt);border-radius:10px;border:1px solid var(--line)}
+.leaflet-popup-tip{background:var(--surf)}
+.leaflet-popup-content{margin:12px 14px;font:12.5px/1.5 Inter,sans-serif}
+.pin{border-radius:50%;border:2px solid rgba(255,255,255,.85);box-shadow:0 1px 5px rgba(0,0,0,.5)}
+
+/* kanban */
+#board{display:grid;grid-template-columns:repeat(6,minmax(215px,1fr));gap:12px;overflow-x:auto;align-items:start}
+.kcol{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);min-height:220px;display:flex;flex-direction:column}
+.kcol.dropover{border-color:var(--acc);background:var(--accsoft)}
+.khead{padding:12px 14px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--line)}
+.khead .nm{font-weight:700;font-size:13px}
+.khead .ct{margin-left:auto;font-size:11.5px;color:var(--dim);font-weight:600;background:var(--surf2);border-radius:99px;padding:2px 9px}
+.khead .sum{font-size:10.5px;color:var(--faint)}
+.kbody{padding:10px;display:flex;flex-direction:column;gap:8px;overflow-y:auto;max-height:calc(100vh - 330px)}
+.kcard{background:var(--surf);border:1px solid var(--line);border-radius:10px;padding:11px 13px;cursor:grab;transition:.15s}
+.kcard:hover{border-color:var(--acc);transform:translateY(-1px)}
+.kcard.dragging{opacity:.45}
+.kcard .a{font-weight:600;font-size:12.8px;line-height:1.35;margin-bottom:5px}
+.kcard .m{color:var(--faint);font-size:11px;margin-bottom:7px}
+.kcard .r{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.showmore{color:var(--acc);font-size:12px;font-weight:600;background:none;border:0;padding:6px}
+
+/* analytics */
+.chartgrid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+.chartcard{background:var(--surf);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;box-shadow:var(--shadow)}
+.chartcard h3{font-size:11px;color:var(--gold);text-transform:uppercase;letter-spacing:.14em;margin-bottom:10px;font-weight:700}
+.c6{grid-column:span 6}.c4{grid-column:span 4}.c8{grid-column:span 8}.c12{grid-column:span 12}
+@media(max-width:1100px){.c6,.c4,.c8{grid-column:span 12}}
+.chartbox{position:relative;height:260px}
+.mkttable{width:100%;font-size:12.5px;min-width:0}
+.mkttable td,.mkttable th{padding:6px 10px}
+
+/* today */
+.daysec h3{font-size:13px;color:var(--dim);margin:20px 0 10px;font-weight:700;letter-spacing:.03em}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:13px}
+.dcard{background:var(--surf);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;cursor:pointer;transition:.18s;position:relative;box-shadow:var(--shadow)}
+.dcard:hover{transform:translateY(-3px);border-color:var(--acc)}
+.dcard.upick{border-color:rgba(217,164,65,.6)}
+.dcard.upick::before{content:"★ UNDERWRITE PICK";position:absolute;top:-9px;left:14px;background:var(--gold);color:#141d30;font-size:9.5px;font-weight:800;letter-spacing:.1em;padding:2px 8px;border-radius:5px}
+.dcard .a{font-weight:700;font-size:14.5px;line-height:1.3}
+.dcard .m{color:var(--dim);font-size:12px;margin:3px 0 10px}
+.dcard .facts{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:10px}
+.dcard .facts .f{font-size:12px;color:var(--dim)}
+.dcard .facts .f b{display:block;color:var(--txt);font-size:13.5px;font-weight:700}
+.empty{color:var(--faint);text-align:center;padding:60px 0;font-size:14px}
+.banner{background:var(--ambersoft);border:1px solid rgba(224,179,87,.35);color:var(--amber);border-radius:10px;padding:9px 14px;font-size:12.5px;margin-bottom:12px}
+
+@media print{
+  #top,#toasts,.crumb .btn,.noprint{display:none!important}
+  body{background:#fff;color:#111}
+  :root{--surf:#fff;--bg2:#fff;--line:#ccc;--txt:#111;--dim:#444;--faint:#666;--shadow:none}
+  #dealpage{padding:0}
+  .card{break-inside:avoid;border-color:#ddd}
+  .mapframe,#minimap{display:none}
+}
+</style>
+</head>
+<body>
+<header id="top">
+  <div id="brand">
+    <div class="mark">RCP</div>
+    <div><div class="t1">RESERVE CAPITAL PARTNERS</div><div class="t2">IOS DEAL PLATFORM</div></div>
+  </div>
+  <nav id="nav">
+    <a href="#/today" data-v="today">Today</a>
+    <a href="#/deals" data-v="deals">Deals</a>
+    <a href="#/map" data-v="map">Map</a>
+    <a href="#/pipeline" data-v="pipeline">Pipeline</a>
+    <a href="#/analytics" data-v="analytics">Analytics</a>
+  </nav>
+  <div id="topright">
+    <div id="datastamp"></div>
+    <button class="btn sm" id="connectbtn">⇄ Sync tracker</button>
+    <button class="btn sm ghost" id="themebtn" title="Toggle light/dark">◐</button>
+  </div>
+</header>
+<div id="view"></div>
+<div id="dealpage" style="display:none"></div>
+<div id="toasts"></div>
+<input type="file" id="fileinput" accept=".xlsx,.xlsm" style="display:none">
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const T=RCP_DATA.meta.targets;
+let MARKETS=RCP_DATA.markets||[],LIVE=false,LIVEMETA='';
+Object.defineProperty(window,'DEALS',{get:()=>RCP_DATA.deals,set:v=>{RCP_DATA.deals=v}});
+const STAGES=[["new","New"],["screened","Screened"],["underwriting","Underwriting"],["boss","Sent to Boss"],["loi","LOI"],["dead","Dead"]];
+const STAGE_NAME=Object.fromEntries(STAGES);
+
+const fmt={
+  money:v=>v==null?'—':'$'+Math.round(v).toLocaleString(),
+  moneyK:v=>v==null?'—':v>=1e6?'$'+(v/1e6).toFixed(2)+'M':'$'+Math.round(v/1e3)+'K',
+  num:v=>v==null?'—':Math.round(v).toLocaleString(),
+  dec:(v,n=2)=>v==null?'—':Number(v).toLocaleString(undefined,{maximumFractionDigits:n}),
+  pct:v=>v==null?'—':(v*100).toFixed(1)+'%',
+  x:v=>v==null?'—':Number(v).toFixed(2)+'x',
+  raw:v=>v==null||v===''?'—':v,
+  date:v=>v==null?'—':String(v).slice(0,10)};
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+function ratingPill(v){if(v==null)return '<span class="pill p-na">—</span>';
+  const c=v>=7?'p-hi':v>=5?'p-md':'p-lo';return `<span class="pill ${c}">${v}</span>`}
+function toast(msg,cls=''){const t=document.createElement('div');t.className='toast '+cls;t.innerHTML=msg;
+  $('#toasts').appendChild(t);setTimeout(()=>{t.style.opacity=0;t.style.transition='opacity .4s';setTimeout(()=>t.remove(),400)},4200)}
+
+const stageOv=JSON.parse(localStorage.getItem('rcp_stages')||'{}');
+function getStage(d){return stageOv[d.id]||d.stageX||d.stage0||'new'}
+function setStage(d,s){stageOv[d.id]=s;localStorage.setItem('rcp_stages',JSON.stringify(stageOv))}
+
+function buildIndex(){DEALS.forEach(d=>{
+  d._s=[d.addr,d.mkt,d.st,d.type,d.broker,d.tenant,d.up,d.risk,d.notes,d.src].filter(Boolean).join(' ').toLowerCase();
+  d.ppa=(d.price&&d.ac)?d.price/d.ac:null;
+  if(!d.city){const parts=String(d.addr||'').split(',');d.city=parts.length>1?parts[1].trim():'';}
+})}
+buildIndex();
+
+const F={q:'',st:'',mkt:'',type:'',src:'',minR:0,u:false,pass:false,hasPrice:false,noDead:false};
+function filtered(){
+  const q=F.q.toLowerCase();
+  return DEALS.filter(d=>
+    (!F.st||d.st===F.st)&&(!F.mkt||d.mkt===F.mkt)&&(!F.src||d.src===F.src)&&
+    (!F.type||String(d.type||'').includes(F.type))&&
+    (!F.minR||(d.rating||0)>=F.minR)&&(!F.u||d.u)&&
+    (!F.pass||(d.irr>=T.irr&&d.em>=T.em))&&(!F.hasPrice||d.price!=null)&&
+    (!F.noDead||getStage(d)!=='dead')&&
+    (!q||d._s.includes(q)));}
+
+let CURRENT='',prevHash='#/deals';
+function route(){
+  const h=location.hash||'#/today';
+  const m=h.match(/^#\/deal\/(.+)$/);
+  $$('#nav a').forEach(a=>a.classList.toggle('on',h.startsWith('#/'+a.dataset.v)));
+  if(m){showDeal(decodeURIComponent(m[1]));return}
+  prevHash=h;
+  $('#dealpage').style.display='none';$('#view').style.display='block';
+  const v=h.replace('#/','');CURRENT=v;
+  const el=$('#view');el.innerHTML='';
+  if(v==='deals')viewDeals(el);
+  else if(v==='map')viewMap(el);
+  else if(v==='pipeline')viewPipeline(el);
+  else if(v==='analytics')viewAnalytics(el);
+  else viewToday(el);
+  window.scrollTo(0,0);}
+window.addEventListener('hashchange',route);
+
+const themeInit=localStorage.getItem('rcp_theme')||'dark';
+document.documentElement.dataset.theme=themeInit;
+$('#themebtn').onclick=()=>{const t=document.documentElement.dataset.theme==='dark'?'light':'dark';
+  document.documentElement.dataset.theme=t;localStorage.setItem('rcp_theme',t);
+  if(CURRENT==='map'&&BIGMAP)switchBase();if(CURRENT==='analytics')route();};
+
+function stamp(){const live=LIVE||window._liveSync;$('#datastamp').innerHTML=`<span class="dot ${live?'live':''}"></span><b>${DEALS.length.toLocaleString()} deals</b> · ${LIVE?LIVEMETA:live?'live · Google Sheet · auto-refresh 3min':'snapshot '+RCP_DATA.meta.built}`}
+
+const HDRMAP={"Sent Date":"sent","U":"u","State":"st","Market / MSA":"mkt","NIOS Rank":"nrank","NIOS Score":"nscore","Address":"addr","Property Type":"type","# of Suites":"suites","Building SF":"bsf","Avail SF":"asf","Max Contig SF":"csf","Acres":"ac","Yard Acres":"yac","Site Coverage":"cov","Year Built":"yb","Year Renovated":"yr","Clear Height":"clr","Rent PSF":"rent","Rent Range":"rrange","Sale Price":"price","Sale PSF":"psf","Listing Company":"broker","Tenant / Occupancy":"tenant","Lease Term / Rollover":"lease","CoStar Stars":"stars","IOS God Rating":"rating","Key Upside":"up","Key Risks":"risk","Source Notes":"notes","LP IRR":"irr","LP EM":"em","Deal Source":"src","Stage":"stageX","Deck Link":"deckLink","Model Link":"modelLink"};
+const NUMK=new Set(["nrank","nscore","suites","bsf","asf","csf","ac","yac","cov","yb","yr","rent","price","psf","stars","rating","irr","em"]);
+
+function parseWB(buf,name){
+  const wb=XLSX.read(buf,{cellDates:true});
+  const ws=wb.Sheets['Sale Offers']||wb.Sheets['Sales Offers'];
+  if(!ws)throw new Error('No Sale Offers tab found');
+  const rows=XLSX.utils.sheet_to_json(ws,{header:1,defval:null});
+  const hi=rows.findIndex(r=>r&&r.some(c=>typeof c==='string'&&c.trim()==='Address'));
+  if(hi<0)throw new Error('Header row with Address not found');
+  const hdr=rows[hi].map(c=>c?String(c).trim():'');
+  let amap={};
+  if(wb.Sheets['MLA Assumptions']){
+    const ar=XLSX.utils.sheet_to_json(wb.Sheets['MLA Assumptions'],{header:1,defval:null});
+    const ahi=ar.findIndex(r=>r&&r.some(c=>typeof c==='string'&&c.trim()==='Address'));
+    if(ahi>=0){const ah=ar[ahi].map(c=>c?String(c).trim():'');
+      ar.slice(ahi+1).forEach(r=>{const rec={};ah.forEach((h,j)=>{if(h&&r[j]!=null)rec[h]=r[j] instanceof Date?r[j].toISOString().slice(0,10):r[j]});
+        if(rec['Address'])amap[String(rec['Address']).split(',')[0].trim().toLowerCase()]=rec;});}}
+  const out=[];
+  rows.slice(hi+1).forEach((r,i)=>{
+    const d={};
+    hdr.forEach((h,j)=>{const k=HDRMAP[h];if(!k)return;let v=r[j];
+      if(v==null||v==='')return;
+      if(v instanceof Date)v=v.toISOString().slice(0,10);
+      if(typeof v==='string')v=v.trim();
+      if(NUMK.has(k)&&typeof v==='string'){const n=parseFloat(String(v).replace(/[$,\sx%]/g,''));v=isNaN(n)?v:n}
+      d[k]=v;});
+    if(!d.addr)return;
+    d.src=d.src||'CoStar Screen';
+    d.id=String(d.addr).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,60)+'-'+i;
+    const parts=String(d.addr||'').split(',');d.city=parts.length>1?parts[1].trim():'';
+    d._s=[d.addr,d.mkt,d.st,d.type,d.broker,d.tenant,d.up,d.risk,d.notes].filter(Boolean).join(' ').toLowerCase();
+    d.ppa=(d.price&&d.ac)?d.price/d.ac:null;
+    const key=String(d.addr).split(',')[0].trim().toLowerCase();
+    if(amap[key])d.mla=amap[key];
+    d.stage0=d.irr!=null?'underwriting':d.u?'underwriting':d.rating!=null?'screened':'new';
+    out.push(d);});
+  if(!out.length)throw new Error('No deals parsed');
+  DEALS=out;buildIndex();LIVE=true;
+  LIVEMETA='live · '+name+' · '+new Date().toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});
+  stamp();route();
+  toast(`<b>Tracker synced</b> — ${out.length.toLocaleString()} deals loaded`,'good');}
+
+const idb={
+  get:k=>new Promise(res=>{const r=indexedDB.open('rcp',1);r.onupgradeneeded=()=>r.result.createObjectStore('kv');
+    r.onsuccess=()=>{const tx=r.result.transaction('kv','readonly').objectStore('kv').get(k);tx.onsuccess=()=>res(tx.result);tx.onerror=()=>res(null)};r.onerror=()=>res(null)}),
+  set:(k,v)=>new Promise(res=>{const r=indexedDB.open('rcp',1);r.onupgradeneeded=()=>r.result.createObjectStore('kv');
+    r.onsuccess=()=>{const tx=r.result.transaction('kv','readwrite').objectStore('kv').put(v,k);tx.onsuccess=()=>res(true);tx.onerror=()=>res(false)};r.onerror=()=>res(false)})};
+
+async function syncTracker(){
+  try{
+    let h=await idb.get('tracker');
+    if(h){const p=await h.queryPermission({mode:'read'});
+      if(p!=='granted'&&await h.requestPermission({mode:'read'})!=='granted')h=null;}
+    if(!h){
+      if(!window.showOpenFilePicker){$('#fileinput').click();return}
+      [h]=await window.showOpenFilePicker({types:[{description:'Excel tracker',accept:{'application/vnd.ms-excel':['.xlsx','.xlsm']}}]});
+      await idb.set('tracker',h);}
+    const f=await h.getFile();
+    parseWB(await f.arrayBuffer(),f.name);
+  }catch(e){
+    if(e.name==='AbortError')return;
+    if(e.name==='SecurityError'||e.name==='NotAllowedError'){$('#fileinput').click();return}
+    toast('<b>Sync failed</b> — '+esc(e.message),'bad')}}
+$('#connectbtn').onclick=syncTracker;
+$('#fileinput').addEventListener('change',async e=>{const f=e.target.files[0];
+  if(f)try{parseWB(await f.arrayBuffer(),f.name)}catch(err){toast('<b>Could not read file</b> — '+esc(err.message),'bad')}
+  e.target.value='';});
+
+function countUp(el,val,dec=0,suf=''){
+  const t0=performance.now(),dur=550,from=0;
+  function f(t){const p=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-p,3);
+    el.textContent=(from+(val-from)*e).toLocaleString(undefined,{minimumFractionDigits:dec,maximumFractionDigits:dec})+suf;
+    if(p<1)requestAnimationFrame(f)}
+  requestAnimationFrame(f)}
+
+function kpis(el,ds){
+  const uw=ds.filter(d=>d.irr!=null),pass=uw.filter(d=>d.irr>=T.irr&&d.em>=T.em);
+  const rated=ds.filter(d=>d.rating!=null),hi=rated.filter(d=>d.rating>=7);
+  const avg=rated.length?rated.reduce((a,d)=>a+d.rating,0)/rated.length:0;
+  const items=[
+    ['Deals tracked',ds.length,0,'','var(--acc)'],
+    ['Rated 7+',hi.length,0,'','var(--green)'],
+    ['Avg rating',avg,1,'','var(--amber)'],
+    ['Underwritten',uw.length,0,'','var(--gold)'],
+    ['Meets 15% / 1.8x',pass.length,0,'',pass.length?'var(--green)':'var(--red)']];
+  el.innerHTML=items.map(([l,v,dec,s,c],i)=>
+    `<div class="kpi" style="--kc:${c}"><div class="v num" id="kpi${i}"></div><div class="l">${l}</div></div>`).join('');
+  items.forEach(([l,v,dec],i)=>countUp($('#kpi'+i),v,dec));}
+
+function toolbar(el,onchange,opts={}){
+  const vals=k=>[...new Set(DEALS.map(d=>d[k]).filter(Boolean))].sort();
+  const types=[...new Set(DEALS.map(d=>d.type).filter(Boolean).map(t=>t.split('(')[0].trim()))].sort();
+  el.innerHTML=`
+    <input class="inp" id="f_q" placeholder="Search address, market, tenant…" style="min-width:260px" value="${esc(F.q)}">
+    <select class="sel" id="f_st"><option value="">All states</option>${vals('st').map(v=>`<option ${F.st===v?'selected':''}>${v}</option>`).join('')}</select>
+    <select class="sel" id="f_mkt"><option value="">All markets</option>${vals('mkt').map(v=>`<option ${F.mkt===v?'selected':''}>${esc(v)}</option>`).join('')}</select>
+    <select class="sel" id="f_type"><option value="">All types</option>${types.map(v=>`<option ${F.type===v?'selected':''}>${esc(v)}</option>`).join('')}</select>
+    <select class="sel" id="f_r">${[0,5,6,7,8,9].map(r=>`<option value="${r}" ${F.minR===r?'selected':''}>Rating ≥ ${r||'any'}</option>`).join('')}</select>
+    <button class="chip ${F.u?'on':''}" id="f_u">U only</button>
+    <button class="chip ${F.pass?'on':''}" id="f_pass">Meets targets</button>
+    <button class="chip ${F.hasPrice?'on':''}" id="f_hp">Has price</button>
+    <button class="chip ${F.noDead?'on':''}" id="f_nd">Hide dead</button>
+    <span class="count" id="f_count"></span>
+    ${opts.csv?'<span style="flex:1"></span><button class="btn sm" id="csvbtn">⬇ CSV</button>':''}`;
+  let deb;
+  $('#f_q').oninput=e=>{clearTimeout(deb);deb=setTimeout(()=>{F.q=e.target.value;onchange()},180)};
+  [['f_st','st'],['f_mkt','mkt'],['f_type','type']].forEach(([id,k])=>$('#'+id).onchange=e=>{F[k]=e.target.value;onchange()});
+  $('#f_r').onchange=e=>{F.minR=+e.target.value;onchange()};
+  [['f_u','u'],['f_pass','pass'],['f_hp','hasPrice'],['f_nd','noDead']].forEach(([id,k])=>
+    $('#'+id).onclick=e=>{F[k]=!F[k];e.target.classList.toggle('on',F[k]);onchange()});
+  if(opts.csv)$('#csvbtn').onclick=exportCSV;}
+
+function exportCSV(){
+  const cols=[['sent','Sent Date'],['u','U'],['st','State'],['mkt','Market'],['nrank','NIOS Rank'],['addr','Address'],['type','Type'],['bsf','Building SF'],['ac','Acres'],['price','Sale Price'],['psf','Sale PSF'],['rent','Rent PSF'],['yb','Year Built'],['broker','Listing Co'],['tenant','Tenant'],['stars','CoStar Stars'],['rating','Rating'],['irr','LP IRR'],['em','LP EM'],['src','Source']];
+  const ds=filtered();
+  const csv=[cols.map(c=>c[1]).join(',')].concat(ds.map(d=>cols.map(([k])=>{let v=d[k];if(v==null)return'';v=String(v).replace(/"/g,'""');return /[",\n]/.test(v)?`"${v}"`:v;}).join(','))).join('\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
+  a.download='rcp_ios_'+new Date().toISOString().slice(0,10)+'.csv';a.click();
+  toast(`Exported ${ds.length.toLocaleString()} deals`,'good');}
+
+/* DEALS VIEW */
+let sortK='sent',sortD=-1;
+const TCOLS=[['sent','Sent'],['u','U'],['st','St'],['mkt','Market'],['nrank','NIOS#'],['addr','Address'],['type','Type'],['bsf','Bldg SF'],['ac','Acres'],['price','Price'],['psf','$/SF'],['stars','★'],['rating','Rating'],['irr','LP IRR'],['em','LP EM']];
+function cellv(k,d){const v=d[k];
+  if(k==='price')return `<span class="num">${fmt.money(v)}</span>`;
+  if(k==='bsf')return `<span class="num">${fmt.num(v)}</span>`;
+  if(k==='ac')return `<span class="num">${v==null?'—':fmt.dec(v,2)}</span>`;
+  if(k==='psf')return v==null?'—':`<span class="num">$${Math.round(v)}</span>`;
+  if(k==='irr')return v==null?'—':`<span class="num ${v>=T.irr?'pass':'fail'}">${fmt.pct(v)}</span>`;
+  if(k==='em')return v==null?'—':`<span class="num ${v>=T.em?'pass':'fail'}">${fmt.x(v)}</span>`;
+  if(k==='u')return v?'<span class="utag">U</span>':'';
+  if(k==='rating')return ratingPill(v);
+  if(k==='stars')return v==null?'—':`<span class="num">${v}</span>`;
+  if(k==='sent')return `<span class="dimc num">${fmt.date(v)}</span>`;
+  if(k==='addr')return esc(v);
+  if(k==='mkt'||k==='type')return `<span class="dimc">${esc(fmt.raw(v))}</span>`;
+  return esc(fmt.raw(v));}
+
+function viewDeals(el){
+  el.innerHTML=`<div class="pagehead"><h2>Deal Screen</h2><div class="sub">All CoStar acquisition leads</div></div>
+    <div class="kpis" id="kpirow"></div><div class="toolbar" id="tb"></div>
+    <div class="tablewrap" id="twrap"><table id="tbl"><thead></thead><tbody></tbody></table><div class="sentinel" id="sent"></div></div>`;
+  kpis($('#kpirow'),DEALS);
+  toolbar($('#tb'),drawTable,{csv:true});
+  drawTable();
+  const io=new IntersectionObserver(es=>{if(es[0].isIntersecting)moreRows()},{root:$('#twrap'),rootMargin:'600px'});
+  io.observe($('#sent'));}
+
+let TSHOWN=0,TDATA=[];
+function drawTable(){
+  TDATA=filtered();
+  TDATA.sort((a,b)=>{let x=a[sortK],y=b[sortK];if(x==null)return 1;if(y==null)return -1;
+    if(typeof x==='number'&&typeof y==='number')return(x-y)*sortD;
+    return String(x).localeCompare(String(y))*sortD;});
+  $('#f_count').textContent=TDATA.length.toLocaleString()+' shown';
+  $('#tbl thead').innerHTML='<tr>'+TCOLS.map(([k,l])=>
+    `<th data-k="${k}">${l}${sortK===k?`<span class="arr">${sortD>0?' ▲':' ▼'}</span>`:''}</th>`).join('')+'</tr>';
+  $$('#tbl th').forEach(th=>th.onclick=()=>{const k=th.dataset.k;sortD=sortK===k?-sortD:(k==='sent'?-1:1);sortK=k;drawTable()});
+  TSHOWN=0;$('#tbl tbody').innerHTML='';moreRows();}
+function moreRows(){
+  if(TSHOWN>=TDATA.length)return;
+  const chunk=TDATA.slice(TSHOWN,TSHOWN+150);
+  $('#tbl tbody').insertAdjacentHTML('beforeend',chunk.map(d=>
+    `<tr class="deal" onclick="location.hash='#/deal/${d.id}'">`+
+    TCOLS.map(([k])=>`<td${k==='addr'?' class="addr"':''}>${cellv(k,d)}</td>`).join('')+'</tr>').join(''));
+  TSHOWN+=chunk.length;}
+
+/* DEAL PAGE */
+function showDeal(id){
+  const list=TDATA.length?TDATA:DEALS;
+  const d=DEALS.find(x=>x.id===id);
+  if(!d){location.hash=prevHash;return}
+  const idx=list.findIndex(x=>x.id===id);
+  const prev=idx>0?list[idx-1]:null,next=idx>=0&&idx<list.length-1?list[idx+1]:null;
+  $('#view').style.display='none';
+  const el=$('#dealpage');el.style.display='block';
+  const stage=getStage(d);
+  const gq=encodeURIComponent(d.addr);
+  const stats=[
+    ['Sale price',fmt.money(d.price)],['$ / SF',d.psf?'$'+Math.round(d.psf):'—'],
+    ['$ / Acre',d.ppa?fmt.moneyK(d.ppa):'—'],['Building SF',fmt.num(d.bsf)],
+    ['Acres',d.ac!=null?fmt.dec(d.ac,2):'—'],['Year built',d.yb?Math.round(d.yb):'—'],
+    ['CoStar ★',d.stars??'—'],['NIOS rank',d.nrank?'#'+Math.round(d.nrank):'—']];
+  const kv=(pairs)=>'<div class="kv">'+pairs.filter(([k,v])=>v!=null&&v!=='').map(([k,v])=>`<div class="k">${k}</div><div class="v">${esc(String(v))}</div>`).join('')+'</div>';
+  el.innerHTML=`
+    <div class="crumb"><a href="${prevHash}">← Back</a>
+      <span style="flex:1"></span>
+      ${prev?`<button class="btn sm ghost" onclick="location.hash='#/deal/${prev.id}'">← Prev</button>`:''}
+      ${next?`<button class="btn sm ghost" onclick="location.hash='#/deal/${next.id}'">Next →</button>`:''}
+      <button class="btn sm" onclick="copySummary('${d.id}')">⧉ Copy summary</button>
+      <button class="btn sm" onclick="window.print()">🖨 Print</button></div>
+    <div class="dealhero">
+      <div style="flex:1;min-width:280px">
+        <h2>${esc(d.addr)}</h2>
+        <div class="mkt">${esc(d.mkt||'')}${d.nrank?' · NIOS #'+Math.round(d.nrank):''}</div>
+        <div class="badges">
+          ${d.u?'<span class="pill p-acc">★ Underwrite Pick</span>':''}
+          ${ratingPill(d.rating).replace('class="pill','style="font-size:13px;padding:4px 12px" class="pill')}
+          ${d.irr!=null?`<span class="pill ${d.irr>=T.irr?'p-hi':'p-lo'}" style="font-size:13px;padding:4px 12px">LP IRR ${fmt.pct(d.irr)}</span>
+            <span class="pill ${d.em>=T.em?'p-hi':'p-lo'}" style="font-size:13px;padding:4px 12px">EM ${fmt.x(d.em)}</span>`:''}
+        </div></div>
+      <div class="noprint"><label style="font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:4px">Pipeline stage</label>
+        <select class="stagesel" onchange="stageFromPage('${d.id}',this.value)">${STAGES.map(([k,n])=>`<option value="${k}" ${stage===k?'selected':''}>${n}</option>`).join('')}</select></div>
+    </div>
+    <div class="card" style="margin-bottom:16px"><div class="statgrid">${stats.map(([k,v])=>`<div class="stat"><div class="k">${k}</div><div class="v num">${v}</div></div>`).join('')}</div></div>
+    <div class="dealgrid">
+      <div>
+        <div class="card"><h3>Property</h3>${kv([['Type',d.type],['Building SF',d.bsf&&fmt.num(d.bsf)],['Available SF',d.asf&&fmt.num(d.asf)],['Acres',d.ac],['Yard acres',d.yac],['Site coverage',d.cov],['Year built',d.yb&&Math.round(d.yb)],['Year renovated',d.yr&&Math.round(d.yr)],['Clear height',d.clr]])}</div>
+        <div class="card"><h3>Pricing & Tenancy</h3>${kv([['Sale price',d.price&&fmt.money(d.price)],['Sale $/SF',d.psf&&'$'+fmt.dec(d.psf,0)],['In-place rent PSF',d.rent&&'$'+fmt.dec(d.rent,2)],['Rent range',d.rrange],['Tenant',d.tenant],['Lease / rollover',d.lease],['Listing company',d.broker]])}</div>
+        ${d.up||d.risk||d.notes?`<div class="card"><h3>Analyst Notes</h3>
+          ${d.up?`<div class="note"><b>Upside</b>${esc(d.up)}</div>`:''}
+          ${d.risk?`<div class="note"><b>Risks</b>${esc(d.risk)}</div>`:''}
+          ${d.notes?`<div class="note"><b>Source notes</b>${esc(d.notes)}</div>`:''}
+        </div>`:''}
+        ${d.mla?`<div class="card"><h3>MLA Assumptions</h3>${kv(Object.entries(d.mla).filter(([k])=>!['Address','Sent Date','U','Market / MSA','Property Type','Brief Description'].includes(k)))}</div>`:''}
+        ${d.deckLink?`<div class="card"><h3>Deal Deck</h3><a href="${esc(d.deckLink)}" target="_blank" class="btn sm">Open Google Slides ↗</a></div>`:''}
+        ${d.modelLink?`<div class="card"><h3>Underwriting Model</h3><a href="${esc(d.modelLink)}" target="_blank" class="btn sm">Open Excel Model ↗</a></div>`:''}
+      </div>
+      <div>
+        <div class="card noprint"><h3>Satellite View</h3>
+          <iframe class="mapframe" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src="https://maps.google.com/maps?q=${gq}&t=k&z=17&output=embed"></iframe>
+          <div class="linkrow">
+            <a class="btn sm" target="_blank" href="https://www.google.com/maps/search/?api=1&query=${gq}">Google Maps ↗</a>
+            <a class="btn sm" target="_blank" href="https://www.bing.com/maps?q=${gq}&style=h">Bing Aerial ↗</a>
+            <a class="btn sm" target="_blank" href="https://www.costar.com/search?q=${gq}">CoStar ↗</a>
+          </div></div>
+        <div class="card"><h3>Screen Checklist</h3>
+          <div class="kv">
+            <div class="k">Top-20 NIOS market</div><div class="v">${d.nrank!=null?(d.nrank<=20?'✅ #'+Math.round(d.nrank):'⚠️ #'+Math.round(d.nrank)):'—'}</div>
+            <div class="k">Price floor $500K</div><div class="v">${d.price!=null?(d.price>=500000?'✅ '+fmt.moneyK(d.price):'❌ Below minimum'):'—'}</div>
+            <div class="k">Coverage ratio</div><div class="v">${d.bsf&&d.ac?fmt.dec(d.bsf/(d.ac*43560)*100,0)+'% building coverage':'—'}</div>
+            <div class="k">Meets 15% / 1.8x</div><div class="v">${d.irr!=null?(d.irr>=T.irr&&d.em>=T.em?'✅ Yes':'❌ No'):'Not underwritten'}</div>
+          </div></div>
+      </div>
+    </div>`;
+  window.scrollTo(0,0);}
+function stageFromPage(id,s){const d=DEALS.find(x=>x.id===id);if(d){setStage(d,s);toast(`Stage → <b>${STAGE_NAME[s]}</b>`)}}
+function copySummary(id){
+  const d=DEALS.find(x=>x.id===id);if(!d)return;
+  const lines=[d.addr,`${d.mkt||''}${d.nrank?' · NIOS #'+Math.round(d.nrank):''}`,
+    `Price: ${fmt.money(d.price)} · ${d.bsf?fmt.num(d.bsf)+' SF':''}${d.ac?' on '+fmt.dec(d.ac,2)+' AC':''}`,
+    d.rating!=null?`IOS-God rating: ${d.rating}/10`:'',
+    d.irr!=null?`LP IRR: ${fmt.pct(d.irr)} · EM: ${fmt.x(d.em)}`:'',
+    d.up?`Upside: ${d.up}`:''].filter(Boolean);
+  navigator.clipboard.writeText(lines.join('\n')).then(()=>toast('Summary copied','good'));}
+
+/* MAP VIEW */
+let BIGMAP=null,CLUSTER=null,BASE=null,SATON=false;
+function ratingColor(r){if(r==null)return'#7d8ea8';return r>=7?'#2fbf8f':r>=5?'#e0b357':'#e5636c'}
+function baseLayer(){const dark=document.documentElement.dataset.theme!=='light';
+  return L.tileLayer(dark?'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png':'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+    {attribution:'© OpenStreetMap © CARTO',maxZoom:19});}
+function satLayer(){return L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{attribution:'Esri',maxZoom:19});}
+function switchBase(){if(!BIGMAP)return;if(BASE)BIGMAP.removeLayer(BASE);BASE=SATON?satLayer():baseLayer();BASE.addTo(BIGMAP);}
+
+function viewMap(el){
+  el.innerHTML=`<div class="pagehead"><h2>Deal Map</h2><div class="sub">Pins colored by IOS-God rating</div></div>
+    <div class="toolbar" id="tb"></div>
+    <div id="bigmapwrap"><div id="bigmap"></div>
+      <div class="mapctl"><button class="btn sm" id="satbtn">🛰 Satellite</button></div>
+      <div class="maplegend">
+        <div class="row"><span class="lswatch" style="background:#2fbf8f"></span>Rating 7–10</div>
+        <div class="row"><span class="lswatch" style="background:#e0b357"></span>Rating 5–6</div>
+        <div class="row"><span class="lswatch" style="background:#e5636c"></span>Rating 1–4</div>
+        <div class="row"><span class="lswatch" style="background:#7d8ea8"></span>Unrated</div>
+      </div></div>`;
+  toolbar($('#tb'),drawPins);
+  BIGMAP=L.map('bigmap',{preferCanvas:true}).setView([33.0,-96.9],7);
+  BASE=baseLayer();BASE.addTo(BIGMAP);
+  CLUSTER=L.markerClusterGroup({maxClusterRadius:46,spiderfyOnMaxZoom:true,disableClusteringAtZoom:15});
+  BIGMAP.addLayer(CLUSTER);
+  $('#satbtn').onclick=()=>{SATON=!SATON;switchBase();$('#satbtn').textContent=SATON?'🗺 Map':'🛰 Satellite'};
+  drawPins();}
+
+function drawPins(){
+  if(!CLUSTER)return;CLUSTER.clearLayers();
+  const ds=filtered().filter(d=>d.lat&&d.lon);
+  $('#f_count').textContent=ds.length.toLocaleString()+' mapped';
+  const ms=ds.map(d=>{
+    const c=ratingColor(d.rating);
+    const size=d.price?Math.min(26,Math.max(12,Math.log10(d.price)*3.4)):12;
+    const m=L.marker([d.lat,d.lon],{icon:L.divIcon({className:'',html:`<div class="pin" style="width:${size}px;height:${size}px;background:${c}"></div>`,iconSize:[size,size],iconAnchor:[size/2,size/2]})});
+    m.bindPopup(`<b>${esc(d.addr)}</b><br><span style="color:var(--dim)">${esc(d.mkt||'')}</span><br>
+      ${d.price?fmt.money(d.price)+' · ':''}${d.bsf?fmt.num(d.bsf)+' SF · ':''}${d.rating!=null?'Rating '+d.rating:'Unrated'}
+      <br><a href="#/deal/${d.id}" style="font-weight:600">Open deal →</a>`);
+    return m;});
+  CLUSTER.addLayers(ms);
+  if(ds.length){const b=L.latLngBounds(ds.map(d=>[d.lat,d.lon]));BIGMAP.fitBounds(b.pad(0.1),{maxZoom:12})}}
+
+/* PIPELINE */
+function viewPipeline(el){
+  el.innerHTML=`<div class="pagehead"><h2>Pipeline</h2><div class="sub">Drag deals between stages</div>
+    <span class="spacer"></span><button class="btn sm ghost" id="resetstages">Reset stages</button></div>
+    <div class="toolbar" id="tb"></div><div id="board"></div>`;
+  toolbar($('#tb'),drawBoard);
+  $('#resetstages').onclick=()=>{if(confirm('Clear all stage assignments?')){localStorage.removeItem('rcp_stages');Object.keys(stageOv).forEach(k=>delete stageOv[k]);drawBoard();}};
+  drawBoard();}
+
+const KCAP=60;
+function drawBoard(){
+  const ds=filtered();$('#f_count').textContent=ds.length.toLocaleString()+' in view';
+  const by={};STAGES.forEach(([k])=>by[k]=[]);
+  ds.forEach(d=>by[getStage(d)]?.push(d));
+  $('#board').innerHTML=STAGES.map(([k,n])=>{
+    const list=by[k],sum=list.reduce((a,d)=>a+(d.price||0),0);
+    return `<div class="kcol" data-stage="${k}">
+      <div class="khead"><span class="nm">${n}</span><span class="sum">${sum?fmt.moneyK(sum):''}</span><span class="ct">${list.length}</span></div>
+      <div class="kbody">${list.slice(0,KCAP).map(kcard).join('')}
+        ${list.length>KCAP?`<button class="showmore" data-stage="${k}">Show ${list.length-KCAP} more…</button>`:''}</div></div>`}).join('');
+  $$('#board .kcard').forEach(c=>{c.dataset.bound=1;c.draggable=true;
+    c.addEventListener('dragstart',e=>{e.dataTransfer.setData('text/plain',c.dataset.id);c.classList.add('dragging')});
+    c.addEventListener('dragend',()=>c.classList.remove('dragging'));
+    c.addEventListener('click',()=>location.hash='#/deal/'+c.dataset.id);});
+  $$('#board .kcol').forEach(col=>{
+    col.addEventListener('dragover',e=>{e.preventDefault();col.classList.add('dropover')});
+    col.addEventListener('dragleave',()=>col.classList.remove('dropover'));
+    col.addEventListener('drop',e=>{e.preventDefault();col.classList.remove('dropover');
+      const id=e.dataTransfer.getData('text/plain'),d=DEALS.find(x=>x.id===id);
+      if(d){setStage(d,col.dataset.stage);drawBoard();toast(`<b>${esc(String(d.addr).split(',')[0])}</b> → ${STAGE_NAME[col.dataset.stage]}`);}});});}
+function kcard(d){
+  return `<div class="kcard" data-id="${d.id}">
+    <div class="a">${esc(String(d.addr).split(',')[0])}${d.u?' <span class="utag">U</span>':''}</div>
+    <div class="m">${esc(d.city||'')}${d.st?', '+d.st:''}</div>
+    <div class="r">${ratingPill(d.rating)}${d.price?`<span class="num" style="font-size:12px;color:var(--dim)">${fmt.moneyK(d.price)}</span>`:''}
+      ${d.irr!=null?`<span class="num ${d.irr>=T.irr?'pass':'fail'}" style="font-size:11.5px">${fmt.pct(d.irr)}</span>`:''}</div></div>`}
+
+/* ANALYTICS */
+let CHARTS=[];
+function viewAnalytics(el){
+  el.innerHTML=`<div class="pagehead"><h2>Analytics</h2><div class="sub">Pipeline composition & market intelligence</div></div>
+    <div class="kpis" id="kpirow"></div>
+    <div class="chartgrid">
+      <div class="chartcard c8"><h3>Deal flow by week</h3><div class="chartbox"><canvas id="c_flow"></canvas></div></div>
+      <div class="chartcard c4"><h3>Rating distribution</h3><div class="chartbox"><canvas id="c_rating"></canvas></div></div>
+      <div class="chartcard c4"><h3>Top markets</h3><div class="chartbox"><canvas id="c_mkt"></canvas></div></div>
+      <div class="chartcard c4"><h3>Price distribution</h3><div class="chartbox"><canvas id="c_price"></canvas></div></div>
+      <div class="chartcard c4"><h3>Price vs Rating</h3><div class="chartbox"><canvas id="c_scatter"></canvas></div></div>
+      <div class="chartcard c8"><h3>NIOS market coverage</h3><div style="max-height:280px;overflow:auto"><table class="mkttable" id="niostbl"></table></div></div>
+    </div>`;
+  kpis($('#kpirow'),DEALS);
+  CHARTS.forEach(c=>c.destroy());CHARTS=[];
+  const css=getComputedStyle(document.documentElement);
+  const dim=css.getPropertyValue('--dim').trim(),line=css.getPropertyValue('--line').trim(),
+    acc=css.getPropertyValue('--acc').trim(),green=css.getPropertyValue('--green').trim(),
+    amber=css.getPropertyValue('--amber').trim(),red=css.getPropertyValue('--red').trim(),gold=css.getPropertyValue('--gold').trim();
+  Chart.defaults.color=dim;Chart.defaults.borderColor=line;Chart.defaults.font.family='Inter,sans-serif';
+  const ds=DEALS;
+  // Weekly flow
+  const wk={};
+  ds.filter(d=>d.sent).forEach(d=>{
+    const dt=new Date(d.sent);if(isNaN(dt))return;
+    const mon=new Date(dt);mon.setDate(dt.getDate()-((dt.getDay()+6)%7));
+    const key=mon.toISOString().slice(0,10);wk[key]=(wk[key]||0)+1;});
+  const weeks=Object.keys(wk).sort();
+  CHARTS.push(new Chart($('#c_flow'),{type:'bar',data:{labels:weeks.map(w=>w.slice(5)),
+    datasets:[{label:'Deals',data:weeks.map(w=>wk[w]),backgroundColor:acc,borderRadius:4}]},
+    options:{maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false}}}}}));
+  // Rating dist
+  const rc=Array(11).fill(0);ds.forEach(d=>{if(d.rating!=null)rc[Math.round(d.rating)]++});
+  CHARTS.push(new Chart($('#c_rating'),{type:'bar',data:{labels:[...Array(11).keys()],
+    datasets:[{data:rc,backgroundColor:rc.map((_,i)=>i>=7?green:i>=5?amber:red),borderRadius:4}]},
+    options:{maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false}}}}}));
+  // Top markets
+  const bm={};ds.forEach(d=>{if(d.mkt)bm[d.mkt]=(bm[d.mkt]||0)+1});
+  const top=Object.entries(bm).sort((a,b)=>b[1]-a[1]).slice(0,8);
+  CHARTS.push(new Chart($('#c_mkt'),{type:'bar',data:{labels:top.map(t=>t[0].split('-')[0]),
+    datasets:[{data:top.map(t=>t[1]),backgroundColor:acc,borderRadius:4}]},
+    options:{indexAxis:'y',maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{grid:{display:false}}}}}));
+  // Price histogram
+  const buckets=[[0,25e4],[25e4,5e5],[5e5,1e6],[1e6,2e6],[2e6,4e6],[4e6,8e6],[8e6,Infinity]];
+  const bl=['<$250K','$250–500K','$0.5–1M','$1–2M','$2–4M','$4–8M','$8M+'];
+  const bc=buckets.map(([a,b])=>ds.filter(d=>d.price!=null&&d.price>=a&&d.price<b).length);
+  CHARTS.push(new Chart($('#c_price'),{type:'bar',data:{labels:bl,datasets:[{data:bc,backgroundColor:green,borderRadius:4}]},
+    options:{maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false}}}}}));
+  // Scatter
+  const sc=ds.filter(d=>d.price&&d.rating!=null).map(d=>({x:d.rating,y:d.price,addr:d.addr}));
+  CHARTS.push(new Chart($('#c_scatter'),{type:'scatter',data:{datasets:[{data:sc,backgroundColor:acc+'99',pointRadius:4,pointHoverRadius:6}]},
+    options:{maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${c.raw.addr}: ${fmt.moneyK(c.raw.y)} · ${c.raw.x}`}}},
+      scales:{y:{type:'logarithmic',ticks:{callback:v=>fmt.moneyK(v)}},x:{min:0,max:10}}}}));
+  // NIOS table
+  const cnt={};ds.forEach(d=>{if(d.nrank!=null)cnt[Math.round(d.nrank)]=(cnt[Math.round(d.nrank)]||0)+1});
+  $('#niostbl').innerHTML='<tr><th>#</th><th>Market</th><th>NIOS</th><th>Vac%</th><th style="text-align:right">Deals</th></tr>'+
+    (MARKETS||[]).slice(0,20).map(m=>{const r=Math.round(m['Rank']),n=cnt[r]||0;
+      return `<tr><td class="num">${r}</td><td>${esc(m['Metropolitan Statistical Area'])}</td>
+        <td class="num">${Number(m['NIOS Score']).toFixed(2)}</td>
+        <td class="num">${(m['IOS Vacancy Rate']*100).toFixed(1)}%</td>
+        <td class="num" style="text-align:right;${n?'color:var(--green);font-weight:700':'color:var(--faint)'}">${n||'—'}</td></tr>`}).join('');}
+
+/* TODAY */
+function viewToday(el){
+  const dates=[...new Set(DEALS.filter(d=>d.sent).map(d=>String(d.sent).slice(0,10)))].sort().reverse();
+  const latest=dates[0];
+  const todays=DEALS.filter(d=>String(d.sent||'').slice(0,10)===latest);
+  const upicks=todays.filter(d=>d.u);
+  el.innerHTML=`<div class="pagehead"><h2>Today's Screen</h2>
+    <div class="sub">Latest batch: <b>${latest||'—'}</b> · ${todays.length} deals · ${upicks.length} U pick${upicks.length!==1?'s':''}</div></div>
+    <div class="kpis" id="kpirow"></div>
+    ${todays.length?`<div class="daysec"><h3>LATEST BATCH — ${latest}</h3><div class="cards">${todays.map(dcard).join('')}</div></div>`:'<div class="empty">No dated deals. Click ⇄ Sync tracker to load your xlsx.</div>'}
+    <div class="daysec"><h3>ALL U DEALS</h3><div class="cards">${DEALS.filter(d=>d.u&&!todays.includes(d)).map(dcard).join('')||'<div class="empty">—</div>'}</div></div>`;
+  kpis($('#kpirow'),DEALS);}
+function dcard(d){
+  return `<div class="dcard ${d.u?'upick':''}" onclick="location.hash='#/deal/${d.id}'">
+    <div class="a">${esc(String(d.addr).split(',').slice(0,2).join(','))}</div>
+    <div class="m">${esc(d.mkt||d.st||'')}${d.nrank?' · NIOS #'+Math.round(d.nrank):''}</div>
+    <div class="facts">
+      <div class="f">Price<b class="num">${d.price?fmt.moneyK(d.price):'—'}</b></div>
+      <div class="f">SF<b class="num">${d.bsf?fmt.num(d.bsf):'—'}</b></div>
+      <div class="f">Acres<b class="num">${d.ac!=null?fmt.dec(d.ac,2):'—'}</b></div>
+      <div class="f">$/SF<b class="num">${d.psf?'$'+Math.round(d.psf):'—'}</b></div></div>
+    <div style="display:flex;gap:8px;align-items:center">${ratingPill(d.rating)}
+      ${d.stars?`<span style="color:var(--faint);font-size:12px">${d.stars}★</span>`:''}
+      ${d.irr!=null?`<span class="num ${d.irr>=T.irr?'pass':'fail'}" style="font-size:12px">${fmt.pct(d.irr)} IRR</span>`:''}</div></div>`}
+
+/* INIT */
+stamp();
+if(!location.hash)location.hash='#/today';else route();
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'&&$('#dealpage').style.display!=='none')location.hash=prevHash;
+  if(e.key==='/'&&!/INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName)){e.preventDefault();const q=$('#f_q');if(q)q.focus()}});
+</script>
+</body>
+</html>
