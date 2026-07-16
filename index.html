@@ -1016,6 +1016,7 @@ function showDeal(id){
           ${d.irr!=null?`<span class="pill ${d.irr>=T.irr?'p-hi':'p-lo'}" style="font-size:13px;padding:4px 12px">LP IRR ${fmt.pct(d.irr)}</span>
             <span class="pill ${d.em>=T.em?'p-hi':'p-lo'}" style="font-size:13px;padding:4px 12px">EM ${fmt.x(d.em)}</span>`:''}
           ${d.needsNewDeck?'<span class="pill p-md" style="font-size:13px;padding:4px 12px">⚠ Deck needs regeneration</span>':''}
+          ${d.flood?`<span class="pill ${d.flood.sfha?'p-lo':'p-hi'}" style="font-size:13px;padding:4px 12px">🌊 FEMA Zone ${esc(d.flood.zone)}${d.flood.sfha?' — Special Flood Hazard Area':' — minimal risk'}</span>`:''}
         </div></div>
       <div class="noprint"><label style="font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:4px">Pipeline stage</label>
         <select class="stagesel" onchange="stageFromPage('${d.id}',this.value)">${STAGES.map(([k,n])=>`<option value="${k}" ${stage===k?'selected':''}>${n}</option>`).join('')}</select></div>
@@ -1024,6 +1025,11 @@ function showDeal(id){
     <div class="dealgrid">
       <div>
         <div class="card"><h3>Property</h3>${kv([['Type',d.type],['Building SF',d.bsf&&fmt.num(d.bsf)],['Available SF',d.asf&&fmt.num(d.asf)],['Acres',d.ac],['Yard acres',d.yac],['Site coverage',d.cov],['Year built',d.yb&&Math.round(d.yb)],['Year renovated',d.yr&&Math.round(d.yr)],['Clear height',d.clr]])}</div>
+        ${d.pillar?`<div class="card"><h3>Property Records <span class="pill ${d.pillar.confidence==='exact'?'p-hi':'p-md'}" style="font-size:10px;padding:2px 8px;margin-left:6px;vertical-align:middle">${d.pillar.confidence==='exact'?'Pillar-verified parcel':'⚠ Unconfirmed match'}</span></h3>
+          ${d.pillar.note?`<div class="note" style="margin-bottom:10px"><b>Note</b>${esc(d.pillar.note)}</div>`:''}
+          ${kv([['Owner of record',d.pillar.owner],['APN',d.pillar.apn],['Parcel acres',d.pillar.lot_acres],['Zoning',d.pillar.zoning],['Land use',d.pillar.use],['Last sale date',d.pillar.last_sale_date],['Mailing address',d.pillar.mailing_address]])}
+          <div class="linkrow" style="margin-top:10px"><a class="btn sm ghost" target="_blank" href="${esc(d.pillar.mapUrl||'')}">Open in Pillar ↗</a></div>
+        </div>`:''}
         <div class="card"><h3>Pricing & Tenancy</h3>${kv([['Sale price',d.price&&fmt.money(d.price)],['Sale $/SF',d.psf&&'$'+fmt.dec(d.psf,0)],['In-place rent PSF',d.rent&&'$'+fmt.dec(d.rent,2)],['Rent range',d.rrange],['Tenant',d.tenant],['Lease / rollover',d.lease],['Listing company',d.broker]])}</div>
         ${d.up||d.risk||d.notes?`<div class="card"><h3>Analyst Notes</h3>
           ${d.up?`<div class="note"><b>Upside</b>${esc(d.up)}</div>`:''}

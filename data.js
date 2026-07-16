@@ -37,9 +37,9 @@ window.RCP_DATA = {
       "irr": 0.0415953935956957,
       "em": 1.05759112841411,
       "src": "CoStar Screen",
-      "lat": 30.08332,
-      "lon": -95.56645,
-      "geo": "city",
+      "lat": 30.089541,
+      "lon": -95.587047,
+      "geo": "parcel",
       "stage0": "underwriting",
       "mla": {
         "Sent Date": "2026-06-09",
@@ -72,7 +72,26 @@ window.RCP_DATA = {
         "Modeled Sale Price": "3885938",
         "Assumption Notes": "Rating 7/10. Missing: Sale Price, Acres, In-Place Rent PSF, Lease Expiry, Broker Email. Broker contact needed. Rerun model once price confirmed."
       },
-      "outreach_status": "Draft"
+      "outreach_status": "Draft",
+      "pillar": {
+        "confidence": "exact",
+        "owner": "Pelangi Properties LLC",
+        "apn": "0440550010086",
+        "lot_acres": 3.0,
+        "zoning": "NZ",
+        "use": "Land Neighborhood Section 1",
+        "last_sale_date": "2022-11-09",
+        "last_sale_price": null,
+        "mailing_address": "1300 S Meridan Ave Ste 501, Oklahoma City, OK 73108",
+        "lat": 30.089541,
+        "lon": -95.587047,
+        "mapUrl": "https://app.pillar.codes/workspace?view=map&lat=30.089541&lon=-95.587047&zoom=17&parcel=9e268706-d053-4a80-9a56-a30b1db84508"
+      },
+      "flood": {
+        "zone": "AE",
+        "sfha": true,
+        "subtype": null
+      }
     },
     {
       "id": "222-wynne-st-houston-tx-77009-2",
@@ -298,9 +317,9 @@ window.RCP_DATA = {
       "irr": 0.179672613027891,
       "em": 1.26456353105415,
       "src": "CoStar Screen",
-      "lat": 30.40575,
-      "lon": -97.62071,
-      "geo": "city",
+      "lat": 30.44504,
+      "lon": -97.64126,
+      "geo": "parcel",
       "stage0": "underwriting",
       "mla": {
         "Sent Date": "2026-06-10",
@@ -334,6 +353,25 @@ window.RCP_DATA = {
         "Assumption Notes": "Pulled from the 400 S Heatherwilde MLA and Overview tabs.",
         "Initial Rent PSF": 15,
         "Site Acres": 3.88
+      },
+      "pillar": {
+        "confidence": "exact",
+        "owner": "400 Heatherwilde Boulevard",
+        "apn": "275720",
+        "lot_acres": 2.81,
+        "zoning": "GI",
+        "use": "Commercial Real Property",
+        "last_sale_date": "2017-06-14",
+        "last_sale_price": null,
+        "mailing_address": "1 Kenner Ct, Riverdale, NJ 07457",
+        "lat": 30.44504,
+        "lon": -97.64126,
+        "mapUrl": "https://app.pillar.codes/workspace?view=map&lat=30.445040&lon=-97.641260&zoom=17&parcel=5cf7940f-994b-489d-a692-01d50b7ead14"
+      },
+      "flood": {
+        "zone": "X",
+        "sfha": false,
+        "subtype": "AREA OF MINIMAL FLOOD HAZARD"
       }
     },
     {
@@ -702,7 +740,27 @@ window.RCP_DATA = {
         "Exit Cap (e.g. 0.065)": "0.07",
         "Assumption Notes": "Confirmed from firm completed model"
       },
-      "outreach_status": "Draft"
+      "outreach_status": "Draft",
+      "pillar": {
+        "confidence": "nearest",
+        "note": "No exact parcel match at this address. Nearest parcel in Pillar (N Marlow Ln, owner Kreg 2 LLC & Mittry Farms Trust, 7.74 ac) is NOT confirmed to be this property \u2014 treat owner/APN as unverified. Coordinates are the geocoded address itself, so flood zone is reliable.",
+        "owner": null,
+        "apn": null,
+        "lot_acres": null,
+        "zoning": null,
+        "use": null,
+        "last_sale_date": null,
+        "last_sale_price": null,
+        "mailing_address": null,
+        "lat": 29.79092,
+        "lon": -97.94528,
+        "mapUrl": "https://app.pillar.codes/workspace?view=map&lat=29.790920&lon=-97.945280&zoom=16"
+      },
+      "flood": {
+        "zone": "X",
+        "sfha": false,
+        "subtype": "AREA OF MINIMAL FLOOD HAZARD"
+      }
     },
     {
       "id": "2244-highway-69-s-greenville-tx-75402-20",
@@ -1163,7 +1221,27 @@ window.RCP_DATA = {
         "Modeled Sale Price": "2638462",
         "Assumption Notes": "Rating 7/10. Missing: Sale Price, Acres, In-Place Rent PSF, Lease Expiry, Broker Email. Truck terminal = purpose-built IOS. Broker contact needed. Rerun model once price confirmed."
       },
-      "outreach_status": "Draft Ready \u2014 Needs Email"
+      "outreach_status": "Draft Ready \u2014 Needs Email",
+      "pillar": {
+        "confidence": "nearest",
+        "note": "No usable parcel match \u2014 the only results Pillar returned were three tiny (0.06\u20130.13 acre) TxDOT right-of-way slivers, not the actual property. Owner/APN unavailable. Coordinates are the geocoded address itself, so flood zone is reliable.",
+        "owner": null,
+        "apn": null,
+        "lot_acres": null,
+        "zoning": null,
+        "use": null,
+        "last_sale_date": null,
+        "last_sale_price": null,
+        "mailing_address": null,
+        "lat": 33.26383,
+        "lon": -97.18101,
+        "mapUrl": "https://app.pillar.codes/workspace?view=map&lat=33.263830&lon=-97.181010&zoom=16"
+      },
+      "flood": {
+        "zone": "X",
+        "sfha": false,
+        "subtype": "AREA OF MINIMAL FLOOD HAZARD"
+      }
     },
     {
       "id": "3145-u-s-highway-92-e-lakeland-fl-33801-32",
