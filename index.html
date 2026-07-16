@@ -88,9 +88,11 @@ async function pollJob(jobId, onSettled) {
     if (typeof route === 'function') route();
     if (typeof stamp === 'function') stamp();
     if (typeof updatePendingBadge === 'function') updatePendingBadge();
+    if (window.__introStatus) window.__introStatus(`live uplink — ${RCP_DATA.deals.length.toLocaleString()} deals`, true);
   } else {
     console.log('[RCP] No live connection — using data.js snapshot');
     console.log('[RCP] On your Mac: python3 ~/ios-acq-bot/sync_server.py. Elsewhere: set a tunnel URL in Settings (⚙).');
+    if (window.__introStatus) window.__introStatus(`snapshot mode — ${RCP_DATA.deals.length.toLocaleString()} deals cached`, false);
   }
   setInterval(() => tryLiveSync(true).then(ok => {
     if (ok && typeof buildIndex === 'function') {
@@ -298,6 +300,23 @@ td.dimc{color:var(--dim)}
 .tier span{font-size:10.5px;color:var(--faint);text-transform:uppercase;letter-spacing:.08em;margin-top:1px}
 .moreWrap{text-align:center;margin-top:4px}
 
+/* intro */
+#intro{position:fixed;inset:0;z-index:99999;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:opacity .55s ease;cursor:pointer}
+#intro.hide{opacity:0;pointer-events:none}
+.introGrid{position:absolute;inset:0;opacity:.35;
+  background-image:linear-gradient(color-mix(in srgb,var(--acc) 10%,transparent) 1px,transparent 1px),linear-gradient(90deg,color-mix(in srgb,var(--acc) 10%,transparent) 1px,transparent 1px);
+  background-size:34px 34px;-webkit-mask-image:radial-gradient(circle at center,#000,transparent 70%);mask-image:radial-gradient(circle at center,#000,transparent 70%)}
+#introCanvas{position:relative;max-width:70vw;max-height:32vh}
+#introWordmark{position:relative;text-align:center;opacity:0;transition:opacity .6s ease}
+#introWordmark.show{opacity:1}
+.introEyebrow{font-family:var(--f-display);font-size:22px;letter-spacing:.13em;color:var(--txt);font-weight:700}
+.introSub{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.2em;color:var(--faint);margin-top:5px;text-transform:uppercase}
+.introStatus{font-family:var(--f-mono);font-size:12px;color:var(--green);margin-top:18px;min-height:16px;letter-spacing:.02em}
+.introStatus.amber{color:var(--amber)}
+.cursor{animation:introblink 1s step-start infinite}
+@keyframes introblink{50%{opacity:0}}
+#introSkip{position:absolute;bottom:28px;font-family:var(--f-mono);font-size:10px;color:var(--faint);letter-spacing:.1em;text-transform:uppercase;opacity:.55}
+
 /* command palette */
 .kbd{font-family:var(--f-mono);font-size:10.5px;background:var(--surf2);border:1px solid var(--line);border-radius:5px;padding:1px 5px;margin-right:2px}
 .cmdk-box{width:600px;max-width:92vw;background:var(--surf);border:1px solid var(--line);border-radius:14px;box-shadow:0 24px 60px rgba(2,8,20,.55);overflow:hidden;animation:cmdkIn .15s ease}
@@ -368,6 +387,110 @@ td.dimc{color:var(--dim)}
 </style>
 </head>
 <body>
+<div id="intro">
+  <div class="introGrid"></div>
+  <canvas id="introCanvas"></canvas>
+  <div id="introWordmark">
+    <div class="introEyebrow">RESERVE CAPITAL PARTNERS</div>
+    <div class="introSub">IOS DEAL INTELLIGENCE PLATFORM</div>
+    <div id="introStatus" class="introStatus">&gt; establishing uplink<span class="cursor">_</span></div>
+  </div>
+  <div id="introSkip">click or press any key to skip</div>
+</div>
+<script>
+// Intro: the RCP mark assembles itself from particles sampled off the real
+// logo PNG, synced to the actual data-load outcome (not a fake progress
+// bar) — finishes once BOTH the particle formation and the real sync
+// status are ready, whichever is slower, capped at 6s so a slow network
+// never traps the user. Runs here (not the head <script>) because it
+// needs #intro etc. to already exist in the DOM.
+(function(){
+  const overlay=document.getElementById('intro');
+  if(!overlay)return;
+  const canvas=document.getElementById('introCanvas');
+  const ctx=canvas.getContext('2d');
+  const statusEl=document.getElementById('introStatus');
+  const wordmarkEl=document.getElementById('introWordmark');
+  const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  let finished=false;
+  function finish(){
+    if(finished)return;finished=true;
+    overlay.classList.add('hide');
+    setTimeout(()=>overlay.remove(),600);
+  }
+  overlay.addEventListener('click',finish);
+  window.addEventListener('keydown',finish,{once:true});
+  setTimeout(finish,6000);
+
+  let introReady=false,animDone=false;
+  function maybeFinish(){if(introReady&&animDone)setTimeout(finish,450)}
+  window.__introStatus=function(msg,ok){
+    statusEl.textContent='> '+msg;
+    statusEl.classList.toggle('amber',!ok);
+    introReady=true;maybeFinish();
+  };
+
+  const img=new Image();
+  img.onload=()=>startParticles(img);
+  img.onerror=()=>{wordmarkEl.classList.add('show');animDone=true;maybeFinish();};
+  img.src='assets/rcp-logo.png';
+
+  function startParticles(img){
+    const SAMPLE_W=140,scale=SAMPLE_W/img.width,SAMPLE_H=Math.round(img.height*scale);
+    const off=document.createElement('canvas');off.width=SAMPLE_W;off.height=SAMPLE_H;
+    const octx=off.getContext('2d');octx.drawImage(img,0,0,SAMPLE_W,SAMPLE_H);
+    let data;
+    try{data=octx.getImageData(0,0,SAMPLE_W,SAMPLE_H).data}
+    catch(e){wordmarkEl.classList.add('show');animDone=true;maybeFinish();return}
+
+    const DPR=Math.min(2,window.devicePixelRatio||1);
+    const dispW=Math.min(360,window.innerWidth*0.65);
+    const dispH=dispW*(SAMPLE_H/SAMPLE_W);
+    canvas.width=dispW*DPR;canvas.height=dispH*DPR;
+    canvas.style.width=dispW+'px';canvas.style.height=dispH+'px';
+    ctx.scale(DPR,DPR);
+
+    const cell=dispW/SAMPLE_W;
+    const particles=[];
+    for(let y=0;y<SAMPLE_H;y++)for(let x=0;x<SAMPLE_W;x++){
+      const i=(y*SAMPLE_W+x)*4;
+      if(data[i+3]>80){
+        const tx=x*cell,ty=y*cell;
+        const ang=Math.random()*Math.PI*2,dist=130+Math.random()*170;
+        particles.push({x:tx+Math.cos(ang)*dist,y:ty+Math.sin(ang)*dist,tx,ty,
+          r:data[i],g:data[i+1],b:data[i+2],delay:Math.random()*380,dur:750+Math.random()*450});
+      }
+    }
+
+    if(reduceMotion){
+      particles.forEach(p=>{ctx.fillStyle=`rgb(${p.r},${p.g},${p.b})`;ctx.fillRect(p.tx,p.ty,cell+.6,cell+.6)});
+      wordmarkEl.classList.add('show');animDone=true;maybeFinish();
+      return;
+    }
+
+    const t0=performance.now(),TOTAL=1650;
+    const ease=t=>1-Math.pow(1-t,3);
+    function frame(now){
+      const elapsed=now-t0;
+      ctx.clearRect(0,0,dispW,dispH);
+      let allDone=true;
+      for(const p of particles){
+        let pt=(elapsed-p.delay)/p.dur;
+        if(pt<1)allDone=false;
+        pt=Math.min(1,Math.max(0,pt));
+        const e=ease(pt);
+        ctx.fillStyle=`rgba(${p.r},${p.g},${p.b},${0.3+0.7*e})`;
+        ctx.fillRect(p.x+(p.tx-p.x)*e,p.y+(p.ty-p.y)*e,cell+.6,cell+.6);
+      }
+      if(elapsed>TOTAL*0.55)wordmarkEl.classList.add('show');
+      if(!allDone&&elapsed<TOTAL+700){requestAnimationFrame(frame)}
+      else{animDone=true;maybeFinish();}
+    }
+    requestAnimationFrame(frame);
+  }
+})();
+</script>
 <header id="top">
   <div id="brand">
     <div class="mark">RCP</div>
