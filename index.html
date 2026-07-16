@@ -137,8 +137,12 @@ a{color:var(--acc);text-decoration:none}
 /* header */
 #top{position:sticky;top:0;z-index:900;display:flex;align-items:center;gap:22px;padding:0 26px;height:62px;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 #brand{display:flex;align-items:center;gap:12px;white-space:nowrap}
-#brand .mark{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;background:linear-gradient(135deg,#16294a,#0d1830);border:1px solid rgba(217,164,65,.55);color:var(--gold);font-weight:800;font-size:13px;letter-spacing:.02em}
-html[data-theme=light] #brand .mark{background:linear-gradient(135deg,#122443,#1d3a6b);color:#e8c476}
+#brand .mark{height:34px;padding:5px 9px;border-radius:9px;display:grid;place-items:center;background:rgba(244,247,252,.96);border:1px solid rgba(217,164,65,.55);cursor:pointer;transition:transform .18s cubic-bezier(.2,.8,.2,1),box-shadow .18s ease,border-color .18s ease;box-shadow:0 0 0 rgba(217,164,65,0)}
+#brand .mark img{height:24px;width:auto;display:block;object-fit:contain}
+#brand .mark:hover{transform:translateY(-1px) scale(1.045);box-shadow:0 4px 18px rgba(217,164,65,.35);border-color:rgba(217,164,65,.9)}
+#brand .mark:active{transform:translateY(0) scale(.96);transition-duration:.08s}
+#brand .mark:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+html[data-theme=light] #brand .mark{background:#ffffff}
 #brand .t1{font-family:var(--f-display);font-size:15px;font-weight:700;letter-spacing:.13em}
 #brand .t2{font-size:10.5px;color:var(--dim);letter-spacing:.22em;font-weight:600;margin-top:1px}
 nav{display:flex;gap:4px;margin-left:6px}
@@ -516,7 +520,7 @@ td.dimc{color:var(--dim)}
 </script>
 <header id="top">
   <div id="brand">
-    <div class="mark">RCP</div>
+    <button type="button" class="mark" id="brandmark" title="Back to Today"><img src="assets/rcp-logo.png" alt="RCP"></button>
     <div><div class="t1">RESERVE CAPITAL PARTNERS</div><div class="t2">IOS DEAL PLATFORM</div></div>
   </div>
   <nav id="nav">
@@ -687,6 +691,39 @@ document.documentElement.dataset.theme=themeInit;
 $('#themebtn').onclick=()=>{const t=document.documentElement.dataset.theme==='dark'?'light':'dark';
   document.documentElement.dataset.theme=t;localStorage.setItem('rcp_theme',t);
   if(CURRENT==='map'&&BIGMAP)switchBase();if(CURRENT==='analytics')route();};
+
+$('#brandmark').onclick=(e)=>{
+  logoBurst(e.clientX,e.clientY);
+  if(location.hash!=='#/today')location.hash='#/today';
+  else{window.scrollTo({top:0,behavior:'smooth'});}
+};
+
+function logoBurst(x,y){
+  const canvas=document.createElement('canvas');
+  canvas.style.cssText='position:fixed;inset:0;z-index:99998;pointer-events:none';
+  canvas.width=window.innerWidth;canvas.height=window.innerHeight;
+  document.body.appendChild(canvas);
+  const ctx=canvas.getContext('2d');
+  const colors=['#d9a441','#e8c476','#4494f8','#f4f7fc'];
+  const particles=Array.from({length:26},()=>{
+    const a=Math.random()*Math.PI*2,sp=1.5+Math.random()*3.5;
+    return{x,y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,g:0.12,size:2+Math.random()*3,
+      color:colors[Math.floor(Math.random()*colors.length)],life:1};
+  });
+  const t0=performance.now();
+  function frame(now){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    let alive=false;
+    for(const p of particles){
+      p.vy+=p.g;p.x+=p.vx;p.y+=p.vy;p.life-=0.02;
+      if(p.life>0){alive=true;ctx.save();ctx.globalAlpha=Math.max(0,p.life);
+        ctx.fillStyle=p.color;ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fill();ctx.restore();}
+    }
+    if(alive&&now-t0<1400)requestAnimationFrame(frame);
+    else canvas.remove();
+  }
+  requestAnimationFrame(frame);
+}
 
 $('#settingsbtn').onclick=()=>{
   $('#set_tunnel').value=tunnelUrl();
