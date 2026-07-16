@@ -15,40 +15,87 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script src="data.js"></script>
 <script>
-// Live Google Sheets sync via local sync_server.py
-// Falls back to data.js snapshot if server not running
-const SYNC_URL = 'http://localhost:5173/deals';
+// Live Google Sheets sync + action API.
+// Tries http://localhost:5173 first (only reachable if THIS browser is on
+// Jake's own Mac, where sync_server.py runs) — no API key needed there.
+// Falls back to a Cloudflare Tunnel URL (configured once via the Settings
+// gear, stored in localStorage) for access from any other device, which
+// DOES require the API key header. Falls back further to the static
+// data.js snapshot if neither is reachable.
 const SYNC_INTERVAL = 180000; // 3 minutes
+const LOCAL_API_BASE = 'http://localhost:5173';
+function tunnelUrl(){ return (localStorage.getItem('rcp_tunnel_url')||'').replace(/\/+$/,''); }
+function apiKey(){ return localStorage.getItem('rcp_api_key')||''; }
+let ACTIVE_API_BASE = null; // whichever base last succeeded — reused by action calls
+window.RCP_LEADS = [];      // raw Leads Raw rows (screened + unscreened), Map-only
+window.RCP_PENDING = 0;     // count of Leads Raw rows not yet screened
 
 async function tryLiveSync(silent=false) {
-  try {
-    const r = await fetch(SYNC_URL, {signal: AbortSignal.timeout(3000)});
-    if (!r.ok) return false;
-    const j = await r.json();
-    if (!j.deals || !j.deals.length) return false;
-    // Merge live data into RCP_DATA
-    RCP_DATA.deals = j.deals;
-    RCP_DATA.meta.built = j.ts.slice(0,10);
-    RCP_DATA.meta.count = j.count;
-    if (!silent) window._liveSync = true;
-    return true;
-  } catch { return false; }
+  const candidates = [LOCAL_API_BASE, tunnelUrl()].filter(Boolean);
+  for (const base of candidates) {
+    try {
+      const headers = base===LOCAL_API_BASE ? {} : {'X-API-Key': apiKey()};
+      const r = await fetch(base+'/deals', {signal: AbortSignal.timeout(4000), headers});
+      if (!r.ok) continue;
+      const j = await r.json();
+      if (!j.deals || !j.deals.length) continue;
+      RCP_DATA.deals = j.deals;
+      RCP_DATA.meta.built = j.ts.slice(0,10);
+      RCP_DATA.meta.count = j.count;
+      window.RCP_LEADS = j.leads || [];
+      window.RCP_PENDING = j.pendingScreenCount || 0;
+      ACTIVE_API_BASE = base;
+      if (!silent) window._liveSync = true;
+      return true;
+    } catch {}
+  }
+  return false;
+}
+
+// Calls one of the action endpoints (approve/reject/generate-deck/set-stage).
+// Throws with a readable message on failure — callers should catch and toast.
+async function callAction(path, body) {
+  if (!ACTIVE_API_BASE) throw new Error('No live connection — open this on your Mac, or set a tunnel URL in Settings (⚙)');
+  const headers = {'Content-Type': 'application/json'};
+  if (ACTIVE_API_BASE !== LOCAL_API_BASE) headers['X-API-Key'] = apiKey();
+  const r = await fetch(ACTIVE_API_BASE + path, {method: 'POST', headers, body: JSON.stringify(body)});
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(j.error || ('HTTP ' + r.status));
+  return j;
+}
+
+// Polls /api/job/<id> until it's done or errors (or ~2 minutes elapse).
+async function pollJob(jobId, onSettled) {
+  const headers = ACTIVE_API_BASE !== LOCAL_API_BASE ? {'X-API-Key': apiKey()} : {};
+  for (let i = 0; i < 40; i++) {
+    await new Promise(res => setTimeout(res, 3000));
+    try {
+      const r = await fetch(ACTIVE_API_BASE + '/api/job/' + jobId, {headers});
+      const j = await r.json();
+      if (j.status === 'done' || j.status === 'error') { onSettled(j); return; }
+    } catch { onSettled({status: 'error', error: 'lost connection while waiting'}); return; }
+  }
+  onSettled({status: 'error', error: 'timed out waiting for job to finish'});
 }
 
 // Try live sync on load, then every 3 minutes
 (async () => {
   const ok = await tryLiveSync();
   if (ok) {
-    console.log('[RCP] Live sync connected — pulling from Google Sheet');
+    console.log('[RCP] Live sync connected via ' + ACTIVE_API_BASE);
     if (typeof buildIndex === 'function') buildIndex();
     if (typeof route === 'function') route();
     if (typeof stamp === 'function') stamp();
+    if (typeof updatePendingBadge === 'function') updatePendingBadge();
   } else {
-    console.log('[RCP] Sync server not running — using data.js snapshot');
-    console.log('[RCP] To enable live sync: python3 ~/ios-acq-bot/sync_server.py');
+    console.log('[RCP] No live connection — using data.js snapshot');
+    console.log('[RCP] On your Mac: python3 ~/ios-acq-bot/sync_server.py. Elsewhere: set a tunnel URL in Settings (⚙).');
   }
   setInterval(() => tryLiveSync(true).then(ok => {
-    if (ok && typeof buildIndex === 'function') { buildIndex(); if (typeof route === 'function') route(); stamp(); }
+    if (ok && typeof buildIndex === 'function') {
+      buildIndex(); if (typeof route === 'function') route(); stamp();
+      if (typeof updatePendingBadge === 'function') updatePendingBadge();
+    }
   }), SYNC_INTERVAL);
 })();
 </script>
@@ -269,7 +316,9 @@ td.dimc{color:var(--dim)}
   </nav>
   <div id="topright">
     <div id="datastamp"></div>
+    <span id="pendingbadge" style="display:none"></span>
     <button class="btn sm" id="connectbtn">⇄ Sync tracker</button>
+    <button class="btn sm ghost" id="settingsbtn" title="Live connection settings">⚙</button>
     <button class="btn sm ghost" id="themebtn" title="Toggle light/dark">◐</button>
   </div>
 </header>
@@ -277,6 +326,24 @@ td.dimc{color:var(--dim)}
 <div id="dealpage" style="display:none"></div>
 <div id="toasts"></div>
 <input type="file" id="fileinput" accept=".xlsx,.xlsm" style="display:none">
+<div id="settingsmodal" style="display:none;position:fixed;inset:0;z-index:9998;background:rgba(0,0,0,.5);align-items:center;justify-content:center">
+  <div class="card" style="width:400px;max-width:90vw">
+    <h3>Live Connection Settings</h3>
+    <p style="font-size:12.5px;color:var(--dim);margin-top:8px">
+      On your own Mac this works automatically via localhost — no setup needed.
+      From any other device, paste the Cloudflare Tunnel URL and the API key
+      from <code>~/ios-acq-bot/.api_key</code> to enable Approve/Reject/Generate PowerPoint.
+    </p>
+    <label style="font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.1em;display:block;margin:14px 0 4px">Tunnel URL</label>
+    <input class="inp" id="set_tunnel" style="width:100%" placeholder="https://your-tunnel.trycloudflare.com">
+    <label style="font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.1em;display:block;margin:14px 0 4px">API Key</label>
+    <input class="inp" id="set_key" style="width:100%" placeholder="paste from ~/ios-acq-bot/.api_key">
+    <div style="display:flex;gap:8px;margin-top:18px;justify-content:flex-end">
+      <button class="btn sm ghost" id="settingscancel">Cancel</button>
+      <button class="btn sm primary" id="settingssave">Save & Reconnect</button>
+    </div>
+  </div>
+</div>
 <script>
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const T=RCP_DATA.meta.targets;
@@ -301,9 +368,19 @@ function ratingPill(v){if(v==null)return '<span class="pill p-na">—</span>';
 function toast(msg,cls=''){const t=document.createElement('div');t.className='toast '+cls;t.innerHTML=msg;
   $('#toasts').appendChild(t);setTimeout(()=>{t.style.opacity=0;t.style.transition='opacity .4s';setTimeout(()=>t.remove(),400)},4200)}
 
+// Sheet-backed stage (d.stageX, written by /api/set-stage, /api/approve,
+// /api/reject, /api/generate-deck) is now the source of truth. localStorage
+// is only an optimistic "pending write" overlay — kept so a stage change
+// shows instantly even before the next /deals refresh confirms it, but the
+// Sheet always wins once it has an opinion.
 const stageOv=JSON.parse(localStorage.getItem('rcp_stages')||'{}');
-function getStage(d){return stageOv[d.id]||d.stageX||d.stage0||'new'}
-function setStage(d,s){stageOv[d.id]=s;localStorage.setItem('rcp_stages',JSON.stringify(stageOv))}
+function getStage(d){return d.stageX||d.stage0||stageOv[d.id]||'new'}
+function setStage(d,s){
+  stageOv[d.id]=s;localStorage.setItem('rcp_stages',JSON.stringify(stageOv));
+  d.stageX=s; // optimistic — reflected immediately, confirmed by next sync
+  callAction('/api/set-stage',{address:d.addr,stage:s})
+    .catch(e=>toast('<b>Stage sync failed</b> — '+esc(e.message)+' (saved locally only)','bad'));
+}
 
 function buildIndex(){DEALS.forEach(d=>{
   d._s=[d.addr,d.mkt,d.st,d.type,d.broker,d.tenant,d.up,d.risk,d.notes,d.src].filter(Boolean).join(' ').toLowerCase();
@@ -346,6 +423,20 @@ document.documentElement.dataset.theme=themeInit;
 $('#themebtn').onclick=()=>{const t=document.documentElement.dataset.theme==='dark'?'light':'dark';
   document.documentElement.dataset.theme=t;localStorage.setItem('rcp_theme',t);
   if(CURRENT==='map'&&BIGMAP)switchBase();if(CURRENT==='analytics')route();};
+
+$('#settingsbtn').onclick=()=>{
+  $('#set_tunnel').value=tunnelUrl();
+  $('#set_key').value=apiKey();
+  $('#settingsmodal').style.display='flex';};
+$('#settingscancel').onclick=()=>$('#settingsmodal').style.display='none';
+$('#settingssave').onclick=async()=>{
+  localStorage.setItem('rcp_tunnel_url',$('#set_tunnel').value.trim());
+  localStorage.setItem('rcp_api_key',$('#set_key').value.trim());
+  $('#settingsmodal').style.display='none';
+  toast('Settings saved — reconnecting…');
+  const ok=await tryLiveSync();
+  if(ok){buildIndex();stamp();route();toast('<b>Connected</b> via '+ACTIVE_API_BASE,'good')}
+  else toast('<b>Still no connection</b> — check the tunnel URL and key','bad');};
 
 function stamp(){const live=LIVE||window._liveSync;$('#datastamp').innerHTML=`<span class="dot ${live?'live':''}"></span><b>${DEALS.length.toLocaleString()} deals</b> · ${LIVE?LIVEMETA:live?'live · Google Sheet · auto-refresh 3min':'snapshot '+RCP_DATA.meta.built}`}
 
@@ -537,6 +628,8 @@ function showDeal(id){
   el.innerHTML=`
     <div class="crumb"><a href="${prevHash}">← Back</a>
       <span style="flex:1"></span>
+      ${['new','screened'].includes(stage)?`<button class="btn sm primary noprint" onclick="approveDeal('${d.id}')">✓ Approve</button>
+        <button class="btn sm ghost noprint" onclick="rejectDeal('${d.id}')">✕ Reject</button>`:''}
       ${prev?`<button class="btn sm ghost" onclick="location.hash='#/deal/${prev.id}'">← Prev</button>`:''}
       ${next?`<button class="btn sm ghost" onclick="location.hash='#/deal/${next.id}'">Next →</button>`:''}
       <button class="btn sm" onclick="copySummary('${d.id}')">⧉ Copy summary</button>
@@ -550,6 +643,7 @@ function showDeal(id){
           ${ratingPill(d.rating).replace('class="pill','style="font-size:13px;padding:4px 12px" class="pill')}
           ${d.irr!=null?`<span class="pill ${d.irr>=T.irr?'p-hi':'p-lo'}" style="font-size:13px;padding:4px 12px">LP IRR ${fmt.pct(d.irr)}</span>
             <span class="pill ${d.em>=T.em?'p-hi':'p-lo'}" style="font-size:13px;padding:4px 12px">EM ${fmt.x(d.em)}</span>`:''}
+          ${d.needsNewDeck?'<span class="pill p-md" style="font-size:13px;padding:4px 12px">⚠ Deck needs regeneration</span>':''}
         </div></div>
       <div class="noprint"><label style="font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:4px">Pipeline stage</label>
         <select class="stagesel" onchange="stageFromPage('${d.id}',this.value)">${STAGES.map(([k,n])=>`<option value="${k}" ${stage===k?'selected':''}>${n}</option>`).join('')}</select></div>
@@ -565,7 +659,13 @@ function showDeal(id){
           ${d.notes?`<div class="note"><b>Source notes</b>${esc(d.notes)}</div>`:''}
         </div>`:''}
         ${d.mla?`<div class="card"><h3>MLA Assumptions</h3>${kv(Object.entries(d.mla).filter(([k])=>!['Address','Sent Date','U','Market / MSA','Property Type','Brief Description'].includes(k)))}</div>`:''}
-        ${d.deckLink?`<div class="card"><h3>Deal Deck</h3><a href="${esc(d.deckLink)}" target="_blank" class="btn sm">Open Google Slides ↗</a></div>`:''}
+        ${d.irr!=null?`<div class="card noprint"><h3>Deal Deck</h3>
+          ${!d.deckLink?`<button class="btn sm primary" onclick="generateDeck('${d.id}')">Generate PowerPoint</button>`
+            :d.needsNewDeck?`<a href="${esc(d.deckLink)}" target="_blank" class="btn sm ghost">Open Google Slides ↗</a>
+               <button class="btn sm primary" style="margin-left:8px" onclick="generateDeck('${d.id}')">⚠ Regenerate — data changed</button>`
+            :`<a href="${esc(d.deckLink)}" target="_blank" class="btn sm">Open Google Slides ↗</a>
+               <button class="btn sm ghost" style="margin-left:8px" onclick="generateDeck('${d.id}')">↻ Regenerate</button>`}
+          </div>`:''}
         ${d.modelLink?`<div class="card"><h3>Underwriting Model</h3><a href="${esc(d.modelLink)}" target="_blank" class="btn sm">Open Excel Model ↗</a></div>`:''}
       </div>
       <div>
@@ -588,6 +688,95 @@ function showDeal(id){
     </div>`;
   window.scrollTo(0,0);}
 function stageFromPage(id,s){const d=DEALS.find(x=>x.id===id);if(d){setStage(d,s);toast(`Stage → <b>${STAGE_NAME[s]}</b>`)}}
+
+function refreshIfOpen(id){if(location.hash==='#/deal/'+id)showDeal(id);else if(CURRENT==='today'||CURRENT==='pipeline'||CURRENT==='deals')route();}
+
+async function approveDeal(id){
+  const d=DEALS.find(x=>x.id===id);if(!d)return;
+  try{
+    toast(`<b>${esc(String(d.addr).split(',')[0])}</b> — starting underwrite…`);
+    const j=await callAction('/api/approve',{address:d.addr});
+    d.stageX='underwriting';refreshIfOpen(id);
+    pollJob(j.job_id,res=>{
+      if(res.status==='done'){
+        const r=res.result||{};
+        if(r.lp_irr!=null){d.irr=r.lp_irr;d.em=r.lp_em;}
+        if(r.model_link)d.modelLink=r.model_link;
+        toast(`<b>${esc(String(d.addr).split(',')[0])}</b> underwritten — LP IRR ${r.lp_irr!=null?fmt.pct(r.lp_irr):'—'}`,'good');
+      }else{
+        toast(`<b>Underwrite failed</b> for ${esc(String(d.addr).split(',')[0])} — ${esc(res.error||'unknown error')}`,'bad');
+      }
+      refreshIfOpen(id);
+    });
+  }catch(e){toast('<b>Approve failed</b> — '+esc(e.message),'bad')}
+}
+
+async function rejectDeal(id){
+  const d=DEALS.find(x=>x.id===id);if(!d)return;
+  const reason=prompt(`Reason for rejecting ${String(d.addr).split(',')[0]}?`,'');
+  if(reason===null)return;
+  try{
+    await callAction('/api/reject',{address:d.addr,reason:reason||'No reason given'});
+    d.stageX='dead';
+    toast(`<b>${esc(String(d.addr).split(',')[0])}</b> rejected`,'good');
+    refreshIfOpen(id);
+  }catch(e){toast('<b>Reject failed</b> — '+esc(e.message),'bad')}
+}
+
+async function generateDeck(id){
+  const d=DEALS.find(x=>x.id===id);if(!d)return;
+  try{
+    toast(`Generating PowerPoint for <b>${esc(String(d.addr).split(',')[0])}</b>…`);
+    const j=await callAction('/api/generate-deck',{address:d.addr});
+    pollJob(j.job_id,res=>{
+      if(res.status==='done'){
+        const r=res.result||{};
+        if(r.deck_link){d.deckLink=r.deck_link;d.needsNewDeck=false;d.stageX='boss';}
+        toast('<b>Deck generated</b>','good');
+      }else{
+        toast(`<b>Deck generation failed</b> — ${esc(res.error||'unknown error')}`,'bad');
+      }
+      refreshIfOpen(id);
+    });
+  }catch(e){toast('<b>Generate deck failed</b> — '+esc(e.message),'bad')}
+}
+
+let SCREENING_IN_PROGRESS=false;
+async function screenPending(){
+  if(SCREENING_IN_PROGRESS)return;
+  const n=window.RCP_PENDING||0;
+  if(!n){toast('Nothing pending — all Leads Raw rows are already screened','good');return}
+  SCREENING_IN_PROGRESS=true;
+  updatePendingBadge();
+  try{
+    toast(`Screening <b>${n}</b> pending propert${n===1?'y':'ies'}…`);
+    const j=await callAction('/api/screen-pending',{});
+    pollJob(j.job_id,res=>{
+      SCREENING_IN_PROGRESS=false;
+      if(res.status==='done'){
+        const r=res.result||{};
+        toast(`<b>Screened ${r.screened||0}</b> propert${r.screened===1?'y':'ies'} — ${r.remaining_pending||0} still pending`,'good');
+        tryLiveSync(true).then(()=>{buildIndex();updatePendingBadge();route();});
+      }else{
+        toast(`<b>Screening failed</b> — ${esc(res.error||'unknown error')}`,'bad');
+      }
+      updatePendingBadge();
+    });
+  }catch(e){
+    SCREENING_IN_PROGRESS=false;updatePendingBadge();
+    toast('<b>Screen failed</b> — '+esc(e.message),'bad');
+  }
+}
+function updatePendingBadge(){
+  const el=$('#pendingbadge');if(!el)return;
+  const n=window.RCP_PENDING||0;
+  if(!n && !SCREENING_IN_PROGRESS){el.style.display='none';return}
+  el.style.display='inline-flex';
+  el.innerHTML=SCREENING_IN_PROGRESS
+    ? `<span class="btn sm ghost" style="opacity:.7">⏳ Screening…</span>`
+    : `<button class="btn sm" style="border-color:var(--amber);color:var(--amber)" onclick="screenPending()">⚠ ${n} unscreened · Screen Now</button>`;
+}
+
 function copySummary(id){
   const d=DEALS.find(x=>x.id===id);if(!d)return;
   const lines=[d.addr,`${d.mkt||''}${d.nrank?' · NIOS #'+Math.round(d.nrank):''}`,
@@ -606,8 +795,14 @@ function baseLayer(){const dark=document.documentElement.dataset.theme!=='light'
 function satLayer(){return L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{attribution:'Esri',maxZoom:19});}
 function switchBase(){if(!BIGMAP)return;if(BASE)BIGMAP.removeLayer(BASE);BASE=SATON?satLayer():baseLayer();BASE.addTo(BIGMAP);}
 
+let MAPSCOPE='all'; // 'all' | 'screened' | 'unscreened' — screened = Sales Offers deals + processed Leads Raw; unscreened = Leads Raw pending screen
 function viewMap(el){
-  el.innerHTML=`<div class="pagehead"><h2>Deal Map</h2><div class="sub">Pins colored by IOS-God rating</div></div>
+  el.innerHTML=`<div class="pagehead"><h2>Deal Map</h2><div class="sub">Pins colored by IOS-God rating · grey = screened lead, amber = not yet screened</div></div>
+    <div class="toolbar" id="scopetb" style="margin-bottom:8px">
+      <button class="chip ${MAPSCOPE==='all'?'on':''}" data-scope="all">All properties</button>
+      <button class="chip ${MAPSCOPE==='screened'?'on':''}" data-scope="screened">Screened only</button>
+      <button class="chip ${MAPSCOPE==='unscreened'?'on':''}" data-scope="unscreened">Not screened yet</button>
+    </div>
     <div class="toolbar" id="tb"></div>
     <div id="bigmapwrap"><div id="bigmap"></div>
       <div class="mapctl"><button class="btn sm" id="satbtn">🛰 Satellite</button></div>
@@ -615,8 +810,10 @@ function viewMap(el){
         <div class="row"><span class="lswatch" style="background:#2fbf8f"></span>Rating 7–10</div>
         <div class="row"><span class="lswatch" style="background:#e0b357"></span>Rating 5–6</div>
         <div class="row"><span class="lswatch" style="background:#e5636c"></span>Rating 1–4</div>
-        <div class="row"><span class="lswatch" style="background:#7d8ea8"></span>Unrated</div>
+        <div class="row"><span class="lswatch" style="background:#7d8ea8"></span>Screened lead (no rating)</div>
+        <div class="row"><span class="lswatch" style="background:#e0913a"></span>Not screened yet</div>
       </div></div>`;
+  $$('#scopetb .chip').forEach(c=>c.onclick=()=>{MAPSCOPE=c.dataset.scope;$$('#scopetb .chip').forEach(x=>x.classList.toggle('on',x===c));drawPins()});
   toolbar($('#tb'),drawPins);
   BIGMAP=L.map('bigmap',{preferCanvas:true}).setView([33.0,-96.9],7);
   BASE=baseLayer();BASE.addTo(BIGMAP);
@@ -627,9 +824,13 @@ function viewMap(el){
 
 function drawPins(){
   if(!CLUSTER)return;CLUSTER.clearLayers();
-  const ds=filtered().filter(d=>d.lat&&d.lon);
-  $('#f_count').textContent=ds.length.toLocaleString()+' mapped';
-  const ms=ds.map(d=>{
+  const showScreened=MAPSCOPE==='all'||MAPSCOPE==='screened';
+  const showUnscreened=MAPSCOPE==='all'||MAPSCOPE==='unscreened';
+  const deals=showScreened?filtered().filter(d=>d.lat&&d.lon):[];
+  const leads=(window.RCP_LEADS||[]).filter(l=>l.lat&&l.lon&&((l.screened&&showScreened)||(!l.screened&&showUnscreened)));
+  $('#f_count').textContent=(deals.length+leads.length).toLocaleString()+' mapped';
+
+  const dealMarkers=deals.map(d=>{
     const c=ratingColor(d.rating);
     const size=d.price?Math.min(26,Math.max(12,Math.log10(d.price)*3.4)):12;
     const m=L.marker([d.lat,d.lon],{icon:L.divIcon({className:'',html:`<div class="pin" style="width:${size}px;height:${size}px;background:${c}"></div>`,iconSize:[size,size],iconAnchor:[size/2,size/2]})});
@@ -637,8 +838,18 @@ function drawPins(){
       ${d.price?fmt.money(d.price)+' · ':''}${d.bsf?fmt.num(d.bsf)+' SF · ':''}${d.rating!=null?'Rating '+d.rating:'Unrated'}
       <br><a href="#/deal/${d.id}" style="font-weight:600">Open deal →</a>`);
     return m;});
-  CLUSTER.addLayers(ms);
-  if(ds.length){const b=L.latLngBounds(ds.map(d=>[d.lat,d.lon]));BIGMAP.fitBounds(b.pad(0.1),{maxZoom:12})}}
+
+  const leadMarkers=leads.map(l=>{
+    const c=l.screened?'#7d8ea8':'#e0913a';
+    const m=L.marker([l.lat,l.lon],{icon:L.divIcon({className:'',html:`<div class="pin" style="width:11px;height:11px;background:${c}"></div>`,iconSize:[11,11],iconAnchor:[5.5,5.5]})});
+    m.bindPopup(`<b>${esc(l.addr)}</b><br><span style="color:var(--dim)">${esc(l.city||'')}${l.st?', '+l.st:''}</span><br>
+      ${l.price?fmt.money(l.price)+' · ':''}${l.bsf?fmt.num(l.bsf)+' SF · ':''}${esc(l.status||'New')}
+      <br><span style="color:var(--faint);font-size:11px">Leads Raw${l.screened?' — screened':' — not yet screened'}</span>`);
+    return m;});
+
+  CLUSTER.addLayers([...dealMarkers,...leadMarkers]);
+  const all=[...deals,...leads];
+  if(all.length){const b=L.latLngBounds(all.map(d=>[d.lat,d.lon]));BIGMAP.fitBounds(b.pad(0.1),{maxZoom:12})}}
 
 /* PIPELINE */
 function viewPipeline(el){
@@ -741,28 +952,39 @@ function viewAnalytics(el){
 
 /* TODAY */
 function viewToday(el){
-  const dates=[...new Set(DEALS.filter(d=>d.sent).map(d=>String(d.sent).slice(0,10)))].sort().reverse();
-  const latest=dates[0];
-  const todays=DEALS.filter(d=>String(d.sent||'').slice(0,10)===latest);
-  const upicks=todays.filter(d=>d.u);
+  // Needs a decision: rated 6+, not yet approved into underwriting or
+  // rejected. Refreshes automatically as new weekly batches get screened —
+  // no longer tied to a single calendar date.
+  const pending=DEALS.filter(d=>(d.rating||0)>=6&&['new','screened'].includes(getStage(d)));
+  const upicks=DEALS.filter(d=>d.u&&getStage(d)!=='dead');
   el.innerHTML=`<div class="pagehead"><h2>Today's Screen</h2>
-    <div class="sub">Latest batch: <b>${latest||'—'}</b> · ${todays.length} deals · ${upicks.length} U pick${upicks.length!==1?'s':''}</div></div>
+    <div class="sub">Needs review: <b>${pending.length}</b> deal${pending.length!==1?'s':''} rated 6+ · ${upicks.length} U pick${upicks.length!==1?'s':''}</div></div>
     <div class="kpis" id="kpirow"></div>
-    ${todays.length?`<div class="daysec"><h3>LATEST BATCH — ${latest}</h3><div class="cards">${todays.map(dcard).join('')}</div></div>`:'<div class="empty">No dated deals. Click ⇄ Sync tracker to load your xlsx.</div>'}
-    <div class="daysec"><h3>ALL U DEALS</h3><div class="cards">${DEALS.filter(d=>d.u&&!todays.includes(d)).map(dcard).join('')||'<div class="empty">—</div>'}</div></div>`;
+    ${pending.length?`<div class="daysec"><h3>NEEDS REVIEW — RATING 6+</h3><div class="cards">${pending.map(d=>dcard(d,{actions:true})).join('')}</div></div>`:'<div class="empty">Nothing pending review right now.</div>'}
+    <div class="daysec"><h3>ALL U DEALS</h3><div class="cards">${upicks.map(d=>dcard(d,{actions:true})).join('')||'<div class="empty">—</div>'}</div></div>`;
   kpis($('#kpirow'),DEALS);}
-function dcard(d){
-  return `<div class="dcard ${d.u?'upick':''}" onclick="location.hash='#/deal/${d.id}'">
-    <div class="a">${esc(String(d.addr).split(',').slice(0,2).join(','))}</div>
-    <div class="m">${esc(d.mkt||d.st||'')}${d.nrank?' · NIOS #'+Math.round(d.nrank):''}</div>
-    <div class="facts">
-      <div class="f">Price<b class="num">${d.price?fmt.moneyK(d.price):'—'}</b></div>
-      <div class="f">SF<b class="num">${d.bsf?fmt.num(d.bsf):'—'}</b></div>
-      <div class="f">Acres<b class="num">${d.ac!=null?fmt.dec(d.ac,2):'—'}</b></div>
-      <div class="f">$/SF<b class="num">${d.psf?'$'+Math.round(d.psf):'—'}</b></div></div>
-    <div style="display:flex;gap:8px;align-items:center">${ratingPill(d.rating)}
-      ${d.stars?`<span style="color:var(--faint);font-size:12px">${d.stars}★</span>`:''}
-      ${d.irr!=null?`<span class="num ${d.irr>=T.irr?'pass':'fail'}" style="font-size:12px">${fmt.pct(d.irr)} IRR</span>`:''}</div></div>`}
+function dcard(d,opts={}){
+  const stage=getStage(d);
+  const showActions=opts.actions&&['new','screened'].includes(stage);
+  return `<div class="dcard ${d.u?'upick':''}">
+    <div onclick="location.hash='#/deal/${d.id}'" style="cursor:pointer">
+      <div class="a">${esc(String(d.addr).split(',').slice(0,2).join(','))}</div>
+      <div class="m">${esc(d.mkt||d.st||'')}${d.nrank?' · NIOS #'+Math.round(d.nrank):''}</div>
+      <div class="facts">
+        <div class="f">Price<b class="num">${d.price?fmt.moneyK(d.price):'—'}</b></div>
+        <div class="f">SF<b class="num">${d.bsf?fmt.num(d.bsf):'—'}</b></div>
+        <div class="f">Acres<b class="num">${d.ac!=null?fmt.dec(d.ac,2):'—'}</b></div>
+        <div class="f">$/SF<b class="num">${d.psf?'$'+Math.round(d.psf):'—'}</b></div></div>
+      <div style="display:flex;gap:8px;align-items:center">${ratingPill(d.rating)}
+        ${d.stars?`<span style="color:var(--faint);font-size:12px">${d.stars}★</span>`:''}
+        ${d.irr!=null?`<span class="num ${d.irr>=T.irr?'pass':'fail'}" style="font-size:12px">${fmt.pct(d.irr)} IRR</span>`:''}
+        ${d.needsNewDeck?'<span class="pill p-md" style="font-size:10.5px">⚠ Deck stale</span>':''}</div>
+    </div>
+    ${showActions?`<div class="noprint" style="display:flex;gap:8px;margin-top:11px">
+      <button class="btn sm primary" onclick="event.stopPropagation();approveDeal('${d.id}')">✓ Approve</button>
+      <button class="btn sm ghost" onclick="event.stopPropagation();rejectDeal('${d.id}')">✕ Reject</button>
+    </div>`:''}
+  </div>`}
 
 /* INIT */
 stamp();

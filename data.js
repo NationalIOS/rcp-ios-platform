@@ -1,11 +1,11 @@
 // RCP IOS Deal Platform — data.js
 // Full merge: base (89) + Sales Offers + MLA Assumptions + Winners + Needs Confirmation + Outreach Queue
-// Built: 2026-07-15
-// 186 deals | 10 U picks | 13 underwritten | 1 winners
+// Built: 2026-07-16
+// 209 deals | 56 U picks | 13 underwritten | 1 winners
 window.RCP_DATA = {
   "meta": {
-    "built": "2026-07-15",
-    "count": 186,
+    "built": "2026-07-16",
+    "count": 209,
     "targets": {
       "irr": 0.15,
       "em": 1.8
@@ -30,7 +30,7 @@ window.RCP_DATA = {
       "broker": "eXp Realty",
       "tenant": "Vacant / full building available",
       "stars": 2,
-      "rating": 7,
+      "rating": 7.0,
       "up": "Best screen: top-2 NIOS market, full-building availability, visible outdoor area, and Tomball/Houston tenant demand.",
       "risk": "Price undisclosed; site quality, usable yard acreage, floodplain, and access need verification before serious underwriting.",
       "notes": "Underwrite only if pricing is reasonable versus land/building basis.",
@@ -40,7 +40,7 @@ window.RCP_DATA = {
       "lat": 30.08332,
       "lon": -95.56645,
       "geo": "city",
-      "stage0": "new",
+      "stage0": "underwriting",
       "mla": {
         "Sent Date": "2026-06-09",
         "U Marker": "U",
@@ -94,7 +94,7 @@ window.RCP_DATA = {
       "broker": "Marcus & Millichap",
       "tenant": "Partial vacancy / 17,740 SF available",
       "stars": 2,
-      "rating": 5,
+      "rating": 6.0,
       "up": "Top-2 NIOS market, low rent range for Houston, older industrial basis not insane.",
       "risk": "Urban infill but image shows constrained site and likely limited true IOS yard; need zoning, floodplain, truck access, and lease detail.",
       "notes": "Screenshot only.",
@@ -102,7 +102,7 @@ window.RCP_DATA = {
       "lat": 31.05059,
       "lon": -99.59294,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "115-industrial-way-fayetteville-ga-30215-3",
@@ -122,7 +122,7 @@ window.RCP_DATA = {
       "psf": 79.22,
       "tenant": "Multi-tenant small-bay / vacancy shown",
       "stars": 2,
-      "rating": 5,
+      "rating": 6.0,
       "up": "Top-3 NIOS MSA and low going-in basis; could be a small service-industrial play.",
       "risk": "Small asset, retail-ish small-bay profile, no yard evidence, limited scale for IOS strategy.",
       "notes": "Appears twice in screenshots; listing company not visible in repeated card.",
@@ -130,7 +130,7 @@ window.RCP_DATA = {
       "lat": 33.46964,
       "lon": -84.48996,
       "geo": "city",
-      "stage0": "new",
+      "stage0": "underwriting",
       "winner": true
     },
     {
@@ -174,13 +174,13 @@ window.RCP_DATA = {
       "rent": 11,
       "tenant": "Partial vacancy",
       "stars": 2,
-      "rating": 4,
+      "rating": 4.0,
       "up": "KC has some IOS demand and portfolio language could hide yard/land value.",
       "risk": "Very limited property visibility, price undisclosed, weak NIOS rank, and no proof of IOS functionality.",
       "notes": "Buildings 2 and 3; part of portfolio.",
       "src": "CoStar Screen",
       "geo": "none",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "18596-longs-way-parker-co-80134-6",
@@ -232,13 +232,13 @@ window.RCP_DATA = {
       "broker": "Newmark",
       "tenant": "Mostly/full building available",
       "stars": 2,
-      "rating": 4,
+      "rating": 4.0,
       "up": "Top-20 NIOS market, infill Tukwila location, full-building availability.",
       "risk": "Basis is extremely high at $423/SF; no visible yard economics; likely tough to make IOS returns work.",
       "notes": "Pacific NW Sales & Recovery Bldg.",
       "src": "CoStar Screen",
       "geo": "none",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "5451-communications-pkwy-lakewood-ranch-fl-34240-8",
@@ -291,7 +291,7 @@ window.RCP_DATA = {
       "broker": "Llano Realty Partners, LLC",
       "tenant": "Mostly vacant / EVS Metal",
       "stars": 3,
-      "rating": 7,
+      "rating": 6.0,
       "up": "Best screen: top-10 NIOS market, sizable building, visible excess land/outdoor area, full-building availability, and known pricing.",
       "risk": "Austin IOS vacancy is elevated in the market list; need confirm usable yard acreage, floodplain, zoning, truck access, and whether price supports land-value thesis.",
       "notes": "Marked\u00a0U\u00a0for underwriting.",
@@ -384,13 +384,13 @@ window.RCP_DATA = {
       "broker": "NAI Ohio Equities LLC",
       "tenant": "Vacant / full building available",
       "stars": 2,
-      "rating": 6,
+      "rating": 5.0,
       "up": "Low rent, full availability, low-ish $112/SF basis, and visible paved/fenced outdoor area.",
       "risk": "Older 1949 asset, Columbus is only rank 19, and true IOS yard control/access needs verification.",
       "notes": "Good second-pass candidate if yard is usable and zoning works.",
       "src": "CoStar Screen",
       "geo": "none",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "11111-guard-ln-north-bend-oh-45052-12",
@@ -412,13 +412,13 @@ window.RCP_DATA = {
       "broker": "SQFT Commercial",
       "tenant": "Vacant / full building available",
       "stars": 2,
-      "rating": 4,
+      "rating": 3.0,
       "up": "Full availability and some rough outdoor area visible.",
       "risk": "High $260/SF basis for Cincinnati-area small manufacturing; limited scale and unclear yard quality.",
       "notes": "Services shown as NNN.",
       "src": "CoStar Screen",
       "geo": "none",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "4830-hovis-rd-charlotte-nc-28208-13",
@@ -438,7 +438,7 @@ window.RCP_DATA = {
       "broker": "Piedmont Properties of the Carolinas, Inc.",
       "tenant": "Partial vacancy",
       "stars": 2,
-      "rating": 6,
+      "rating": 8.0,
       "up": "Top-5 NIOS market and the only explicitly labeled truck-terminal asset.",
       "risk": "Price undisclosed, small availability, older building, and visible site looks tight; need confirm yard area and sale availability.",
       "notes": "Strong IOS use label, but economics missing.",
@@ -446,7 +446,7 @@ window.RCP_DATA = {
       "lat": 35.36,
       "lon": -79.77294,
       "geo": "state",
-      "stage0": "new",
+      "stage0": "underwriting",
       "mla": {
         "Sent Date": "2026-06-10",
         "U Marker": "U",
@@ -500,7 +500,7 @@ window.RCP_DATA = {
       "tenant": "Stock Building Supply / partial vacancy",
       "lease": "NNN",
       "stars": 3,
-      "rating": 3,
+      "rating": 7.0,
       "up": "Top-6 Charlotte NIOS market; known price; existing industrial occupancy; building supply tenant compatible with IOS demand.",
       "risk": "$329/SF basis too high for value-add IOS returns; partial availability; limited yard evidence; hard to hit 15%+ IRR at ask.",
       "notes": "Screenshot only; NNN listing.",
@@ -508,7 +508,7 @@ window.RCP_DATA = {
       "lat": 35.67294,
       "lon": -80.06,
       "geo": "state",
-      "stage0": "new",
+      "stage0": "screened",
       "mla": {
         "Sent Date": "2026-06-10",
         "U Marker": "U",
@@ -559,13 +559,13 @@ window.RCP_DATA = {
       "broker": "SK Properties Group, LLC",
       "tenant": "Partial vacancy",
       "stars": 2,
-      "rating": 4,
+      "rating": 5.0,
       "up": "Chicago MSA and visible paved outdoor area.",
       "risk": "Price undisclosed, partial/small availability, image suggests older yard/building condition; Blue Island location needs diligence.",
       "notes": "Services shown as MG.",
       "src": "CoStar Screen",
       "geo": "none",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "6701-ringwood-rd-oxford-oh-45056-16",
@@ -586,13 +586,13 @@ window.RCP_DATA = {
       "psf": 187.84,
       "tenant": "Vacant / full building available",
       "stars": 3,
-      "rating": 2,
+      "rating": 1.0,
       "up": "Some portfolio angle and full availability.",
       "risk": "Not an IOS-looking asset, very small building, Oxford is a tertiary location, and portfolio pricing obscures actual economics.",
       "notes": "Screenshot says 2 properties / part of portfolio; sale PSF likely portfolio-based, not just 6,000 SF.",
       "src": "CoStar Screen",
       "geo": "none",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "10240-fm-1488-magnolia-tx-77354-17",
@@ -610,7 +610,7 @@ window.RCP_DATA = {
       "rrange": "$11.00 - $13.00",
       "tenant": "Multi-suite new construction",
       "stars": 3,
-      "rating": 4,
+      "rating": 6.0,
       "up": "Top-2 NIOS market and new construction in Houston growth path.",
       "risk": "Looks like small-bay/condo-style product, price undisclosed, no clear yard thesis, and max contiguous is limited.",
       "notes": "Building 1; avail SF exceeds listed building SF, likely broader project availability.",
@@ -618,7 +618,7 @@ window.RCP_DATA = {
       "lat": 31.38471,
       "lon": -99.15294,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "11956-11980-oak-creek-pkwy-huntley-il-60142-18",
@@ -637,13 +637,13 @@ window.RCP_DATA = {
       "broker": "Premier Commercial Realty",
       "tenant": "Multi-tenant / multiple vacancies",
       "stars": 3,
-      "rating": 4,
+      "rating": 4.0,
       "up": "Chicago MSA, decent apparent basis per suite, and multiple small vacancies.",
       "risk": "For-sale listing appears split into small condo/listing units; no IOS yard thesis and max contiguous is limited.",
       "notes": "Screenshot shows 4 listings and multiple suite availabilities.",
       "src": "CoStar Screen",
       "geo": "none",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "16115-sh-123-san-marcos-tx-78666-19",
@@ -661,7 +661,7 @@ window.RCP_DATA = {
       "rrange": "$9.60 - $11.40",
       "tenant": "Multi-building availability",
       "stars": 2,
-      "rating": 7,
+      "rating": 7.0,
       "up": "Best screen: Austin/San Marcos market, 4-building portfolio scale, low rent, newer 2008 construction, and visible excess land/low coverage.",
       "risk": "Price undisclosed; need confirm actual portfolio pricing, acreage, yard rights, stabilization, access, and whether outdoor storage is permitted.",
       "notes": "Buildings 1-4 shown: 13,600 SF, 27,000 SF, 31,500 SF, 40,000 SF.",
@@ -671,40 +671,38 @@ window.RCP_DATA = {
       "lat": 29.90706,
       "lon": -97.89364,
       "geo": "city",
-      "stage0": "new",
+      "stage0": "underwriting",
       "mla": {
-        "Sent Date": "2026-06-11",
-        "U": "U",
-        "Address": "16115 SH-123, San Marcos, TX 78666",
+        "Sent Date": "2026-07-15",
+        "U Marker": "U",
+        "Address": "16115 SH-123, San Marcos TX 78666",
         "Market / MSA": "Austin-Round Rock-San Marcos",
-        "Property Type": "Industrial portfolio",
-        "Building SF": 13600,
-        "Source Type": "Underwritten model",
-        "Brief Description": "Four-building San Marcos portfolio; strongest scale/rent-upside comp if pricing stays near the modeled basis.",
-        "Market Rent PSF": 10.13,
-        "Initial Downtime": 7,
-        "Term Months": 72,
-        "Free Rent Months": 2,
-        "Rent Bumps": 0.03,
-        "Initial TI PSF": 6.41,
-        "Initial LC": 0.06,
-        "Renewal Probability": 0.65,
-        "TI New PSF": 6.17,
-        "TI Renewal PSF": 3,
-        "LC New": 0.06,
-        "LC Renewal": 0,
-        "Downtime New": 7,
-        "Downtime Renewal": 0,
-        "Annual CapEx Reserve PSF": 0.25,
-        "Pro Forma NNN PSF": 4,
-        "Purchase Price": 12900000,
-        "Target Sale Month": 16,
-        "Exit Cap": 0.07,
-        "Modeled Sale Price": 16581739.29,
-        "Assumption Notes": "4-suite model: 13600/27000/31500/40000 SF. MR=11.4/10.2/10.2/9.6. Run via batch_rerun_all.py.",
-        "Initial Rent PSF": 11.4,
-        "Site Acres": 1.945
+        "Property Type": "IOS / Truck Terminal",
+        "Building SF": "13600",
+        "Source Type": "Confirmed firm model calibration data",
+        "Brief description": "SH-123 calibration deal \u2014 Austin #9, rating 7",
+        "Market Rent PSF (annual $/SF)": "11.4",
+        "Initial Downtime (months)": "6",
+        "Term Months": "62",
+        "Free Rent Months": "2",
+        "Rent Bumps (e.g. 0.03)": "0.03",
+        "Initial TI PSF": "5",
+        "Initial LC (e.g. 0.06)": "0.06",
+        "Renewal Probability (e.g. 0.65)": "0.65",
+        "TI New PSF": "5",
+        "TI Renewal PSF": "2.5",
+        "LC New": "0.06",
+        "LC Renewal": "0",
+        "Downtime New (months)": "6",
+        "Downtime Renewal (months)": "0",
+        "Annual CapEx Reserve PSF": "0.25",
+        "Pro Forma NNN PSF": "4",
+        "Purchase Price": "12900000",
+        "Target Sale Month": "16",
+        "Exit Cap (e.g. 0.065)": "0.07",
+        "Assumption Notes": "Confirmed from firm completed model"
       },
+      "stageX": "underwriting",
       "outreach_status": "Draft"
     },
     {
@@ -753,13 +751,13 @@ window.RCP_DATA = {
       "broker": "P.A. Commercial, LLC",
       "tenant": "Vacant / full building available",
       "stars": 2,
-      "rating": 4,
+      "rating": 4.0,
       "up": "Full availability, known price, Detroit industrial demand, moderate $124/SF basis.",
       "risk": "No yard thesis visible, older suburban industrial, NIOS rank only mid-pack.",
       "notes": "Services shown as NNN.",
       "src": "CoStar Screen",
       "geo": "none",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "6416-33rd-st-e-sarasota-fl-34243-22",
@@ -779,7 +777,7 @@ window.RCP_DATA = {
       "broker": "Palomino Motors",
       "tenant": "Vacant / full building available",
       "stars": 2,
-      "rating": 5,
+      "rating": 3.0,
       "up": "Explicit truck terminal use with yard/service-bay appearance.",
       "risk": "Very small asset, price undisclosed, Sarasota NIOS rank is weak, and site condition looks rough.",
       "notes": "Interesting only if cheap and yard is legally usable.",
@@ -787,7 +785,7 @@ window.RCP_DATA = {
       "lat": 28.30235,
       "lon": -81.50824,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "8002-n-83rd-ave-peoria-az-85345-23",
@@ -809,7 +807,7 @@ window.RCP_DATA = {
       "broker": "Rein & Grossoehme",
       "tenant": "Vacant / full building available",
       "stars": 0,
-      "rating": 3,
+      "rating": 4.0,
       "up": "Top-5 NIOS market and visible outdoor storage lot.",
       "risk": "Building is tiny and quoted PSF is extremely high; economics are land-value-only and need acreage confirmation.",
       "notes": "Could be a land/yard deal, but building PSF is not useful.",
@@ -817,7 +815,7 @@ window.RCP_DATA = {
       "lat": 33.96941,
       "lon": -111.93412,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "3002-a-temtex-blvd-terrell-tx-75160-24",
@@ -837,7 +835,7 @@ window.RCP_DATA = {
       "broker": "Lee & Associates",
       "tenant": "Vacant / full building available",
       "stars": 2,
-      "rating": 6,
+      "rating": 7.0,
       "up": "Top NIOS market, full-building availability, low rent, and visible truck/outdoor area.",
       "risk": "Price undisclosed; Terrell is outer DFW; need confirm acreage, yard surface, zoning, and truck circulation.",
       "notes": "Metrocrest Industrial Park.",
@@ -845,7 +843,7 @@ window.RCP_DATA = {
       "lat": 31.06706,
       "lon": -99.48235,
       "geo": "state",
-      "stage0": "new",
+      "stage0": "underwriting",
       "mla": {
         "Sent Date": "2026-06-11",
         "U Marker": "U",
@@ -895,7 +893,7 @@ window.RCP_DATA = {
       "rent": 5.4,
       "tenant": "Vacant / full building available",
       "stars": 3,
-      "rating": 6,
+      "rating": 6.0,
       "up": "Very low rent in Austin MSA and full-building availability; Taylor growth may help.",
       "risk": "Price undisclosed, older building, possible portfolio complexity, and need check whether low rent reflects functional obsolescence.",
       "notes": "Screens show 27,456 SF and 27,649 SF for 1200/1300 E 4th St; treated as one portfolio item.",
@@ -905,7 +903,7 @@ window.RCP_DATA = {
       "lat": 30.54626,
       "lon": -97.37132,
       "geo": "city",
-      "stage0": "new",
+      "stage0": "underwriting",
       "mla": {
         "Sent Date": "2026-06-11",
         "U": "U",
@@ -1010,13 +1008,13 @@ window.RCP_DATA = {
       "rent": 10.5,
       "tenant": "Multi-tenant / partial vacancy",
       "stars": 3,
-      "rating": 4,
+      "rating": 3.0,
       "up": "Modern-ish building and decent basis range if portfolio allocation is accurate.",
       "risk": "Not a strong NIOS market, partial vacancy only, portfolio pricing ambiguity, and no visible IOS yard.",
       "notes": "Part of portfolio; sale price range likely portfolio/listing range.",
       "src": "CoStar Screen",
       "geo": "none",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "2316-n-san-fernando-rd-los-angeles-ca-90065-29",
@@ -1038,13 +1036,13 @@ window.RCP_DATA = {
       "broker": "Lee & Associates",
       "tenant": "Partial vacancy / sublet shown",
       "stars": 2,
-      "rating": 3,
+      "rating": 4.0,
       "up": "Infill LA industrial location with high rent support.",
       "risk": "$409/SF basis, older building, partial/sublet availability, and limited IOS yard thesis.",
       "notes": "Suite A sublet listed at $23.40 IG.",
       "src": "CoStar Screen",
       "geo": "none",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "6030-ga-85-hwy-riverdale-ga-30274-30",
@@ -1064,7 +1062,7 @@ window.RCP_DATA = {
       "broker": "Apex Industrial Real Estate Advisors",
       "tenant": "Partial vacancy",
       "stars": 3,
-      "rating": 4,
+      "rating": 7.0,
       "up": "Top-3 Atlanta MSA and service-industrial use.",
       "risk": "Only 2,400 SF available, six-property portfolio complexity, and no clear standalone IOS opportunity.",
       "notes": "Part of 6-property portfolio.",
@@ -1072,7 +1070,7 @@ window.RCP_DATA = {
       "lat": 33.14235,
       "lon": -83.41059,
       "geo": "state",
-      "stage0": "new",
+      "stage0": "underwriting",
       "mla": {
         "Sent Date": "2026-06-11",
         "U Marker": "U",
@@ -1124,7 +1122,7 @@ window.RCP_DATA = {
       "broker": "KBC Advisors",
       "tenant": "Vacant / full building available",
       "stars": 2,
-      "rating": 7,
+      "rating": 7.0,
       "up": "Best pure IOS candidate: explicit truck terminal, full availability, top NIOS market, likely yard/use functionality.",
       "risk": "Price missing; must confirm yard acreage, paving, zoning, trailer parking, and access before underwriting hard.",
       "notes": "Chase price first.",
@@ -1134,7 +1132,7 @@ window.RCP_DATA = {
       "lat": 33.19433,
       "lon": -97.13428,
       "geo": "city",
-      "stage0": "new",
+      "stage0": "underwriting",
       "mla": {
         "Sent Date": "2026-06-12",
         "U Marker": "U",
@@ -1187,7 +1185,7 @@ window.RCP_DATA = {
       "broker": "Apex Investment LLC",
       "tenant": "Multi-suite vacancy",
       "stars": 4,
-      "rating": 6,
+      "rating": 2.0,
       "up": "Known price, reasonable basis, visible yard/parking, multiple vacancies to lease.",
       "risk": "Lower NIOS market rank, mixed retail/industrial suite, fragmented lease-up, not a pure IOS yard deal.",
       "notes": "Suite 1 retail rent withheld; Suites 2-3 industrial.",
@@ -1195,7 +1193,7 @@ window.RCP_DATA = {
       "lat": 28.66941,
       "lon": -81.54824,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "731-soechting-ln-new-braunfels-tx-78130-33",
@@ -1215,7 +1213,7 @@ window.RCP_DATA = {
       "broker": "Walker Land & Cattle Co.",
       "tenant": "Vacant / full building available",
       "stars": 4,
-      "rating": 4,
+      "rating": 5.0,
       "up": "New construction in top-20 NIOS market.",
       "risk": "Small building, portfolio pricing missing, image does not show a real IOS yard thesis.",
       "notes": "Building B; part of 7-property portfolio.",
@@ -1223,7 +1221,7 @@ window.RCP_DATA = {
       "lat": 31.29059,
       "lon": -99.00706,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "1815-w-500-s-salt-lake-city-ut-84104-34",
@@ -1243,13 +1241,13 @@ window.RCP_DATA = {
       "broker": "Cushman & Wakefield",
       "tenant": "Partial vacancy",
       "stars": 2,
-      "rating": 3,
+      "rating": 3.0,
       "up": "Infill SLC industrial location.",
       "risk": "Small/older building, price missing, limited yard evidence, not enough scale for 20% IRR focus.",
       "notes": "Former Becho.",
       "src": "CoStar Screen",
       "geo": "none",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "1360-e-county-road-e-rd-e-vadnais-heights-mn-55110-35",
@@ -1269,13 +1267,13 @@ window.RCP_DATA = {
       "broker": "Small Bay Properties",
       "tenant": "Vacant / full building available",
       "stars": 2,
-      "rating": 4,
+      "rating": 5.0,
       "up": "Full-building availability in top-20 NIOS market.",
       "risk": "Price missing, conventional small-bay/warehouse feel, limited outdoor storage angle.",
       "notes": "Screenshot only.",
       "src": "CoStar Screen",
       "geo": "none",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "8205-estates-pkwy-plain-city-oh-43064-36",
@@ -1324,7 +1322,7 @@ window.RCP_DATA = {
       "psf": 504.59,
       "tenant": "Vacant / full building available",
       "stars": 2,
-      "rating": 2,
+      "rating": 6.0,
       "up": "Top-5 NIOS market and full availability.",
       "risk": "$505/SF basis is very hard to make work; no obvious IOS yard upside.",
       "notes": "Likely pass unless land value is exceptional.",
@@ -1332,7 +1330,7 @@ window.RCP_DATA = {
       "lat": 33.50605,
       "lon": -112.12459,
       "geo": "city",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "3200-s-70th-st-philadelphia-pa-19153-38",
@@ -1351,13 +1349,13 @@ window.RCP_DATA = {
       "rrange": "$11.00 - $14.00",
       "tenant": "Vacant / full building available",
       "stars": 3,
-      "rating": 2,
+      "rating": 2.0,
       "up": "Top-15 NIOS market.",
       "risk": "Too small, likely parking/auto-adjacent, price missing, not enough scale.",
       "notes": "Screenshot only.",
       "src": "CoStar Screen",
       "geo": "none",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "540-558-s-falkenburg-rd-tampa-fl-33619-39",
@@ -1374,7 +1372,7 @@ window.RCP_DATA = {
       "yb": 2027,
       "tenant": "Full-building future availability",
       "stars": 4,
-      "rating": 4,
+      "rating": 3.0,
       "up": "Top-10 NIOS market, large scale, brand-new logistics product.",
       "risk": "2027 delivery, likely core/big-box pricing, no rent/price, not an IOS flip unless bought at a major discount.",
       "notes": "Bullseye Logistics Building 200.",
@@ -1382,7 +1380,7 @@ window.RCP_DATA = {
       "lat": 28.71647,
       "lon": -81.90824,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "14732-bulverde-rd-san-antonio-tx-78247-40",
@@ -1401,7 +1399,7 @@ window.RCP_DATA = {
       "rrange": "$10.00 - $12.00",
       "tenant": "Vacant / full building available",
       "stars": 2,
-      "rating": 2,
+      "rating": 2.0,
       "up": "Top-20 NIOS market.",
       "risk": "Tiny asset, looks retail/showroom-adjacent, price missing, no yard thesis.",
       "notes": "Screenshot only.",
@@ -1409,7 +1407,7 @@ window.RCP_DATA = {
       "lat": 31.14941,
       "lon": -99.59294,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "504-520-s-falkenburg-rd-tampa-fl-33619-41",
@@ -1426,7 +1424,7 @@ window.RCP_DATA = {
       "yb": 2027,
       "tenant": "Full-building future availability",
       "stars": 4,
-      "rating": 4,
+      "rating": 4.0,
       "up": "Same top-10 Tampa new logistics thesis as Building 200.",
       "risk": "New development likely priced efficiently; no rent/price and not IOS-specific.",
       "notes": "Bullseye Logistics Building 100.",
@@ -1434,7 +1432,7 @@ window.RCP_DATA = {
       "lat": 28.34471,
       "lon": -81.87529,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "6401-6425-w-florissant-rd-saint-louis-mo-63136-42",
@@ -1453,13 +1451,13 @@ window.RCP_DATA = {
       "rrange": "$4.00 - $10.00",
       "tenant": "Partial large vacancy",
       "stars": 3,
-      "rating": 5,
+      "rating": 1.0,
       "up": "Large scale, very low rent, potential value-add if basis is cheap.",
       "risk": "Weak NIOS market, old building, likely heavy capex, neighborhood/location diligence required.",
       "notes": "Could be interesting only at a very low basis.",
       "src": "CoStar Screen",
       "geo": "none",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "6175-nw-102nd-ave-doral-fl-33178-43",
@@ -1533,7 +1531,7 @@ window.RCP_DATA = {
       "broker": "Bradford Companies",
       "tenant": "Large vacancy / portfolio",
       "stars": 5,
-      "rating": 6,
+      "rating": 5.0,
       "up": "Top NIOS market, brand-new scale, cheap rent, large contiguous block.",
       "risk": "More big-box warehouse than IOS; price missing, likely institutional pricing, less obvious 20% IRR flip.",
       "notes": "Part of 2-property portfolio.",
@@ -1541,7 +1539,7 @@ window.RCP_DATA = {
       "lat": 32.56626,
       "lon": -97.12688,
       "geo": "city",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "1207-n-fm-3083-rd-conroe-tx-77303-46",
@@ -1561,7 +1559,7 @@ window.RCP_DATA = {
       "broker": "Green & Associates Real Estate",
       "tenant": "Partial vacancy",
       "stars": 2,
-      "rating": 3,
+      "rating": 6.0,
       "up": "Top-2 NIOS market and decent rent basis.",
       "risk": "Under contract, MG services, partial vacancy, no clear yard thesis.",
       "notes": "Under contract.",
@@ -1569,7 +1567,7 @@ window.RCP_DATA = {
       "lat": 31.18941,
       "lon": -99.39529,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "1000-humboldt-ave-n-minneapolis-mn-55411-47",
@@ -1590,13 +1588,13 @@ window.RCP_DATA = {
       "broker": "Colliers",
       "tenant": "Full-building availability possible",
       "stars": 3,
-      "rating": 6,
+      "rating": 5.0,
       "up": "Known low basis, top-20 NIOS market, full-building availability, low rent.",
       "risk": "Office component shown, Minneapolis market less compelling for your 20% flip target, no obvious IOS yard.",
       "notes": "7,438 SF office availability listed; verify true industrial availability.",
       "src": "CoStar Screen",
       "geo": "none",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "3229-n-main-st-cleburne-tx-76033-48",
@@ -1616,7 +1614,7 @@ window.RCP_DATA = {
       "broker": "Partners",
       "tenant": "Vacant / full building available",
       "stars": 2,
-      "rating": 6,
+      "rating": 6.0,
       "up": "Top NIOS market, visible fenced/stabilized yard, full availability.",
       "risk": "Small building, outer DFW location, price missing; scale may cap buyer demand.",
       "notes": "Good quick price check.",
@@ -1624,7 +1622,7 @@ window.RCP_DATA = {
       "lat": 30.93765,
       "lon": -99.08235,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "9610-harney-rd-thonotosassa-fl-33592-49",
@@ -1647,7 +1645,7 @@ window.RCP_DATA = {
       "broker": "Lamm Properties, Inc.",
       "tenant": "Vacant / full building available",
       "stars": 2,
-      "rating": 7,
+      "rating": 6.0,
       "up": "Top-10 NIOS Tampa market, known low basis, full-building availability, NNN rent, and a clean single-tenant lease-up path.",
       "risk": "Older 1977/1984 building, Florida insurance/taxes, unclear yard acreage and site functionality; verify capex and zoning before underwriting hard.",
       "notes": "Best daily underwriting candidate; MLA should use the single-tenant model comp set.",
@@ -1710,7 +1708,7 @@ window.RCP_DATA = {
       "broker": "Capital Real Estate Commercial, Inc.",
       "tenant": "Partial/full availability",
       "stars": 2,
-      "rating": 6,
+      "rating": 7.0,
       "up": "Top-2 Houston NIOS market, known price, newer 2006 vintage, and visible paved truck-court or yard-style functionality.",
       "risk": "$171/SF basis likely makes 20% IRR tighter; confirm full-building vacancy, yard rights, and lease-up cost.",
       "notes": "Second-best today but not marked U because only one daily underwriting candidate should be selected.",
@@ -1720,7 +1718,7 @@ window.RCP_DATA = {
       "lat": 30.97294,
       "lon": -99.34353,
       "geo": "state",
-      "stage0": "new",
+      "stage0": "screened",
       "mla": {
         "Sent Date": "2026-06-16",
         "U Marker": "U",
@@ -1771,7 +1769,7 @@ window.RCP_DATA = {
       "rrange": "$10.00 - $13.00",
       "tenant": "Vacant / full building available",
       "stars": 3,
-      "rating": 5,
+      "rating": 5.0,
       "up": "Strong Houston/port-adjacent demand and visible outdoor service-yard feel.",
       "risk": "Very small asset and price missing; likely only works if the land/yard basis is unusually cheap.",
       "notes": "Quick price-check only.",
@@ -1779,7 +1777,7 @@ window.RCP_DATA = {
       "lat": 31.15647,
       "lon": -99.43529,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "5909-5915-broadway-st-denver-co-80216-52",
@@ -1797,7 +1795,7 @@ window.RCP_DATA = {
       "rent": 9.45,
       "tenant": "Partial/full availability",
       "stars": 2,
-      "rating": 5,
+      "rating": 4.0,
       "up": "Larger scale, low rent, and infill Denver industrial location.",
       "risk": "Price missing, Denver is a lower NIOS rank, older building, and yard value is not clear from screenshot.",
       "notes": "Screenshot shows max contiguous SF slightly above building SF; left as shown.",
@@ -1805,7 +1803,7 @@ window.RCP_DATA = {
       "lat": 39.21647,
       "lon": -104.77059,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "154-lafayette-rd-salisbury-ma-01952-53",
@@ -1849,7 +1847,7 @@ window.RCP_DATA = {
       "broker": "Matthews Real Estate Investment Services",
       "tenant": "Vacant / full building available",
       "stars": 3,
-      "rating": 7,
+      "rating": 7.0,
       "up": "Top-8 NIOS market; full building availability; low estimated rent suggests mark-to-market upside; Hwy 183 frontage supports truck access and contractor/IOS demand.",
       "risk": "Price undisclosed; small 13K SF building; yard area and zoning unconfirmed; call Matthews for whisper price before underwriting.",
       "notes": "Best screen today; marked U pending price confirmation.",
@@ -1859,7 +1857,7 @@ window.RCP_DATA = {
       "lat": 30.70749,
       "lon": -97.92838,
       "geo": "city",
-      "stage0": "new",
+      "stage0": "underwriting",
       "mla": {
         "Sent Date": "2026-06-17",
         "U": "U",
@@ -1993,13 +1991,13 @@ window.RCP_DATA = {
       "broker": "The Stubblebine Company",
       "tenant": "Multi-suite / partial vacancy",
       "stars": 3,
-      "rating": 3,
+      "rating": 5.0,
       "up": "60K SF building scale; infill Lowell industrial submarket; low estimated rent range.",
       "risk": "Bottom-third NIOS market (rank 32); 1950 vintage with material capex risk; partial small-suite availability only; mixed industrial/office; price undisclosed.",
       "notes": "Suites B (2,250 SF), C (6,000 SF), H (8,554 SF office); screenshot only.",
       "src": "CoStar Screen",
       "geo": "none",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "19850-highway-72-arvada-co-80007-60",
@@ -2018,7 +2016,7 @@ window.RCP_DATA = {
       "rrange": "$11-$14/SF (Est.)",
       "tenant": "Vacant",
       "stars": 4,
-      "rating": 6,
+      "rating": 6.0,
       "up": "Brand-new 2024 construction (minimal CapEx); 100K SF institutional scale with flexible suite splits; 4-star CoStar; Hwy 72 frontage with excellent truck access; Phase I pricing may offer developer land basis advantage",
       "risk": "Denver rank 23 mid-tier; price not disclosed - need confirmation before underwriting; $11-$14/SF rent is estimated only; IOS yard functionality/zoning must be verified on site",
       "notes": "CoStar 6/18/26; Building 2 - Phase I",
@@ -2028,7 +2026,7 @@ window.RCP_DATA = {
       "lat": 39.8388,
       "lon": -105.13903,
       "geo": "city",
-      "stage0": "new",
+      "stage0": "underwriting",
       "mla": {
         "Sent Date": "2026-06-18",
         "U": "U",
@@ -2084,7 +2082,7 @@ window.RCP_DATA = {
       "broker": "Loch Company",
       "tenant": "Vacant",
       "stars": 3,
-      "rating": 4,
+      "rating": 4.0,
       "up": "Full building vacant for clean-slate lease; low $8.28/SF rent signals mark-to-market opportunity; 'Drag Strip Rd' address suggests industrial/outdoor use history; Nashville rank 18 is a strong SE growth market",
       "risk": "1984 vintage - high CapEx risk (roof, HVAC, electrical); $182.73/SF is expensive for a 42-year-old building; truck access and outdoor yard must be field-verified",
       "notes": "CoStar 6/18/26",
@@ -2092,7 +2090,7 @@ window.RCP_DATA = {
       "lat": 35.98271,
       "lon": -87.16916,
       "geo": "city",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "2912-chambers-st-venus-tx-76084-62",
@@ -2113,7 +2111,7 @@ window.RCP_DATA = {
       "psf": 185.71,
       "broker": "Zang | Adams Compass RE Texas, LLC",
       "stars": 3,
-      "rating": 4,
+      "rating": 5.0,
       "up": "Top NIOS market (DFW #1, Score 9.43); brand-new 2025 construction with zero near-term CapEx; low entry price ($1.3M) limits absolute downside",
       "risk": "Full Service (not NNN) lease structure increases ownership costs; very small 7K SF limits institutional buyer pool at exit; $185.71/SF steep for rural Venus TX; service building may lack IOS yard; FS lease complicates NOI analysis",
       "notes": "CoStar 6/18/26",
@@ -2121,7 +2119,7 @@ window.RCP_DATA = {
       "lat": 31.03647,
       "lon": -99.2,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "1811-n-topping-ave-kansas-city-mo-64120-63",
@@ -2143,13 +2141,13 @@ window.RCP_DATA = {
       "broker": "IronHorn Enterprises",
       "tenant": "Partially Occupied",
       "stars": 3,
-      "rating": 4,
+      "rating": 5.0,
       "up": "Very low $75.81/SF basis provides strong downside protection; Topping Ave is established KC industrial corridor; NNN lease; bulk of building occupied providing income day 1",
       "risk": "KC rank 29 - weaker IOS demand; 1970 vintage - significant CapEx exposure; only 5,565 SF (13%) available limits revenue growth; IOS yard and truck access unconfirmed",
       "notes": "CoStar 6/18/26",
       "src": "CoStar Screen",
       "geo": "none",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "15116-fm-1518-selma-tx-78154-64",
@@ -2171,7 +2169,7 @@ window.RCP_DATA = {
       "broker": "Outpost Partners",
       "tenant": "Vacant",
       "stars": 2,
-      "rating": 3,
+      "rating": 5.0,
       "up": "San Antonio rank 16 market with strong IOS fundamentals; full building availability; I-35 corridor Selma TX location; FM 1518 arterial road",
       "risk": "$218.75/SF is expensive for a 35-year-old 1991 vintage building; 2-star CoStar quality; requires aggressive rent growth assumption to hit target returns; CapEx risk on aging systems",
       "notes": "CoStar 6/18/26",
@@ -2179,7 +2177,7 @@ window.RCP_DATA = {
       "lat": 31.45294,
       "lon": -99.48706,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "7176-15th-st-e-sarasota-fl-34243-65",
@@ -2202,7 +2200,7 @@ window.RCP_DATA = {
       "broker": "SVN | Commercial Advisory Group",
       "tenant": "Sublet",
       "stars": 2,
-      "rating": 3,
+      "rating": 4.0,
       "up": "Lower $133/SF basis vs. other FL industrial; 2015 renovation reduces near-term CapEx; FL in-migration continues to support industrial demand",
       "risk": "Sarasota rank 30 - weak IOS market; sublet structure adds complexity and limits control; 1968 vintage despite renovation; $14/SF rent may be near market, limiting upside; Building 3 of multi-bldg complex",
       "notes": "CoStar 6/18/26; Building 3; Sublet listing",
@@ -2210,7 +2208,7 @@ window.RCP_DATA = {
       "lat": 28.53529,
       "lon": -81.62118,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "529-sh-46-e-boerne-tx-78006-66",
@@ -2231,7 +2229,7 @@ window.RCP_DATA = {
       "psf": 326.92,
       "broker": "KW Commercial",
       "stars": 3,
-      "rating": 2,
+      "rating": 5.0,
       "up": "New 2022 construction; San Antonio rank 16 market",
       "risk": "Condo sale - eliminates IOS thesis entirely (no yard control); $326.92/SF extreme for a condo unit; 1,322 SF max contig is unusably small; not an IOS deal",
       "notes": "CoStar 6/18/26; Condo - Building B; Boerne Personal Warehouse",
@@ -2239,7 +2237,7 @@ window.RCP_DATA = {
       "lat": 31.31882,
       "lon": -99.19294,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "119-white-oak-dr-berlin-ct-06037-67",
@@ -2259,13 +2257,13 @@ window.RCP_DATA = {
       "broker": "CBRE Inc.",
       "tenant": "Vacant",
       "stars": 2,
-      "rating": 2,
+      "rating": 3.0,
       "up": "Low $9/SF asking rent; full building available; 1999 vintage (manageable CapEx); CBRE listing suggests some institutional quality",
       "risk": "Connecticut rank 38 - bottom of top 40, weak IOS demand; manufacturing building limits outdoor storage utility; price undisclosed; CT has high operating costs/taxes; River Bend Business Park may restrict outdoor storage use",
       "notes": "CoStar 6/18/26; River Bend Business Park",
       "src": "CoStar Screen",
       "geo": "none",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "111-e-mccarty-ln-san-marcos-tx-78666-68",
@@ -2284,14 +2282,14 @@ window.RCP_DATA = {
       "rrange": "$13-16/SF (Est.)",
       "broker": "Lee & Associates",
       "stars": 2,
-      "rating": 4,
+      "rating": 5.0,
       "up": "Austin MSA rank 9; decent rent range for IOS comp",
       "risk": "No sale price; small bldg; no acreage data; no IOS yard confirmed",
       "src": "CoStar Screen",
       "lat": 29.94001,
       "lon": -97.89928,
       "geo": "city",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "1325-n-broad-st-carlinville-il-62626-69",
@@ -2314,12 +2312,12 @@ window.RCP_DATA = {
       "psf": 22.5,
       "broker": "BarberMurphy Group",
       "stars": 2,
-      "rating": 2,
+      "rating": 3.0,
       "up": "Extremely cheap at $22.50/SF; 44K SF building",
       "risk": "Rural market not in top 40; very low rent ($5/SF); no IOS yard data; proximity to St. Louis unconfirmed",
       "src": "CoStar Screen",
       "geo": "none",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "1000-harding-st-fort-worth-tx-76102-70",
@@ -2338,14 +2336,14 @@ window.RCP_DATA = {
       "rrange": "$4-5/SF (Est.)",
       "broker": "LanCarte Commercial Real Estate",
       "stars": 3,
-      "rating": 3,
+      "rating": 7.0,
       "up": "#1 NIOS market (DFW); downtown Fort Worth location",
       "risk": "Built 1902 = massive capex risk; low rent ceiling ($4-5/SF); age makes IOS conversion uncertain",
       "src": "CoStar Screen",
       "lat": 31.33765,
       "lon": -99.05647,
       "geo": "state",
-      "stage0": "new",
+      "stage0": "underwriting",
       "mla": {
         "Sent Date": "2026-06-19",
         "U Marker": "U",
@@ -2419,7 +2417,7 @@ window.RCP_DATA = {
       "rent": 21,
       "rrange": "$21.00/SF",
       "stars": 3,
-      "rating": 8,
+      "rating": 8.0,
       "up": "Brand new 2023 truck terminal = purpose-built IOS; top-4 Phoenix market; $21/SF strong rent",
       "risk": "No sale price disclosed; small bldg (11.6K SF); no acreage data yet",
       "irr": 0.0558706428993778,
@@ -2428,7 +2426,7 @@ window.RCP_DATA = {
       "lat": 33.48581,
       "lon": -112.12647,
       "geo": "city",
-      "stage0": "new",
+      "stage0": "underwriting",
       "mla": {
         "Sent Date": "2026-06-19",
         "U Marker": "U",
@@ -2481,12 +2479,12 @@ window.RCP_DATA = {
       "price": 4963000,
       "psf": 659.97,
       "stars": 3,
-      "rating": 1,
+      "rating": 1.0,
       "up": "Part of portfolio; land-heavy pricing in LV market",
       "risk": "Egregiously overpriced at $660/SF for 1985 building; tiny (7,520 SF); poor IRR at ask",
       "src": "CoStar Screen",
       "geo": "none",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "1003-atascocita-rd-humble-tx-77396-74",
@@ -2504,14 +2502,14 @@ window.RCP_DATA = {
       "yb": 1992,
       "rrange": "$12-14/SF (Est.)",
       "stars": 2,
-      "rating": 3,
+      "rating": 6.0,
       "up": "#2 Houston market; decent rent range",
       "risk": "Low max contig (5,011 SF) = likely multi-tenant; no sale price; partial availability limits IOS use",
       "src": "CoStar Screen",
       "lat": 31.35647,
       "lon": -99.48471,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "3630-s-highland-dr-las-vegas-nv-89103-75",
@@ -2532,12 +2530,12 @@ window.RCP_DATA = {
       "price": 5983000,
       "psf": 795.61,
       "stars": 3,
-      "rating": 1,
+      "rating": 1.0,
       "up": "Portfolio pairing with 3640 S Highland; LV land value",
       "risk": "Even more overpriced at $796/SF; 1985 vintage; unworkable cap rate at any reasonable rent",
       "src": "CoStar Screen",
       "geo": "none",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "608-riverside-pky-austell-ga-30168-76",
@@ -2556,14 +2554,14 @@ window.RCP_DATA = {
       "rent": 12.5,
       "rrange": "$12.50/SF",
       "stars": 2,
-      "rating": 4,
+      "rating": 7.0,
       "up": "Atlanta rank 3 NIOS; decent building size (31K SF); $12.50/SF rent",
       "risk": "Manufacturing classification not ideal for IOS; 1981 vintage = capex; no acreage; no sale price",
       "src": "CoStar Screen",
       "lat": 32.94706,
       "lon": -83.62471,
       "geo": "state",
-      "stage0": "new",
+      "stage0": "underwriting",
       "mla": {
         "Sent Date": "2026-06-19",
         "U Marker": "U",
@@ -2636,12 +2634,12 @@ window.RCP_DATA = {
       "price": 1950000,
       "psf": 185.71,
       "stars": 2,
-      "rating": 3,
+      "rating": 4.0,
       "up": "Sale price listed ($185/SF); Detroit rank 25",
       "risk": "Rank 25 market; old (1976); small (10.5K SF); low rent ceiling; limited IOS demand",
       "src": "CoStar Screen",
       "geo": "none",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "707-sw-10th-st-blue-springs-mo-64015-79",
@@ -2660,12 +2658,12 @@ window.RCP_DATA = {
       "rrange": "$9-11/SF (Est.)",
       "broker": "LANE4 Property Group",
       "stars": 2,
-      "rating": 2,
+      "rating": 4.0,
       "up": "Cheap KC market; decent 18K SF",
       "risk": "Built 1968 = very old; rank 29 market; no sale price; low rent; not a top IOS target",
       "src": "CoStar Screen",
       "geo": "none",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "2220-s-burleson-blvd-burleson-tx-76028-80",
@@ -3029,6 +3027,7 @@ window.RCP_DATA = {
       "rrange": "$11.00\u2013$15.00 NNN",
       "price": 3250000.0,
       "broker": "SCP Commercial",
+      "rating": 5.0,
       "up": "31.62-acre site in Charlotte (rank 5) at ~$2.36/land SF \u2014 exceptional land value.",
       "risk": "Land play \u2014 no income. Cannot underwrite without income and zoning confirmation.",
       "notes": "IOS List | Cody Cress, cody.cress@scpcommercial.com | NIOS rank updated 5\u21925 / score 8.38\u21928.3822 (April 2026 NIOS list).",
@@ -3037,7 +3036,7 @@ window.RCP_DATA = {
       "lon": -80.15608,
       "geo": "state",
       "ppa": 102783.04870335231,
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "1190-2425-colman-circle-casper-wy-2",
@@ -3049,11 +3048,12 @@ window.RCP_DATA = {
       "type": "IOS Portfolio (For Sale)",
       "ac": 39.05,
       "yac": 39.05,
+      "rating": 2.0,
       "up": "Large 39.05-acre IOS portfolio, multiple parcels.",
       "risk": "Casper WY not in NIOS Top 40 \u2014 below market threshold. No price, no income.",
       "notes": "IOS List | Mark Williams, Mark.WilliamsRE@outlook.com",
       "src": "CoStar Screen",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "6400-north-broadway-st-louis-mo-3",
@@ -3068,6 +3068,7 @@ window.RCP_DATA = {
       "ac": 12.25,
       "yac": 12.25,
       "broker": "Bahn Realty",
+      "rating": 4.0,
       "up": "12.25 acres, For Sale. Decent site size.",
       "risk": "St. Louis rank 31 \u2014 fringe market. No price, no income, no building data.",
       "notes": "IOS List | Brian, Brian@bahnrealty.com | NIOS rank updated 31\u219231 / score 5.66\u21925.6636 (April 2026 NIOS list).",
@@ -3075,7 +3076,7 @@ window.RCP_DATA = {
       "lat": 38.58627,
       "lon": -92.28824,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "-no-address-milwaukee-wi-4",
@@ -3091,12 +3092,13 @@ window.RCP_DATA = {
       "yac": 4.28,
       "price": 2000000.0,
       "broker": "Zequity Group",
+      "rating": 2.0,
       "up": "Truck terminal use. $2M price point.",
       "risk": "Milwaukee not in NIOS Top 40. No street address. No income data.",
       "notes": "IOS List | Saul, saul@zequitygroup.com | NIOS rank updated N/A\u219265 / score N/A\u21924.4982 (April 2026 NIOS list).",
       "src": "CoStar Screen",
       "ppa": 467289.7196261682,
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "47-94-north-dell-avenue-kenvil-nj-5",
@@ -3112,11 +3114,12 @@ window.RCP_DATA = {
       "yac": 45.3,
       "rrange": "$18.00\u2013$24.00 NNN",
       "broker": "Metz Industrial",
+      "rating": 5.0,
       "up": "Massive 45.3-acre site in NY/NJ (rank 11) \u2014 rare. Market rent $18\u201324/SF NNN.",
       "risk": "Redevelopment = likely vacant, no income. No price. Site improvement costs unknown.",
       "notes": "IOS List | Jordan, jordan@metzindustrial.com | NIOS rank updated 11\u219211 / score 7.74\u21927.7419 (April 2026 NIOS list).",
       "src": "CoStar Screen",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "5245-east-69th-avenue-commerce-city-co-6",
@@ -3133,6 +3136,7 @@ window.RCP_DATA = {
       "rrange": "$11.00\u2013$14.00 NNN",
       "price": 4950000.0,
       "broker": "Colliers",
+      "rating": 3.0,
       "up": "Colliers broker. Truck terminal. ~$57/land SF in Denver.",
       "risk": "1.98 acres too small for truck terminal ops. Denver rank 23 mid-tier. No income data.",
       "notes": "IOS List | Kristjan Danis, kristjan.danis@colliers.com",
@@ -3141,7 +3145,7 @@ window.RCP_DATA = {
       "lon": -105.36863,
       "geo": "state",
       "ppa": 2500000.0,
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "1838-vanderbilt-road-birmingham-al-7",
@@ -3155,11 +3159,12 @@ window.RCP_DATA = {
       "type": "IOS / Industrial (For Sale or Lease)",
       "ac": 9.0,
       "yac": 9.0,
+      "rating": 3.0,
       "up": "9 acres. For Sale or Lease \u2014 flexible structure.",
       "risk": "Birmingham rank 36 \u2014 bottom tier. No price, no income, no listing company.",
       "notes": "IOS List | Rav Patel, rav_patel@yahoo.com | NIOS rank updated 36\u219275 / score 5.38\u21924.1622 (April 2026 NIOS list).",
       "src": "CoStar Screen",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "1310-south-west-street-indianapolis-in-8",
@@ -3175,6 +3180,7 @@ window.RCP_DATA = {
       "yac": 4.96,
       "rrange": "$8.00\u2013$11.00 NNN",
       "broker": "Colliers",
+      "rating": 5.0,
       "up": "Indianapolis rank 7 \u2014 top-10 NIOS. Truck terminal = highest IOS quality. 4.96 ac workable. Colliers broker. For Sale or Lease = flexible path.",
       "risk": "Missing price, bldg SF, in-place rent, lease expiry \u2014 full underwrite pending broker response.",
       "notes": "IOS List | Korey Ryan, korey.ryan@colliers.com | NIOS rank updated 7\u219226 (April 2026 NIOS list). Market dropped out of top-10 tier.",
@@ -3182,7 +3188,7 @@ window.RCP_DATA = {
       "lat": 39.76039,
       "lon": -86.63412,
       "geo": "state",
-      "stage0": "new",
+      "stage0": "screened",
       "mla": {
         "Sent Date": "Jun 10 2026",
         "U Marker": "U",
@@ -3229,6 +3235,7 @@ window.RCP_DATA = {
       "yac": 5.74,
       "price": 4770000.0,
       "broker": "LTP Commercial",
+      "rating": 3.0,
       "up": "Has asking price ($4.77M), 5.74 acres. ~$19/land SF.",
       "risk": "Greensboro not in NIOS Top 40 \u2014 below market threshold. No building or income data.",
       "notes": "IOS List | Nick, nick@ltpcommercial.com | NIOS rank updated N/A\u219273 / score N/A\u21924.2657 (April 2026 NIOS list).",
@@ -3237,7 +3244,7 @@ window.RCP_DATA = {
       "lon": -79.83608,
       "geo": "state",
       "ppa": 831010.4529616724,
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "1850-glen-helen-road-san-bernardino-ca-10",
@@ -3254,6 +3261,7 @@ window.RCP_DATA = {
       "rrange": "$14.00\u2013$18.00 NNN",
       "price": 70000000.0,
       "broker": "Colliers",
+      "rating": 4.0,
       "up": "Inland Empire (rank 6) \u2014 premier IOS market. 18.68 acres truck terminal. Strong rent benchmarks.",
       "risk": "$70M outside typical deal size \u2014 institutional capital required. ~$86/land SF expensive for IE. No income data.",
       "notes": "IOS List | Kenny Patricia, kenny.patricia@colliers.com | NIOS rank updated 6\u219227 (April 2026 NIOS list). Market dropped out of top-10 tier.",
@@ -3262,7 +3270,7 @@ window.RCP_DATA = {
       "lon": -119.40353,
       "geo": "state",
       "ppa": 3747323.340471092,
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "2425-cragmore-road-winston-salem-nc-11",
@@ -3279,6 +3287,7 @@ window.RCP_DATA = {
       "rrange": "$11.00\u2013$15.00 NNN",
       "price": 8000000.0,
       "broker": "Stream Realty",
+      "rating": 5.0,
       "up": "Charlotte (rank 5) \u2014 strong growth market. 7.3 acres truck terminal. ~$25/land SF reasonable.",
       "risk": "No income data \u2014 cannot underwrite. Site improvements unknown. Need broker response.",
       "notes": "IOS List | Parker Byrd, parker.byrd@streamrealty.com | NIOS rank updated 5\u21925 / score 8.38\u21928.3822 (April 2026 NIOS list).",
@@ -3287,7 +3296,7 @@ window.RCP_DATA = {
       "lon": -80.11843,
       "geo": "state",
       "ppa": 1095890.410958904,
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "edgewood-industrial-land-jacksonville-fl-12",
@@ -3302,6 +3311,7 @@ window.RCP_DATA = {
       "ac": 8.05,
       "yac": 8.05,
       "broker": "Matthews Real Estate Investment Services",
+      "rating": 3.0,
       "up": "Matthews broker. 8.05 acres. Jacksonville rank 21 mid-tier market.",
       "risk": "Raw land \u2014 no income. No price. No street address. Mid-tier market limits upside.",
       "notes": "IOS List | Michael Salik, michael.salik@matthews.com | NIOS rank updated 21\u219221 / score 6.68\u21926.6814 (April 2026 NIOS list).",
@@ -3309,7 +3319,7 @@ window.RCP_DATA = {
       "lat": 28.4102,
       "lon": -82.00902,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "621-industrial-blvd-grapevine-tx-13",
@@ -3323,6 +3333,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 5000.0,
       "rrange": "$10.00\u2013$14.50 NNN",
+      "rating": 3.0,
       "up": "DFW rank 1 \u2014 best NIOS market. Grapevine submarket.",
       "risk": "5,000 SF very small. No acreage data \u2014 critical gap for IOS. No price, rent, or broker contact.",
       "notes": "LoopNet | No broker contact on file",
@@ -3330,7 +3341,7 @@ window.RCP_DATA = {
       "lat": 31.40863,
       "lon": -99.21686,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "801-crosby-st-roanoke-tx-14",
@@ -3344,6 +3355,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 18100.0,
       "rrange": "$10.00\u2013$14.50 NNN",
+      "rating": 4.0,
       "up": "DFW rank 1. 18,100 SF building. Near I-35W.",
       "risk": "No acreage \u2014 cannot calculate yard acres or site coverage. No price, rent, or broker contact.",
       "notes": "LoopNet | No broker contact on file",
@@ -3351,7 +3363,7 @@ window.RCP_DATA = {
       "lat": 31.1451,
       "lon": -99.12588,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "1291-1299-n-highway-dr-fenton-oh-18",
@@ -3367,6 +3379,7 @@ window.RCP_DATA = {
       "yb": 1967.0,
       "rent": 5.65,
       "tenant": "Mostly occupied / 5,000 SF available",
+      "rating": 1.0,
       "up": "Large industrial building with low stated rent.",
       "risk": "Market/address mismatch: Fenton, MO is not Cincinnati; likely St. Louis-area, not captured in the matched NIOS row. Tiny availability relative to building and no sale price.",
       "notes": "CoStar | | NIOS rank updated 31\u219231 / score 5.66\u21925.6636 (April 2026 NIOS list).",
@@ -3374,7 +3387,7 @@ window.RCP_DATA = {
       "lat": 40.64941,
       "lon": -82.60706,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "2244-highway-69-s-greenville-sc-31",
@@ -3390,6 +3403,7 @@ window.RCP_DATA = {
       "yb": 1975.0,
       "broker": "Urban West Ventures",
       "tenant": "Vacant / full building available",
+      "rating": 3.0,
       "up": "Full-building availability and visible highway frontage.",
       "risk": "Source conflict: address is Greenville, TX, not SC; NIOS match likely wrong if treated as Texas non-MSA. Price undisclosed and limited IOS proof.",
       "notes": "CoStar | Urban West Ventures | NIOS rank updated 38\u219240 / score 5.22\u21925.2188 (April 2026 NIOS list).",
@@ -3397,7 +3411,7 @@ window.RCP_DATA = {
       "lat": 33.41255,
       "lon": -81.38353,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "2010-n-mcdonald-st-mckinney-tx-79",
@@ -3411,12 +3425,14 @@ window.RCP_DATA = {
       "type": "Industrial (Big-Box Logistics)",
       "bsf": 225140.0,
       "asf": 225140.0,
+      "csf": 225140.0,
       "ac": 14.464,
       "yac": 9.295,
       "cov": 0.3573,
       "yb": 2026.0,
       "rrange": "$10.00\u2013$14.50",
       "broker": "Lee & Associates / Hopewell Development",
+      "rating": 3.0,
       "up": "DFW rank 1, brand-new 2026 construction, 14.5 acres with 9.3 yard acres, broker contact known",
       "risk": "225K SF big-box logistics scale \u2014 not IOS. Hopewell Development seller likely core/institutional pricing. Price undisclosed. No rent or occupancy.",
       "notes": "LoopNet | Lee & Associates / Hopewell Development | 2026-06-03",
@@ -3424,7 +3440,7 @@ window.RCP_DATA = {
       "lat": 31.52784,
       "lon": -99.25765,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "902-kck-way-cedar-hill-tx-80",
@@ -3438,6 +3454,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 17820.0,
       "asf": 17820.0,
+      "csf": 17820.0,
       "ac": 1.27,
       "yac": 0.861,
       "cov": 0.3221,
@@ -3445,15 +3462,17 @@ window.RCP_DATA = {
       "price": 2200000.0,
       "psf": 123.46,
       "broker": "Mote & Associates",
+      "rating": 5.0,
       "up": "DFW rank 1, $123/SF reasonable basis, $2.2M known price, 1.27 ac with 0.86 yard acres, small single-tenant IOS scale",
       "risk": "[ESTIMATE] Year built unknown (CapEx risk). No rent, occupancy, or lease expiry data. Broker email missing. Underwriting uses all-in-assumption model.",
       "notes": "LoopNet | Mote & Associates | 2026-06-12",
       "src": "CoStar Screen",
+      "stageX": "screened",
       "lat": 31.04784,
       "lon": -99.25451,
       "geo": "state",
       "ppa": 1732283.464566929,
-      "stage0": "new",
+      "stage0": "screened",
       "needs_confirmation": true
     },
     {
@@ -3468,10 +3487,12 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 44865.0,
       "asf": 44865.0,
+      "csf": 44865.0,
       "yb": 1990.0,
       "rrange": "$10.00\u2013$14.50",
       "broker": "NAI Robert Lynn",
       "tenant": "Han's Laser",
+      "rating": 5.0,
       "up": "DFW rank 1, 44,865 SF mid-tier, in-place tenant (Han's Laser), 1990 vintage, Chad Albert / NAI Robert Lynn contact",
       "risk": "Price undisclosed. Rent unknown \u2014 Han's Laser may be at or above market, limiting upside. Acres unknown. Lease expiry unknown.",
       "notes": "LoopNet | NAI Robert Lynn (Chad Albert) | 2026-06-25",
@@ -3479,7 +3500,7 @@ window.RCP_DATA = {
       "lat": 31.06667,
       "lon": -99.55569,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "293-county-road-4841-haslet-tx-82",
@@ -3493,8 +3514,10 @@ window.RCP_DATA = {
       "type": "Flex",
       "bsf": 53000.0,
       "asf": 53000.0,
+      "csf": 53000.0,
       "rrange": "$10.00\u2013$14.50",
       "broker": "Premier Alliance Complex",
+      "rating": 3.0,
       "up": "DFW rank 1, 53,000 SF",
       "risk": "Flex classification \u2014 not pure IOS. All financial data missing (price, rent, acres, year). Multi-suite complex feel. No individual broker contact.",
       "notes": "LoopNet | Premier Alliance Complex | 2026-06-25",
@@ -3502,7 +3525,7 @@ window.RCP_DATA = {
       "lat": 31.57176,
       "lon": -99.38,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "1821-john-mccain-rd-colleyville-tx-83",
@@ -3515,6 +3538,7 @@ window.RCP_DATA = {
       "addr": "1821 John McCain Rd, Colleyville TX",
       "ac": 0.69,
       "rrange": "$10.00\u2013$14.50",
+      "rating": 2.0,
       "up": "DFW rank 1",
       "risk": "0.69 acres extremely small for IOS. No building SF, price, property type, or broker. Insufficient data to screen.",
       "notes": "Leads Raw | 2026-06-27",
@@ -3522,7 +3546,7 @@ window.RCP_DATA = {
       "lat": 31.49961,
       "lon": -99.61529,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "2040-century-center-blvd-irving-tx-84",
@@ -3536,6 +3560,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "rrange": "$10.00\u2013$14.50",
       "broker": "Dalfen Industrial",
+      "rating": 3.0,
       "up": "DFW rank 1. Dalfen Industrial listing \u2014 credible IOS operator as seller.",
       "risk": "No SF, acres, price, rent, or year data. Unscreenable without broker call. Contact John Lettieri at Dalfen.",
       "notes": "Leads Raw | Dalfen Industrial (John Lettieri) | 2026-06-28",
@@ -3543,7 +3568,7 @@ window.RCP_DATA = {
       "lat": 31.5498,
       "lon": -99.40196,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "531-n-main-st-joshua-tx-85",
@@ -3558,6 +3583,7 @@ window.RCP_DATA = {
       "ac": 0.97,
       "rrange": "$10.00\u2013$14.50",
       "price": 236000.0,
+      "rating": 2.0,
       "up": "DFW rank 1, $236K entry price",
       "risk": "Flex type eliminates IOS thesis. 0.97 acres too small for institutional IOS. $236K suggests tiny residential-adjacent property. No SF or year data.",
       "notes": "Leads Raw | 2026-06-29",
@@ -3566,7 +3592,7 @@ window.RCP_DATA = {
       "lon": -99.29843,
       "geo": "state",
       "ppa": 243298.96907216497,
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "7376-rendon-bloodworth-rd-mansfield-tx-86",
@@ -3578,6 +3604,7 @@ window.RCP_DATA = {
       "nscore": 9.43,
       "addr": "7376 Rendon Bloodworth Rd, Mansfield TX",
       "rrange": "$10.00\u2013$14.50",
+      "rating": 3.0,
       "up": "DFW rank 1 market",
       "risk": "No property data \u2014 no SF, acres, price, type, year, or broker. Cannot screen without basics.",
       "notes": "Leads Raw | 2026-06-29",
@@ -3585,7 +3612,7 @@ window.RCP_DATA = {
       "lat": 31.38667,
       "lon": -99.6498,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "1018-1022-dragon-st-dallas-tx-87",
@@ -3598,6 +3625,7 @@ window.RCP_DATA = {
       "addr": "1018-1022 Dragon St, Dallas TX",
       "rrange": "$10.00\u2013$14.50",
       "price": 3000000.0,
+      "rating": 4.0,
       "up": "DFW rank 1, $3M known price, Dallas Design District industrial corridor",
       "risk": "No SF or acres \u2014 basis and yard economics cannot be calculated. Multi-parcel (1018-1022) adds complexity.",
       "notes": "No U this batch \u2014 highest rated at 4/10, below 6/10 threshold | Leads Raw | 2026-06-29",
@@ -3605,7 +3633,7 @@ window.RCP_DATA = {
       "lat": 31.16392,
       "lon": -98.97216,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "845-s-jason-street-denver-co-88",
@@ -3618,6 +3646,7 @@ window.RCP_DATA = {
       "addr": "845 S Jason Street, Denver CO",
       "rrange": "$11.00\u2013$14.00",
       "broker": "JLL",
+      "rating": 3.0,
       "up": "Denver rank 23, JLL broker (institutional quality signal)",
       "risk": "All property data missing \u2014 no price, SF, acres, type, year. Denver rank 23 is mid-tier for IOS strategy.",
       "notes": "Leads Raw | JLL (James McGill / Chris Schultz) | 2026-06-30",
@@ -3625,7 +3654,7 @@ window.RCP_DATA = {
       "lat": 39.34784,
       "lon": -105.28078,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "7321-kennedale-pkwy-arlington-tx-89",
@@ -3638,6 +3667,7 @@ window.RCP_DATA = {
       "addr": "7321 Kennedale Pkwy, Arlington TX",
       "rrange": "$10.00\u2013$14.50",
       "broker": "Stream Realty",
+      "rating": 4.0,
       "up": "DFW rank 1, Stream Realty listing (top DFW industrial broker), Kennedale Pkwy is an active industrial corridor",
       "risk": "No price, SF, acres, type, or year data \u2014 cannot underwrite without basics. Broker call needed.",
       "notes": "Leads Raw | Stream Realty (Alex Keeton / Matt Blackburn) | 2026-06-30",
@@ -3645,7 +3675,7 @@ window.RCP_DATA = {
       "lat": 30.90039,
       "lon": -98.92196,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "417-loop-rd-garner-nc-90",
@@ -3659,6 +3689,7 @@ window.RCP_DATA = {
       "type": "Industrial/Warehouse (LI zoning)",
       "bsf": 4500.0,
       "asf": 4500.0,
+      "csf": 4500.0,
       "ac": 0.7,
       "yac": 0.6,
       "cov": 14.8,
@@ -3666,6 +3697,7 @@ window.RCP_DATA = {
       "price": 1300000.0,
       "psf": 288.89,
       "tenant": "Vacant",
+      "rating": 3.0,
       "up": "Vacant LI-zoned building on 0.70 ac in Raleigh suburb; 14.8% site coverage leaves 0.60 ac usable yard. Clean lease-up play at $13/SF market rent if confirmed. Growing Raleigh-Cary market (strong population/job growth despite low NIOS rank).",
       "risk": "[ESTIMATE \u2014 rent and acreage unconfirmed] NIOS rank 39 far outside firm target markets (1-10); $289/SF basis is high for this tier (top-10 comparables trade $70-$150/SF). Very small 4,500 SF limits IOS utility and buyer pool. Year built unknown \u2014 CapEx blind. Stabilized NOI $56,925 at 8.0% exit cap implies value $711,562 vs $1.3M purchase \u2014 deal destroys value at current ask. Needs significant price reduction OR confirmed rents well above $13/SF to pencil.",
       "notes": "Direct submission | 2026-06-30 | Market rent [ASSUMPTION] $13.00/SF NNN (Garner small-bay comps $12-18/SF, conservative for unknown vintage); NNN PSF [ASSUMPTION] $4.00 (Raleigh-Cary est.); Acreage 0.70 ac per submission \u2014 verify Wake County GIS | NIOS rank updated 39\u219236 / score 5.18\u21925.4797 (April 2026 NIOS list).",
@@ -3674,7 +3706,7 @@ window.RCP_DATA = {
       "lon": -79.5851,
       "geo": "state",
       "ppa": 1857142.8571428573,
-      "stage0": "new",
+      "stage0": "screened",
       "needs_confirmation": true
     },
     {
@@ -3689,6 +3721,7 @@ window.RCP_DATA = {
       "type": "IOS / Truck Terminal NNN",
       "bsf": 43240.0,
       "asf": 0.0,
+      "csf": 43240.0,
       "ac": 7.07,
       "yac": 6.08,
       "cov": 14.0,
@@ -3700,6 +3733,7 @@ window.RCP_DATA = {
       "psf": 43.94,
       "tenant": "Tecta America",
       "lease": "August 21, 2032",
+      "rating": 6.0,
       "up": "National credit tenant (Tecta America), exceptional $43.94/SF basis, massive mark-to-market ($2.78\u2192$7.00/SF NNN at 2032 rollover = 152% increase), 7.07-acre IOS/truck terminal site",
       "risk": "NIOS rank 35 (outside firm target markets), flat rent through Aug 2032 (no bumps), below-market in-place NOI suppresses exit value. ESTIMATE LP IRR: -3.95% / EM: 0.82x at $1.9M ask \u2014 exit value ~$1.54M < purchase price. Basis protects downside; deal only pencils at ~$1.2M or with confirmed renewal at market rent.",
       "notes": "Acreage confirmed per OM page 8, Muskogee County parcel 0000-09-15N-18E-3-086-15. Billboard $3,250/yr incl. in NOI ($123,250 total). Market rent $7.00/SF NNN [ASSUMPTION]. Run per user request regardless of NIOS ranking. | NIOS rank updated 35\u219235 / score 5.4\u21925.4976 (April 2026 NIOS list).",
@@ -3708,7 +3742,7 @@ window.RCP_DATA = {
       "lon": -97.42,
       "geo": "state",
       "ppa": 268741.1598302687,
-      "stage0": "new",
+      "stage0": "screened",
       "needs_confirmation": true
     },
     {
@@ -3723,11 +3757,14 @@ window.RCP_DATA = {
       "type": "Industrial / Manufacturing",
       "bsf": 85200.0,
       "asf": 85200.0,
+      "csf": 85200.0,
       "ac": 5.52,
       "yac": 3.56,
       "cov": 35.4,
       "yb": 1969.0,
+      "clr": "30'",
       "broker": "TCRG Properties",
+      "rating": 3.0,
       "up": "DFW #1 market. 85,200 SF on 5.5 acres with 30' clear height and rail access. 3.56 ac yard. Solid industrial bones.",
       "risk": "Manufacturing use confirmed \u2014 Paragon Packaging / Mansfield Plastic Packaging at this address. 100% HVAC and 3,000A/480V heavy power = manufacturing, not IOS. Deal killer per firm criteria. No price listed.",
       "notes": "LoopNet #35360558 | TCRG Properties. Manufacturing confirmed (Yelp/search: Paragon Packaging). 100% HVAC + heavy power disqualifies as IOS. No U. Screened 2026-07-02.",
@@ -3735,12 +3772,12 @@ window.RCP_DATA = {
       "lat": 31.19843,
       "lon": -99.46471,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "401-w-simonds-rd-seagoville-tx-93",
       "sent": "2026-07-02",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "Dallas-Fort Worth-Arlington TX",
       "nrank": 1.0,
@@ -3749,6 +3786,7 @@ window.RCP_DATA = {
       "type": "IOS / Outdoor Storage",
       "bsf": 3558.0,
       "asf": 3558.0,
+      "csf": 3558.0,
       "ac": 2.0,
       "yac": 1.92,
       "cov": 4.1,
@@ -3757,6 +3795,7 @@ window.RCP_DATA = {
       "psf": 274.0,
       "broker": "Vision Commercial / LoopNet",
       "tenant": "Vacant (full building available)",
+      "rating": 7.0,
       "up": "DFW #1. Confirmed outdoor storage \u2014 listing title: \"Office with 2-acres of Outdoor Storage.\" 2-ac fenced secured yard + guard house + mechanic workshop. Exceptional 4.1% site coverage (96% yard). $274/SF basis below $300 ceiling. Built 2000. Adjacent 9,000 SF diesel shop + 5 ac available for expansion. Strong contractor/fleet demand in Seagoville along I-635 corridor.",
       "risk": "No in-place rent or tenant \u2014 model at DFW market rent as ESTIMATE. Small building (3,558 SF) limits lease optionality vs. larger IOS. Seagoville is outer DFW \u2014 may limit exit cap compression. Acreage 2.00 ac confirmed Dallas County tax records (Roger Kanaman subdivision). Year built 2000 confirmed.",
       "notes": "LoopNet #34999196 | Vision Commercial. \"Office with 2-acres of Outdoor Storage.\" 3,558 SF + 700 SF guard house + mechanic workshop. $975K / $274/SF. ACREAGE CONFIRMED 2.00 ac per Dallas County tax records (Roger Kanaman subdivision, Seagoville TX 75159). Year built 2000 per tax records. U marked 2026-07-02.",
@@ -3765,7 +3804,7 @@ window.RCP_DATA = {
       "lon": -98.93137,
       "geo": "state",
       "ppa": 487500.0,
-      "stage0": "new"
+      "stage0": "underwriting"
     },
     {
       "id": "3410-century-cir-irving-tx-94",
@@ -3779,9 +3818,11 @@ window.RCP_DATA = {
       "type": "Industrial / Warehouse",
       "bsf": 71220.0,
       "asf": 71220.0,
+      "csf": 71220.0,
       "ac": 3.45,
       "yac": 1.82,
       "cov": 47.4,
+      "rating": 4.0,
       "up": "DFW #1. 71,220 SF warehouse on 3.45 acres in Irving Century Center industrial park. 1.82 ac yard. Established Irving industrial submarket.",
       "risk": "High site coverage (47.4%) \u2014 only 1.82 ac yard, insufficient for meaningful IOS use. No confirmed outdoor storage. No price. Conventional warehouse play, not IOS. No U.",
       "notes": "LoopNet property record APN 32063810070020000. Irving Century Center TX. 71,220 SF / 3.452 ac per LoopNet. No confirmed IOS use. 47% coverage insufficient. No U. Screened 2026-07-02.",
@@ -3789,7 +3830,7 @@ window.RCP_DATA = {
       "lat": 31.45255,
       "lon": -99.56196,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "12000-fm-730-n-azle-tx-95",
@@ -3802,6 +3843,7 @@ window.RCP_DATA = {
       "addr": "12000 FM 730 N, Azle TX",
       "type": "Unknown",
       "price": 650000.0,
+      "rating": 3.0,
       "up": "DFW market. $650K asking price low for DFW \u2014 potential small industrial or land play in Azle (northwest Fort Worth submarket). FM 730 corridor.",
       "risk": "Critical data missing: no SF, acres, property type, year built, or broker. Azle is outer western DFW \u2014 limited IOS demand. Insufficient data to screen properly. No U.",
       "notes": "Leads Raw submission \u2014 no CoStar/LoopNet listing found. $650K price only known data point. Azle TX outer DFW submarket. Insufficient data. Screened 2026-07-02.",
@@ -3809,7 +3851,7 @@ window.RCP_DATA = {
       "lat": 30.87529,
       "lon": -98.95647,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "200-nichols-dr-hutchins-tx-96",
@@ -3825,6 +3867,7 @@ window.RCP_DATA = {
       "rrange": "$5,500/ac/mo NNN",
       "broker": "Holt Lunsford Commercial",
       "tenant": "Vacant \u2014 land available",
+      "rating": 5.0,
       "up": "DFW #1. Prime Hutchins TX \u2014 south Dallas County near I-45, I-20, Loop 12, BNSF intermodal. Active outdoor storage market at $5,500/ac/mo NNN. Prior LoopNet: 51 acres at $1.6M ($31K/ac). Broker: Holt Lunsford (wbywaters@holtlunsford.com).",
       "risk": "Submitted as ground lease \u2014 not a sale. No building. Firm strategy requires building + yard. Cannot underwrite as IOS acquisition without building. No confirmed sale price. Contact broker about sale component.",
       "notes": "LoopNet #9141097 | Holt Lunsford Commercial (wbywaters@holtlunsford.com). Ground lease $5,500/ac/mo NNN on 3.45 ac. Full parcel: 51 ac per LoopNet. No building = no U. Flag for broker re: sale. Screened 2026-07-02.",
@@ -3832,12 +3875,12 @@ window.RCP_DATA = {
       "lat": 31.24863,
       "lon": -99.33608,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "3320-dilido-road-97",
       "sent": "2026-07-07",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "DFW",
       "nrank": 1.0,
@@ -3846,6 +3889,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 24840.0,
       "asf": 24840.0,
+      "csf": 24840.0,
       "ac": 1.41,
       "yac": 0.84,
       "cov": 40.4,
@@ -3853,6 +3897,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$14.50",
       "price": 500000.0,
       "psf": 20.13,
+      "rating": 9.0,
       "up": "Top-2 NIOS market (DFW #1); Exceptional basis $20/SF",
       "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21062608 | Subd: Es Dilido Road 503 Fr John West | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
@@ -3861,12 +3906,12 @@ window.RCP_DATA = {
       "lon": -99.57451,
       "geo": "state",
       "ppa": 354609.9290780142,
-      "stage0": "new"
+      "stage0": "underwriting"
     },
     {
       "id": "1704-teasley-lane-98",
       "sent": "2026-07-07",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "DFW",
       "nrank": 1.0,
@@ -3875,6 +3920,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 1886.0,
       "asf": 1886.0,
+      "csf": 1886.0,
       "ac": 0.25,
       "yac": 0.21,
       "cov": 17.3,
@@ -3882,6 +3928,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$14.50",
       "price": 500000.0,
       "psf": 265.11,
+      "rating": 8.0,
       "up": "Top-2 NIOS market (DFW #1); Low coverage 17% \u2014 strong land component; Modern vintage (2004)",
       "risk": "Elevated basis $265/SF; In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21246792 | Subd: Super 8 Denton Add | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
@@ -3890,12 +3937,12 @@ window.RCP_DATA = {
       "lon": -99.23569,
       "geo": "state",
       "ppa": 2000000.0,
-      "stage0": "new"
+      "stage0": "underwriting"
     },
     {
       "id": "215-shannon-road-e-99",
       "sent": "2026-07-07",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "Houston",
       "nrank": 2.0,
@@ -3904,6 +3951,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 3000.0,
       "asf": 3000.0,
+      "csf": 3000.0,
       "ac": 0.476,
       "yac": 0.41,
       "cov": 14.5,
@@ -3911,6 +3959,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$13.00",
       "price": 525000.0,
       "psf": 175.0,
+      "rating": 8.0,
       "up": "Top-2 NIOS market (Houston #2); Low coverage 14% \u2014 strong land component",
       "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21279288 | Subd: Sulphur Springs | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
@@ -3919,12 +3968,12 @@ window.RCP_DATA = {
       "lon": -98.91569,
       "geo": "state",
       "ppa": 1102941.1764705882,
-      "stage0": "new"
+      "stage0": "underwriting"
     },
     {
       "id": "1601-n-kaufman-street-100",
       "sent": "2026-07-07",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "DFW",
       "nrank": 1.0,
@@ -3933,6 +3982,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 3411.0,
       "asf": 3411.0,
+      "csf": 3411.0,
       "ac": 0.273,
       "yac": 0.19,
       "cov": 28.7,
@@ -3940,6 +3990,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$14.50",
       "price": 550000.0,
       "psf": 161.24,
+      "rating": 7.0,
       "up": "Top-2 NIOS market (DFW #1)",
       "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21273602 | Subd: Edwards Ennis-Rev | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
@@ -3948,7 +3999,7 @@ window.RCP_DATA = {
       "lon": -99.47098,
       "geo": "state",
       "ppa": 2014652.0146520145,
-      "stage0": "new"
+      "stage0": "underwriting"
     },
     {
       "id": "221-223-n-locust-street-101",
@@ -3962,6 +4013,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 2900.0,
       "asf": 2900.0,
+      "csf": 2900.0,
       "ac": 0.124,
       "yac": 0.06,
       "cov": 53.7,
@@ -3969,6 +4021,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$14.50",
       "price": 575000.0,
       "psf": 198.28,
+      "rating": 5.0,
       "up": "Top-2 NIOS market (DFW #1)",
       "risk": "High site coverage 54%; Older vintage (1965); In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21312731 | Subd: O T Denton | Missing: In-Place Rent PSF, Lease Expiry, Broker Name | No U this batch",
@@ -3977,12 +4030,12 @@ window.RCP_DATA = {
       "lon": -99.54,
       "geo": "state",
       "ppa": 4637096.774193549,
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "4110-haltom-road-102",
       "sent": "2026-07-07",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "DFW",
       "nrank": 1.0,
@@ -3991,6 +4044,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 4224.0,
       "asf": 4224.0,
+      "csf": 4224.0,
       "ac": 0.451,
       "yac": 0.35,
       "cov": 21.5,
@@ -3998,6 +4052,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$14.50",
       "price": 588900.0,
       "psf": 139.42,
+      "rating": 7.0,
       "up": "Top-2 NIOS market (DFW #1); Favorable basis $139/SF",
       "risk": "Older vintage (1960); In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21169336 | Subd: Browning Heights East | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
@@ -4006,12 +4061,12 @@ window.RCP_DATA = {
       "lon": -98.9502,
       "geo": "state",
       "ppa": 1305764.9667405766,
-      "stage0": "new"
+      "stage0": "underwriting"
     },
     {
       "id": "2840-keller-springs-road-801-103",
       "sent": "2026-07-07",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "DFW",
       "nrank": 1.0,
@@ -4020,6 +4075,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 2300.0,
       "asf": 2300.0,
+      "csf": 2300.0,
       "ac": 4.182,
       "yac": 4.13,
       "cov": 1.3,
@@ -4027,6 +4083,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$14.50",
       "price": 625000.0,
       "psf": 271.74,
+      "rating": 8.0,
       "up": "Top-2 NIOS market (DFW #1); Low coverage 1% \u2014 strong land component; Modern vintage (2003)",
       "risk": "Elevated basis $272/SF; In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21296581 | Subd: Keller Spgs Office Park | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
@@ -4035,7 +4092,7 @@ window.RCP_DATA = {
       "lon": -99.29216,
       "geo": "state",
       "ppa": 149450.02391200382,
-      "stage0": "new"
+      "stage0": "underwriting"
     },
     {
       "id": "10215-china-spring-road-104",
@@ -4049,6 +4106,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 3531.0,
       "asf": 3531.0,
+      "csf": 3531.0,
       "ac": 0.553,
       "yac": 0.47,
       "cov": 14.7,
@@ -4056,6 +4114,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$13.00",
       "price": 634000.0,
       "psf": 179.55,
+      "rating": 9.0,
       "up": "Top-2 NIOS market (Houston #2); Low coverage 15% \u2014 strong land component; Modern vintage (2004)",
       "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21259008 | Subd: Cougar Ridge Pt 2 | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
@@ -4064,7 +4123,7 @@ window.RCP_DATA = {
       "lon": -99.36431,
       "geo": "state",
       "ppa": 1146473.7793851716,
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "312-w-live-oak-105",
@@ -4078,6 +4137,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 6802.0,
       "asf": 6802.0,
+      "csf": 6802.0,
       "ac": 0.28,
       "yac": 0.12,
       "cov": 55.8,
@@ -4085,6 +4145,7 @@ window.RCP_DATA = {
       "rrange": "$8.00\u2013$11.00",
       "price": 660000.0,
       "psf": 97.03,
+      "rating": 3.0,
       "up": "Favorable basis $97/SF",
       "risk": "Outside top-10 NIOS (San Antonio #16); High site coverage 56%; In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21180649 | Subd: T B V R R | Missing: In-Place Rent PSF, Lease Expiry, Broker Name | No U this batch",
@@ -4093,12 +4154,12 @@ window.RCP_DATA = {
       "lon": -99.43961,
       "geo": "state",
       "ppa": 2357142.857142857,
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "4759-sunnyvale-street-106",
       "sent": "2026-07-07",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "DFW",
       "nrank": 1.0,
@@ -4107,6 +4168,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 22500.0,
       "asf": 22500.0,
+      "csf": 22500.0,
       "ac": 1.844,
       "yac": 1.33,
       "cov": 28.0,
@@ -4114,6 +4176,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$14.50",
       "price": 699000.0,
       "psf": 31.07,
+      "rating": 8.0,
       "up": "Top-2 NIOS market (DFW #1); Exceptional basis $31/SF",
       "risk": "Older vintage (1950); In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21256389 | Subd: KESSLER HEIGHTS 3 | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
@@ -4122,7 +4185,7 @@ window.RCP_DATA = {
       "lon": -99.0098,
       "geo": "state",
       "ppa": 379067.24511930585,
-      "stage0": "new"
+      "stage0": "underwriting"
     },
     {
       "id": "3910-frisco-107",
@@ -4136,6 +4199,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 6992.0,
       "asf": 6992.0,
+      "csf": 6992.0,
       "ac": 0.47,
       "yac": 0.31,
       "cov": 34.2,
@@ -4143,6 +4207,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$14.50",
       "price": 700000.0,
       "psf": 100.11,
+      "rating": 7.0,
       "up": "Top-2 NIOS market (DFW #1); Favorable basis $100/SF",
       "risk": "Older vintage (1965); In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21178563 | Subd: G-0811 | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
@@ -4151,12 +4216,12 @@ window.RCP_DATA = {
       "lon": -99.36118,
       "geo": "state",
       "ppa": 1489361.7021276597,
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "2028-bedford-road-108",
       "sent": "2026-07-07",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "DFW",
       "nrank": 1.0,
@@ -4165,6 +4230,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 2800.0,
       "asf": 2800.0,
+      "csf": 2800.0,
       "ac": 0.4,
       "yac": 0.34,
       "cov": 16.1,
@@ -4172,6 +4238,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$14.50",
       "price": 700000.0,
       "psf": 250.0,
+      "rating": 8.0,
       "up": "Top-2 NIOS market (DFW #1); Low coverage 16% \u2014 strong land component; Modern vintage (2005)",
       "risk": "Elevated basis $250/SF; In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21178247 | Subd: Bices Add | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
@@ -4180,7 +4247,7 @@ window.RCP_DATA = {
       "lon": -99.41451,
       "geo": "state",
       "ppa": 1750000.0,
-      "stage0": "new"
+      "stage0": "underwriting"
     },
     {
       "id": "301-w-belt-line-road-109",
@@ -4194,6 +4261,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 3480.0,
       "asf": 3480.0,
+      "csf": 3480.0,
       "ac": 0.974,
       "yac": 0.89,
       "cov": 8.2,
@@ -4201,6 +4269,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$14.50",
       "price": 734000.0,
       "psf": 210.92,
+      "rating": 6.0,
       "up": "Top-2 NIOS market (DFW #1); Low coverage 8% \u2014 strong land component",
       "risk": "Elevated basis $211/SF; Older vintage (1950); In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21255855 | Subd: Ellis C Thomas Abst | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
@@ -4209,12 +4278,12 @@ window.RCP_DATA = {
       "lon": -99.49608,
       "geo": "state",
       "ppa": 753593.4291581109,
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "5321-e-fm-1187-110",
       "sent": "2026-07-07",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "DFW",
       "nrank": 1.0,
@@ -4223,6 +4292,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 6100.0,
       "asf": 6100.0,
+      "csf": 6100.0,
       "ac": 1.775,
       "yac": 1.63,
       "cov": 7.9,
@@ -4230,6 +4300,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$14.50",
       "price": 749900.0,
       "psf": 122.93,
+      "rating": 10.0,
       "up": "Top-2 NIOS market (DFW #1); Favorable basis $123/SF; Low coverage 8% \u2014 strong land component; Modern vintage (2013)",
       "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21078091 | Subd: Evergreen Crossing Add | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
@@ -4238,7 +4309,7 @@ window.RCP_DATA = {
       "lon": -99.61529,
       "geo": "state",
       "ppa": 422478.87323943665,
-      "stage0": "new"
+      "stage0": "underwriting"
     },
     {
       "id": "1009-n-bowen-road-111",
@@ -4252,6 +4323,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 3800.0,
       "asf": 3800.0,
+      "csf": 3800.0,
       "ac": 0.438,
       "yac": 0.35,
       "cov": 19.9,
@@ -4259,6 +4331,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$14.50",
       "price": 749999.0,
       "psf": 197.37,
+      "rating": 8.0,
       "up": "Top-2 NIOS market (DFW #1); Low coverage 20% \u2014 strong land component",
       "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21223909 | Subd: Oaks the Arlington | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
@@ -4267,12 +4340,12 @@ window.RCP_DATA = {
       "lon": -99.46784,
       "geo": "state",
       "ppa": 1712326.4840182648,
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "3204-colorado-boulevard-112",
       "sent": "2026-07-07",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "DFW",
       "nrank": 1.0,
@@ -4281,6 +4354,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 2728.0,
       "asf": 2728.0,
+      "csf": 2728.0,
       "ac": 0.918,
       "yac": 0.86,
       "cov": 6.8,
@@ -4288,6 +4362,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$14.50",
       "price": 799000.0,
       "psf": 292.89,
+      "rating": 8.0,
       "up": "Top-2 NIOS market (DFW #1); Low coverage 7% \u2014 strong land component; Modern vintage (2000)",
       "risk": "Elevated basis $293/SF; In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21174988 | Subd: Denton Regional Medical Center | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
@@ -4296,7 +4371,7 @@ window.RCP_DATA = {
       "lon": -99.63098,
       "geo": "state",
       "ppa": 870370.3703703703,
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "200-cypress-113",
@@ -4310,6 +4385,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 4150.0,
       "asf": 4150.0,
+      "csf": 4150.0,
       "ac": 0.358,
       "yac": 0.26,
       "cov": 26.6,
@@ -4317,6 +4393,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$13.00",
       "price": 799999.0,
       "psf": 192.77,
+      "rating": 6.0,
       "up": "Top-2 NIOS market (Houston #2)",
       "risk": "Older vintage (1960); In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21288007 | Subd: Original Town Seagoville | Missing: In-Place Rent PSF, Lease Expiry, Broker Name | No U this batch",
@@ -4325,12 +4402,12 @@ window.RCP_DATA = {
       "lon": -99.18235,
       "geo": "state",
       "ppa": 2234634.0782122905,
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "619-mercury-avenue-108-115",
       "sent": "2026-07-07",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "DFW",
       "nrank": 1.0,
@@ -4339,6 +4416,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 8040.0,
       "asf": 8040.0,
+      "csf": 8040.0,
       "ac": 0.504,
       "yac": 0.32,
       "cov": 36.6,
@@ -4346,6 +4424,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$14.50",
       "price": 825000.0,
       "psf": 102.61,
+      "rating": 8.0,
       "up": "Top-2 NIOS market (DFW #1); Favorable basis $103/SF",
       "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21155711 | Subd: Duncanville Indust Dist 04 | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
@@ -4354,7 +4433,7 @@ window.RCP_DATA = {
       "lon": -99.31098,
       "geo": "state",
       "ppa": 1636904.761904762,
-      "stage0": "new"
+      "stage0": "underwriting"
     },
     {
       "id": "1012-fort-worth-highway-116",
@@ -4368,6 +4447,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 3204.0,
       "asf": 3204.0,
+      "csf": 3204.0,
       "ac": 0.7,
       "yac": 0.63,
       "cov": 10.5,
@@ -4375,6 +4455,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$14.50",
       "price": 825000.0,
       "psf": 257.49,
+      "rating": 7.0,
       "up": "Top-2 NIOS market (DFW #1); Low coverage 11% \u2014 strong land component",
       "risk": "Elevated basis $257/SF; In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21272127 | Subd: Millsap Rev Add | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
@@ -4383,7 +4464,7 @@ window.RCP_DATA = {
       "lon": -99.51804,
       "geo": "state",
       "ppa": 1178571.4285714286,
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "310-san-antonio-street-117",
@@ -4397,12 +4478,14 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 17684.0,
       "asf": 17684.0,
+      "csf": 17684.0,
       "ac": 0.4,
       "cov": 101.5,
       "yb": 1920.0,
       "rrange": "$8.00\u2013$11.00",
       "price": 865000.0,
       "psf": 48.91,
+      "rating": 3.0,
       "up": "Exceptional basis $49/SF",
       "risk": "Outside top-10 NIOS (San Antonio #16); High site coverage 101%; Older vintage (1920); In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21066398 | Subd: MARFA | Missing: In-Place Rent PSF, Lease Expiry, Broker Name | No U this batch",
@@ -4411,12 +4494,12 @@ window.RCP_DATA = {
       "lon": -98.98157,
       "geo": "state",
       "ppa": 2162500.0,
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "4690-e-fm-1187-118",
       "sent": "2026-07-07",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "DFW",
       "nrank": 1.0,
@@ -4425,6 +4508,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 4160.0,
       "asf": 4160.0,
+      "csf": 4160.0,
       "ac": 1.08,
       "yac": 0.98,
       "cov": 8.8,
@@ -4432,6 +4516,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$14.50",
       "price": 895000.0,
       "psf": 215.14,
+      "rating": 8.0,
       "up": "Top-2 NIOS market (DFW #1); Low coverage 9% \u2014 strong land component; Modern vintage (2013)",
       "risk": "Elevated basis $215/SF; In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21204460 | Subd: Johnston Land 2 | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
@@ -4440,7 +4525,7 @@ window.RCP_DATA = {
       "lon": -99.06314,
       "geo": "state",
       "ppa": 828703.7037037036,
-      "stage0": "new"
+      "stage0": "underwriting"
     },
     {
       "id": "9415-s-r-l-thornton-freeway-119",
@@ -4454,6 +4539,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 5801.0,
       "asf": 5801.0,
+      "csf": 5801.0,
       "ac": 0.426,
       "yac": 0.29,
       "cov": 31.3,
@@ -4461,6 +4547,7 @@ window.RCP_DATA = {
       "rrange": "$11.00\u2013$14.00",
       "price": 900000.0,
       "psf": 155.15,
+      "rating": 4.0,
       "up": "Modern vintage (2003)",
       "risk": "Outside top-10 NIOS (Denver #23); In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #20844648 | Subd: Beckley Gardens Add | Missing: In-Place Rent PSF, Lease Expiry, Broker Name | No U this batch",
@@ -4469,12 +4556,12 @@ window.RCP_DATA = {
       "lon": -99.34549,
       "geo": "state",
       "ppa": 2112676.056338028,
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "348-w-hurst-boulevard-120",
       "sent": "2026-07-07",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "DFW",
       "nrank": 1.0,
@@ -4483,6 +4570,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 6737.0,
       "asf": 6737.0,
+      "csf": 6737.0,
       "ac": 0.509,
       "yac": 0.35,
       "cov": 30.4,
@@ -4490,6 +4578,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$14.50",
       "price": 1105000.0,
       "psf": 164.02,
+      "rating": 7.0,
       "up": "Top-2 NIOS market (DFW #1)",
       "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21063041 | Subd: Hurstview Add | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
@@ -4498,12 +4587,12 @@ window.RCP_DATA = {
       "lon": -99.1949,
       "geo": "state",
       "ppa": 2170923.3791748527,
-      "stage0": "new"
+      "stage0": "underwriting"
     },
     {
       "id": "1500-circle-park-boulevard-121",
       "sent": "2026-07-07",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "DFW",
       "nrank": 1.0,
@@ -4512,12 +4601,14 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 18186.0,
       "asf": 18186.0,
+      "csf": 18186.0,
       "ac": 0.126,
       "cov": 331.3,
       "yb": 1960.0,
       "rrange": "$10.00\u2013$14.50",
       "price": 1200000.0,
       "psf": 65.98,
+      "rating": 7.0,
       "up": "Top-2 NIOS market (DFW #1); Exceptional basis $66/SF",
       "risk": "High site coverage 331%; Older vintage (1960); In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21039883 | Subd: North Fort Worth | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
@@ -4526,7 +4617,7 @@ window.RCP_DATA = {
       "lon": -99.49608,
       "geo": "state",
       "ppa": 9523809.523809524,
-      "stage0": "new"
+      "stage0": "underwriting"
     },
     {
       "id": "2623-s-garland-avenue-122",
@@ -4540,6 +4631,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 4486.0,
       "asf": 4486.0,
+      "csf": 4486.0,
       "ac": 0.42,
       "yac": 0.32,
       "cov": 24.5,
@@ -4547,6 +4639,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$14.50",
       "price": 1250000.0,
       "psf": 278.64,
+      "rating": 5.0,
       "up": "Top-2 NIOS market (DFW #1)",
       "risk": "Elevated basis $279/SF; Older vintage (1951); In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21155882 | Subd: Westchester Village | Missing: In-Place Rent PSF, Lease Expiry, Broker Name | No U this batch",
@@ -4555,7 +4648,7 @@ window.RCP_DATA = {
       "lon": -99.10078,
       "geo": "state",
       "ppa": 2976190.476190476,
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "1107-weatherford-highway-123",
@@ -4569,6 +4662,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 5081.0,
       "asf": 5081.0,
+      "csf": 5081.0,
       "ac": 2.721,
       "yac": 2.6,
       "cov": 4.3,
@@ -4576,6 +4670,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$14.50",
       "price": 1299000.0,
       "psf": 255.66,
+      "rating": 6.0,
       "up": "Top-2 NIOS market (DFW #1); Low coverage 4% \u2014 strong land component",
       "risk": "Elevated basis $256/SF; Older vintage (1968); In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21165475 | Subd: none | Missing: In-Place Rent PSF, Lease Expiry, Broker Name | No U this batch",
@@ -4584,7 +4679,7 @@ window.RCP_DATA = {
       "lon": -99.69373,
       "geo": "state",
       "ppa": 477398.01543550164,
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "2005-us-hwy-183-124",
@@ -4598,6 +4693,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 6300.0,
       "asf": 6300.0,
+      "csf": 6300.0,
       "ac": 0.826,
       "yac": 0.68,
       "cov": 17.5,
@@ -4605,6 +4701,7 @@ window.RCP_DATA = {
       "rrange": "$9.00\u2013$15.00",
       "price": 1300000.0,
       "psf": 206.35,
+      "rating": 6.0,
       "up": "Top-10 NIOS market (Austin #9); Low coverage 18% \u2014 strong land component; Modern vintage (2004)",
       "risk": "Elevated basis $206/SF; In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21266989 | Subd: Henry Kraber, Survey 19, Abstract 584, Acres .8264 | Missing: In-Place Rent PSF, Lease Expiry, Broker Name | No U this batch",
@@ -4613,12 +4710,12 @@ window.RCP_DATA = {
       "lon": -99.58392,
       "geo": "state",
       "ppa": 1573849.8789346248,
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "253-county-road-4465-125",
       "sent": "2026-07-07",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "DFW",
       "nrank": 1.0,
@@ -4627,6 +4724,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 4800.0,
       "asf": 4800.0,
+      "csf": 4800.0,
       "ac": 5.25,
       "yac": 5.14,
       "cov": 2.1,
@@ -4634,6 +4732,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$14.50",
       "price": 1400000.0,
       "psf": 291.67,
+      "rating": 8.0,
       "up": "Top-2 NIOS market (DFW #1); Low coverage 2% \u2014 strong land component; Modern vintage (2008)",
       "risk": "Elevated basis $292/SF; In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #20864948 | Subd: H C Hurst | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
@@ -4642,12 +4741,12 @@ window.RCP_DATA = {
       "lon": -99.60275,
       "geo": "state",
       "ppa": 266666.6666666667,
-      "stage0": "new"
+      "stage0": "underwriting"
     },
     {
       "id": "3000-e-loop-820-s-126",
       "sent": "2026-07-07",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "DFW",
       "nrank": 1.0,
@@ -4656,6 +4755,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 10500.0,
       "asf": 10500.0,
+      "csf": 10500.0,
       "ac": 1.4,
       "yac": 1.16,
       "cov": 17.2,
@@ -4663,6 +4763,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$14.50",
       "price": 1550000.0,
       "psf": 147.62,
+      "rating": 9.0,
       "up": "Top-2 NIOS market (DFW #1); Favorable basis $148/SF; Low coverage 17% \u2014 strong land component",
       "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21038005 | Subd: Ven Ken Indust Park Add | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
@@ -4671,7 +4772,7 @@ window.RCP_DATA = {
       "lon": -99.16667,
       "geo": "state",
       "ppa": 1107142.8571428573,
-      "stage0": "new"
+      "stage0": "underwriting"
     },
     {
       "id": "17829-hwy-377-127",
@@ -4685,6 +4786,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 10000.0,
       "asf": 10000.0,
+      "csf": 10000.0,
       "ac": 0.53,
       "yac": 0.3,
       "cov": 43.3,
@@ -4692,6 +4794,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$14.50",
       "price": 1595000.0,
       "psf": 159.5,
+      "rating": 8.0,
       "up": "Top-2 NIOS market (DFW #1); Modern vintage (2022)",
       "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21253636 | Subd: Bourland Field | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
@@ -4700,12 +4803,12 @@ window.RCP_DATA = {
       "lon": -99.16039,
       "geo": "state",
       "ppa": 3009433.962264151,
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "1121-industrial-drive-128",
       "sent": "2026-07-07",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "DFW",
       "nrank": 1.0,
@@ -4714,6 +4817,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 38285.0,
       "asf": 38285.0,
+      "csf": 38285.0,
       "ac": 1.84,
       "yac": 0.96,
       "cov": 47.8,
@@ -4721,6 +4825,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$14.50",
       "price": 1600000.0,
       "psf": 41.79,
+      "rating": 9.0,
       "up": "Top-2 NIOS market (DFW #1); Exceptional basis $42/SF",
       "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21208267 | Subd: Royse City Indust Park | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
@@ -4729,12 +4834,12 @@ window.RCP_DATA = {
       "lon": -98.99098,
       "geo": "state",
       "ppa": 869565.2173913043,
-      "stage0": "new"
+      "stage0": "underwriting"
     },
     {
       "id": "330-grapevine-highway-129",
       "sent": "2026-07-07",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "DFW",
       "nrank": 1.0,
@@ -4743,6 +4848,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 8784.0,
       "asf": 8784.0,
+      "csf": 8784.0,
       "ac": 1.273,
       "yac": 1.07,
       "cov": 15.8,
@@ -4750,6 +4856,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$14.50",
       "price": 1690000.0,
       "psf": 192.4,
+      "rating": 9.0,
       "up": "Top-2 NIOS market (DFW #1); Low coverage 16% \u2014 strong land component; Modern vintage (2000)",
       "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21296849 | Subd: Woodbridge Plaza Add | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
@@ -4758,12 +4865,12 @@ window.RCP_DATA = {
       "lon": -99.28588,
       "geo": "state",
       "ppa": 1327572.6630007857,
-      "stage0": "new"
+      "stage0": "underwriting"
     },
     {
       "id": "4944-mansfield-highway-130",
       "sent": "2026-07-07",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "DFW",
       "nrank": 1.0,
@@ -4772,6 +4879,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 7100.0,
       "asf": 7100.0,
+      "csf": 7100.0,
       "ac": 1.407,
       "yac": 1.24,
       "cov": 11.6,
@@ -4779,6 +4887,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$14.50",
       "price": 1700000.0,
       "psf": 239.44,
+      "rating": 8.0,
       "up": "Top-2 NIOS market (DFW #1); Low coverage 12% \u2014 strong land component; Modern vintage (2026)",
       "risk": "Elevated basis $239/SF; In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21185581 | Subd: Jds Add | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
@@ -4787,12 +4896,12 @@ window.RCP_DATA = {
       "lon": -99.00667,
       "geo": "state",
       "ppa": 1208244.4918265813,
-      "stage0": "new"
+      "stage0": "underwriting"
     },
     {
       "id": "2303-w-ennis-avenue-131",
       "sent": "2026-07-07",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "DFW",
       "nrank": 1.0,
@@ -4801,6 +4910,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 31073.0,
       "asf": 31073.0,
+      "csf": 31073.0,
       "ac": 2.937,
       "yac": 2.22,
       "cov": 24.3,
@@ -4808,6 +4918,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$14.50",
       "price": 1800000.0,
       "psf": 57.93,
+      "rating": 9.0,
       "up": "Top-2 NIOS market (DFW #1); Exceptional basis $58/SF",
       "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21132614 | Subd: R A Barton | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
@@ -4816,12 +4927,12 @@ window.RCP_DATA = {
       "lon": -99.59333,
       "geo": "state",
       "ppa": 612870.2757916241,
-      "stage0": "new"
+      "stage0": "underwriting"
     },
     {
       "id": "1717-w-plano-parkway-132",
       "sent": "2026-07-07",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "DFW",
       "nrank": 1.0,
@@ -4830,6 +4941,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 9800.0,
       "asf": 9800.0,
+      "csf": 9800.0,
       "ac": 1.62,
       "yac": 1.4,
       "cov": 13.9,
@@ -4837,6 +4949,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$14.50",
       "price": 2200000.0,
       "psf": 224.49,
+      "rating": 7.0,
       "up": "Top-2 NIOS market (DFW #1); Low coverage 14% \u2014 strong land component",
       "risk": "Elevated basis $224/SF; In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21289377 | Subd: Wind Rose Add | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
@@ -4845,7 +4958,7 @@ window.RCP_DATA = {
       "lon": -99.46157,
       "geo": "state",
       "ppa": 1358024.6913580245,
-      "stage0": "new"
+      "stage0": "underwriting"
     },
     {
       "id": "400-w-houston-133",
@@ -4859,6 +4972,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 14656.0,
       "asf": 14656.0,
+      "csf": 14656.0,
       "ac": 1.3,
       "yac": 0.96,
       "cov": 25.9,
@@ -4866,6 +4980,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$13.00",
       "price": 2200000.0,
       "psf": 150.11,
+      "rating": 7.0,
       "up": "Top-2 NIOS market (Houston #2)",
       "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #20660743 | Subd: Original Town Site | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
@@ -4874,7 +4989,7 @@ window.RCP_DATA = {
       "lon": -99.12275,
       "geo": "state",
       "ppa": 1692307.6923076923,
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "13550-vargon-street-134",
@@ -4888,6 +5003,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 7920.0,
       "asf": 7920.0,
+      "csf": 7920.0,
       "ac": 0.475,
       "yac": 0.29,
       "cov": 38.3,
@@ -4895,6 +5011,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$14.50",
       "price": 2250000.0,
       "psf": 284.09,
+      "rating": 6.0,
       "up": "Top-2 NIOS market (DFW #1)",
       "risk": "Elevated basis $284/SF; In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #20799575 | Subd: Garvon-Dallas 03 | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
@@ -4903,7 +5020,7 @@ window.RCP_DATA = {
       "lon": -99.41451,
       "geo": "state",
       "ppa": 4736842.105263158,
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "1024-us-377-a-135",
@@ -4917,6 +5034,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 9200.0,
       "asf": 9200.0,
+      "csf": 9200.0,
       "ac": 0.78,
       "yac": 0.57,
       "cov": 27.1,
@@ -4924,6 +5042,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$14.50",
       "price": 2500000.0,
       "psf": 271.74,
+      "rating": 6.0,
       "up": "Top-2 NIOS market (DFW #1)",
       "risk": "Elevated basis $272/SF; In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21292004 | Subd: B R Add | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
@@ -4932,12 +5051,12 @@ window.RCP_DATA = {
       "lon": -99.2451,
       "geo": "state",
       "ppa": 3205128.205128205,
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "3641-broadway-boulevard-100-500-136",
       "sent": "2026-07-07",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "DFW",
       "nrank": 1.0,
@@ -4946,6 +5065,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 9505.0,
       "asf": 9505.0,
+      "csf": 9505.0,
       "ac": 1.065,
       "yac": 0.85,
       "cov": 20.5,
@@ -4953,6 +5073,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$14.50",
       "price": 2500000.0,
       "psf": 263.02,
+      "rating": 7.0,
       "up": "Top-2 NIOS market (DFW #1); Modern vintage (2007)",
       "risk": "Elevated basis $263/SF; In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21282737 | Subd: Garland Pharmacy | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
@@ -4961,12 +5082,12 @@ window.RCP_DATA = {
       "lon": -99.30784,
       "geo": "state",
       "ppa": 2347417.840375587,
-      "stage0": "new"
+      "stage0": "underwriting"
     },
     {
       "id": "2229-n-carroll-boulevard-137",
       "sent": "2026-07-07",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "DFW",
       "nrank": 1.0,
@@ -4975,6 +5096,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 52759.0,
       "asf": 52759.0,
+      "csf": 52759.0,
       "ac": 4.994,
       "yac": 3.78,
       "cov": 24.3,
@@ -4982,6 +5104,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$14.50",
       "price": 2700000.0,
       "psf": 51.18,
+      "rating": 8.0,
       "up": "Top-2 NIOS market (DFW #1); Exceptional basis $51/SF",
       "risk": "Older vintage (1969); In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #20909488 | Subd: Denton Nursing Center Add | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
@@ -4990,7 +5113,7 @@ window.RCP_DATA = {
       "lon": -99.52431,
       "geo": "state",
       "ppa": 540648.7785342411,
-      "stage0": "new"
+      "stage0": "underwriting"
     },
     {
       "id": "1301-e-weatherford-street-138",
@@ -5004,6 +5127,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 9834.0,
       "asf": 9834.0,
+      "csf": 9834.0,
       "ac": 0.677,
       "yac": 0.45,
       "cov": 33.3,
@@ -5011,6 +5135,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$14.50",
       "price": 2900000.0,
       "psf": 294.9,
+      "rating": 5.0,
       "up": "Top-2 NIOS market (DFW #1)",
       "risk": "Elevated basis $295/SF; Older vintage (1965); In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21155332 | Subd: Moore-Thornton & Co | Missing: In-Place Rent PSF, Lease Expiry, Broker Name | No U this batch",
@@ -5019,12 +5144,12 @@ window.RCP_DATA = {
       "lon": -99.57137,
       "geo": "state",
       "ppa": 4283604.1358936485,
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "2020-fort-worth-highway-139",
       "sent": "2026-07-07",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "DFW",
       "nrank": 1.0,
@@ -5033,6 +5158,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 11200.0,
       "asf": 11200.0,
+      "csf": 11200.0,
       "ac": 7.355,
       "yac": 7.1,
       "cov": 3.5,
@@ -5040,6 +5166,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$14.50",
       "price": 2995500.0,
       "psf": 267.46,
+      "rating": 7.0,
       "up": "Top-2 NIOS market (DFW #1); Low coverage 3% \u2014 strong land component",
       "risk": "Elevated basis $267/SF; In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21190522 | Subd: none | Missing: In-Place Rent PSF, Lease Expiry, Broker Name, Year Built",
@@ -5048,12 +5175,12 @@ window.RCP_DATA = {
       "lon": -99.12902,
       "geo": "state",
       "ppa": 407273.9632902787,
-      "stage0": "new"
+      "stage0": "underwriting"
     },
     {
       "id": "2500-ih-20-e-140",
       "sent": "2026-07-07",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "DFW",
       "nrank": 1.0,
@@ -5062,6 +5189,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 23750.0,
       "asf": 23750.0,
+      "csf": 23750.0,
       "ac": 3.809,
       "yac": 3.26,
       "cov": 14.3,
@@ -5069,6 +5197,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$14.50",
       "price": 3750000.0,
       "psf": 157.89,
+      "rating": 8.0,
       "up": "Top-2 NIOS market (DFW #1); Low coverage 14% \u2014 strong land component",
       "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21086030 | Subd: Huggins | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
@@ -5077,12 +5206,12 @@ window.RCP_DATA = {
       "lon": -99.64667,
       "geo": "state",
       "ppa": 984510.3701758991,
-      "stage0": "new"
+      "stage0": "underwriting"
     },
     {
       "id": "1608-w-moore-avenue-141",
       "sent": "2026-07-07",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "DFW",
       "nrank": 1.0,
@@ -5091,6 +5220,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 28420.0,
       "asf": 28420.0,
+      "csf": 28420.0,
       "ac": 3.081,
       "yac": 2.43,
       "cov": 21.2,
@@ -5098,6 +5228,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$14.50",
       "price": 3900000.0,
       "psf": 137.23,
+      "rating": 7.0,
       "up": "Top-2 NIOS market (DFW #1); Favorable basis $137/SF",
       "risk": "Older vintage (1963); In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #20321787 | Subd: Terrell Rev | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
@@ -5106,12 +5237,12 @@ window.RCP_DATA = {
       "lon": -99.38627,
       "geo": "state",
       "ppa": 1265822.7848101265,
-      "stage0": "new"
+      "stage0": "underwriting"
     },
     {
       "id": "1431-1437-e-mckinney-street-142",
       "sent": "2026-07-07",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "DFW",
       "nrank": 1.0,
@@ -5120,6 +5251,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 25729.0,
       "asf": 25729.0,
+      "csf": 25729.0,
       "ac": 6.11,
       "yac": 5.52,
       "cov": 9.7,
@@ -5127,6 +5259,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$14.50",
       "price": 4850000.0,
       "psf": 188.5,
+      "rating": 9.0,
       "up": "Top-2 NIOS market (DFW #1); Low coverage 10% \u2014 strong land component; Modern vintage (2019)",
       "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21104206 | Subd: Denton Justice Plaza | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
@@ -5135,7 +5268,7 @@ window.RCP_DATA = {
       "lon": -99.64353,
       "geo": "state",
       "ppa": 793780.6873977087,
-      "stage0": "new"
+      "stage0": "underwriting"
     },
     {
       "id": "510-s-good-latimer-expressway-143",
@@ -5149,12 +5282,14 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 29716.0,
       "asf": 29716.0,
+      "csf": 29716.0,
       "ac": 0.558,
       "cov": 122.3,
       "yb": 1963.0,
       "rrange": "$10.00\u2013$14.50",
       "price": 5569000.0,
       "psf": 187.41,
+      "rating": 5.0,
       "up": "Top-2 NIOS market (DFW #1)",
       "risk": "High site coverage 122%; Older vintage (1963); In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21280037 | Subd: Railroad | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
@@ -5163,7 +5298,7 @@ window.RCP_DATA = {
       "lon": -99.41765,
       "geo": "state",
       "ppa": 9980286.738351254,
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "2701-s-burleson-boulevard-144",
@@ -5177,6 +5312,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 27738.0,
       "asf": 27738.0,
+      "csf": 27738.0,
       "ac": 29.0,
       "yac": 28.36,
       "cov": 2.2,
@@ -5184,6 +5320,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$14.50",
       "price": 6000000.0,
       "psf": 216.31,
+      "rating": 7.0,
       "up": "Top-2 NIOS market (DFW #1); Low coverage 2% \u2014 strong land component",
       "risk": "Elevated basis $216/SF; In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #20513558 | Subd: Not applicable | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
@@ -5192,12 +5329,12 @@ window.RCP_DATA = {
       "lon": -99.57451,
       "geo": "state",
       "ppa": 206896.55172413794,
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "147-e-hurst-boulevard-145",
       "sent": "2026-07-07",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "DFW",
       "nrank": 1.0,
@@ -5206,6 +5343,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 80000.0,
       "asf": 80000.0,
+      "csf": 80000.0,
       "ac": 5.7,
       "yac": 3.86,
       "cov": 32.2,
@@ -5213,6 +5351,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$14.50",
       "price": 6550000.0,
       "psf": 81.88,
+      "rating": 8.0,
       "up": "Top-2 NIOS market (DFW #1); Favorable basis $82/SF",
       "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21115274 | Subd: First Baptist Add | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
@@ -5221,12 +5360,12 @@ window.RCP_DATA = {
       "lon": -99.65294,
       "geo": "state",
       "ppa": 1149122.8070175438,
-      "stage0": "new"
+      "stage0": "underwriting"
     },
     {
       "id": "1801-fort-worth-highway-146",
       "sent": "2026-07-07",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "DFW",
       "nrank": 1.0,
@@ -5235,6 +5374,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 33756.0,
       "asf": 33756.0,
+      "csf": 33756.0,
       "ac": 3.535,
       "yac": 2.76,
       "cov": 21.9,
@@ -5242,6 +5382,7 @@ window.RCP_DATA = {
       "rrange": "$10.00\u2013$14.50",
       "price": 9715965.0,
       "psf": 287.83,
+      "rating": 7.0,
       "up": "Top-2 NIOS market (DFW #1); Modern vintage (2023)",
       "risk": "Elevated basis $288/SF; In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21290513 | Subd: Lone Oaks Apts Add | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
@@ -5250,7 +5391,7 @@ window.RCP_DATA = {
       "lon": -99.07569,
       "geo": "state",
       "ppa": 2748504.9504950494,
-      "stage0": "new"
+      "stage0": "underwriting"
     },
     {
       "id": "1912-s-good-latimer-expressway-147",
@@ -5264,12 +5405,14 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 57850.0,
       "asf": 57850.0,
+      "csf": 57850.0,
       "ac": 1.24,
       "cov": 107.1,
       "yb": 1960.0,
       "rrange": "$10.00\u2013$14.50",
       "price": 10500000.0,
       "psf": 181.5,
+      "rating": 5.0,
       "up": "Top-2 NIOS market (DFW #1)",
       "risk": "High site coverage 107%; Older vintage (1960); In-place rent unknown; Lease expiry unknown; No broker contact info",
       "notes": "Texas MLS #21117776 | Subd: GRAVES HEIGHTS | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
@@ -5278,12 +5421,12 @@ window.RCP_DATA = {
       "lon": -99.26078,
       "geo": "state",
       "ppa": 8467741.935483871,
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "428-n-aston-dr-148",
       "sent": "2026-07-07",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "DFW",
       "nrank": 1.0,
@@ -5292,6 +5435,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "rrange": "$10.00\u2013$14.50",
       "price": 2200000.0,
+      "rating": 7.0,
       "up": "Top-2 NIOS market (DFW #1)",
       "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info; Acreage unconfirmed",
       "notes": "Texas MLS | Missing: Building SF, In-Place Rent PSF, Lease Expiry, Broker Name, Year Built",
@@ -5299,12 +5443,12 @@ window.RCP_DATA = {
       "lat": 30.88784,
       "lon": -99.62784,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "underwriting"
     },
     {
       "id": "703-business-way-149",
       "sent": "2026-07-13",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "DFW",
       "nrank": 1.0,
@@ -5312,6 +5456,7 @@ window.RCP_DATA = {
       "addr": "703 Business Way",
       "type": "Industrial",
       "rrange": "$10.00\u2013$14.50",
+      "rating": 7.0,
       "up": "Top-2 NIOS market (DFW #1)",
       "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info; Acreage unconfirmed",
       "notes": "Texas MLS | Missing: Building SF, Asking Price, In-Place Rent PSF, Lease Expiry, Broker Name, Year Built",
@@ -5319,12 +5464,12 @@ window.RCP_DATA = {
       "lat": 31.29569,
       "lon": -99.49922,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "underwriting"
     },
     {
       "id": "2011-industrial-blvd-150",
       "sent": "2026-07-13",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "DFW",
       "nrank": 1.0,
@@ -5332,6 +5477,7 @@ window.RCP_DATA = {
       "addr": "2011 Industrial Blvd",
       "type": "Industrial",
       "rrange": "$10.00\u2013$14.50",
+      "rating": 7.0,
       "up": "Top-2 NIOS market (DFW #1)",
       "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info; Acreage unconfirmed",
       "notes": "Texas MLS | Missing: Building SF, Asking Price, In-Place Rent PSF, Lease Expiry, Broker Name, Year Built",
@@ -5339,12 +5485,12 @@ window.RCP_DATA = {
       "lat": 31.26118,
       "lon": -99.47725,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "underwriting"
     },
     {
       "id": "11311-n-stemmons-fwy-151",
       "sent": "2026-07-13",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "DFW",
       "nrank": 1.0,
@@ -5352,6 +5498,7 @@ window.RCP_DATA = {
       "addr": "11311 N Stemmons Fwy",
       "type": "Industrial",
       "rrange": "$10.00\u2013$14.50",
+      "rating": 7.0,
       "up": "Top-2 NIOS market (DFW #1)",
       "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info; Acreage unconfirmed",
       "notes": "Texas MLS | Missing: Building SF, Asking Price, In-Place Rent PSF, Lease Expiry, Broker Name, Year Built",
@@ -5359,7 +5506,7 @@ window.RCP_DATA = {
       "lat": 30.93804,
       "lon": -99.5902,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "underwriting"
     },
     {
       "id": "13053-harmon-rd-1001-152",
@@ -5373,6 +5520,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "rrange": "$10.00\u2013$14.50",
       "price": 575000.0,
+      "rating": 7.0,
       "up": "Top-2 NIOS market (DFW #1)",
       "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info; Acreage unconfirmed",
       "notes": "Texas MLS | Missing: Building SF, In-Place Rent PSF, Lease Expiry, Broker Name, Year Built",
@@ -5380,12 +5528,12 @@ window.RCP_DATA = {
       "lat": 31.29569,
       "lon": -99.64039,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "3002-a-temtex-blvd-153",
       "sent": "2026-07-13",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "DFW",
       "nrank": 1.0,
@@ -5393,6 +5541,7 @@ window.RCP_DATA = {
       "addr": "3002-A Temtex Blvd",
       "type": "Industrial",
       "rrange": "$10.00\u2013$14.50",
+      "rating": 7.0,
       "up": "Top-2 NIOS market (DFW #1)",
       "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info; Acreage unconfirmed",
       "notes": "Texas MLS | Missing: Building SF, Asking Price, In-Place Rent PSF, Lease Expiry, Broker Name, Year Built",
@@ -5400,12 +5549,12 @@ window.RCP_DATA = {
       "lat": 31.57804,
       "lon": -99.32667,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "underwriting"
     },
     {
       "id": "7380-chase-oaks-blvd-154",
       "sent": "Jul 8 2026",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "DFW",
       "nrank": 1.0,
@@ -5413,6 +5562,7 @@ window.RCP_DATA = {
       "addr": "7380 Chase Oaks Blvd",
       "type": "Industrial",
       "rrange": "$10.00\u2013$14.50",
+      "rating": 7.0,
       "up": "Top-2 NIOS market (DFW #1)",
       "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info; Acreage unconfirmed",
       "notes": "Texas MLS | Missing: Building SF, Asking Price, In-Place Rent PSF, Lease Expiry, Broker Name, Year Built",
@@ -5420,12 +5570,12 @@ window.RCP_DATA = {
       "lat": 31.39608,
       "lon": -99.06941,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "underwriting"
     },
     {
       "id": "4732-iberia-ave-155",
       "sent": "Jul 8 2026",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "DFW",
       "nrank": 1.0,
@@ -5433,6 +5583,7 @@ window.RCP_DATA = {
       "addr": "4732 Iberia Ave",
       "type": "Industrial",
       "rrange": "$10.00\u2013$14.50",
+      "rating": 7.0,
       "up": "Top-2 NIOS market (DFW #1)",
       "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info; Acreage unconfirmed",
       "notes": "Texas MLS | Missing: Building SF, Asking Price, In-Place Rent PSF, Lease Expiry, Broker Name, Year Built",
@@ -5440,12 +5591,12 @@ window.RCP_DATA = {
       "lat": 31.52471,
       "lon": -98.91255,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "underwriting"
     },
     {
       "id": "5956-w-jefferson-blvd-156",
       "sent": "2026-07-13",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "DFW",
       "nrank": 1.0,
@@ -5453,6 +5604,7 @@ window.RCP_DATA = {
       "addr": "5956 W Jefferson Blvd",
       "type": "Industrial",
       "rrange": "$10.00\u2013$14.50",
+      "rating": 7.0,
       "up": "Top-2 NIOS market (DFW #1)",
       "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info; Acreage unconfirmed",
       "notes": "Texas MLS | Missing: Building SF, Asking Price, In-Place Rent PSF, Lease Expiry, Broker Name, Year Built",
@@ -5460,12 +5612,12 @@ window.RCP_DATA = {
       "lat": 31.27373,
       "lon": -99.0098,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "screened"
     },
     {
       "id": "8000-sovereign-row-157",
       "sent": "2026-07-13",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "DFW",
       "nrank": 1.0,
@@ -5473,6 +5625,7 @@ window.RCP_DATA = {
       "addr": "8000 Sovereign Row",
       "type": "Industrial",
       "rrange": "$10.00\u2013$14.50",
+      "rating": 7.0,
       "up": "Top-2 NIOS market (DFW #1)",
       "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info; Acreage unconfirmed",
       "notes": "Texas MLS | Missing: Building SF, Asking Price, In-Place Rent PSF, Lease Expiry, Broker Name, Year Built",
@@ -5480,12 +5633,12 @@ window.RCP_DATA = {
       "lat": 31.12627,
       "lon": -99.17294,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "underwriting"
     },
     {
       "id": "5025-5035-sharp-st-158",
       "sent": "July 9, 2026",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "DFW",
       "nrank": 1.0,
@@ -5493,6 +5646,7 @@ window.RCP_DATA = {
       "addr": "5025-5035 Sharp St",
       "type": "Industrial",
       "rrange": "$10.00\u2013$14.50",
+      "rating": 7.0,
       "up": "Top-2 NIOS market (DFW #1)",
       "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info; Acreage unconfirmed",
       "notes": "Texas MLS | Missing: Building SF, Asking Price, In-Place Rent PSF, Lease Expiry, Broker Name, Year Built",
@@ -5500,12 +5654,12 @@ window.RCP_DATA = {
       "lat": 31.37412,
       "lon": -99.29216,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "underwriting"
     },
     {
       "id": "2630-n-interstate-35e-159",
       "sent": "Jul 10, 2026",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "DFW",
       "nrank": 1.0,
@@ -5513,6 +5667,7 @@ window.RCP_DATA = {
       "addr": "2630 N Interstate 35E",
       "type": "Industrial",
       "rrange": "$10.00\u2013$14.50",
+      "rating": 7.0,
       "up": "Top-2 NIOS market (DFW #1)",
       "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info; Acreage unconfirmed",
       "notes": "Texas MLS | Missing: Building SF, Asking Price, In-Place Rent PSF, Lease Expiry, Broker Name, Year Built",
@@ -5520,12 +5675,12 @@ window.RCP_DATA = {
       "lat": 31.16392,
       "lon": -99.02235,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "underwriting"
     },
     {
       "id": "923-925-slocum-st-160",
       "sent": "2026-07-10",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "DFW",
       "nrank": 1.0,
@@ -5534,7 +5689,9 @@ window.RCP_DATA = {
       "type": "Flex",
       "bsf": 16847.0,
       "asf": 16847.0,
+      "csf": 16847.0,
       "rrange": "$10.00\u2013$14.50",
+      "rating": 7.0,
       "up": "Top-2 NIOS market (DFW #1)",
       "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info; Acreage unconfirmed",
       "notes": "Texas MLS | Missing: Asking Price, In-Place Rent PSF, Lease Expiry, Broker Name, Year Built",
@@ -5542,12 +5699,12 @@ window.RCP_DATA = {
       "lat": 30.86588,
       "lon": -99.60902,
       "geo": "state",
-      "stage0": "new"
+      "stage0": "underwriting"
     },
     {
       "id": "2060-couch-dr-161",
       "sent": "2026-07-10",
-      "u": false,
+      "u": true,
       "st": "TX",
       "mkt": "DFW",
       "nrank": 1.0,
@@ -5556,6 +5713,7 @@ window.RCP_DATA = {
       "type": "Industrial",
       "bsf": 49438.0,
       "asf": 49438.0,
+      "csf": 49438.0,
       "ac": 3.89,
       "yac": 2.76,
       "cov": 29.2,
@@ -5564,6 +5722,7 @@ window.RCP_DATA = {
       "price": 5700000.0,
       "psf": 115.3,
       "tenant": "Habitat ReStore",
+      "rating": 8.0,
       "up": "Top-2 NIOS market (DFW #1); Favorable basis $115/SF",
       "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info | ESTIMATE \u2014 Named tenant (Habitat ReStore) in place; in-place rent and lease expiry unconfirmed. Modeled at market rent ($12.25/SF, DFW midpoint) with MTM/near-term rollover proxy (12mo -- template floor; true intent was month-3 rollover per lease-expiry-unknown rule but the model errors below ~10mo term). Acreage (3.89ac) confirmed via LoopNet/county record match. LP IRR 39.87%% clears 15%% hurdle; LP EM 1.55x misses 1.8x target. Route: Needs Confirmation -- verify actual in-place rent and lease terms with broker/tenant before treating as a live underwrite.",
       "notes": "Texas MLS | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
@@ -5575,6 +5734,610 @@ window.RCP_DATA = {
       "ppa": 1465295.6298200514,
       "stage0": "underwriting",
       "needs_confirmation": true
+    },
+    {
+      "id": "10426-c-f-hawn-freeway-162",
+      "sent": "Mar 21 2031",
+      "u": false,
+      "st": "TX",
+      "mkt": "DFW",
+      "nrank": 1.0,
+      "nscore": 9.43,
+      "addr": "10426 C F Hawn Freeway",
+      "type": "Industrial",
+      "bsf": 5000.0,
+      "asf": 5000.0,
+      "csf": 5000.0,
+      "ac": 0.712,
+      "yac": 0.6,
+      "cov": 16.1,
+      "yb": 1985.0,
+      "rrange": "$10.00\u2013$14.50",
+      "price": 795000.0,
+      "psf": 159.0,
+      "rating": 8.0,
+      "up": "Top-2 NIOS market (DFW #1); Low coverage 16% \u2014 strong land component",
+      "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info",
+      "notes": "Texas MLS #20669503 | Subd: IMPTS ONLY ACCT | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
+      "src": "CoStar Screen",
+      "lat": 31.48706,
+      "lon": -99.68431,
+      "geo": "state",
+      "ppa": 1116573.0337078653,
+      "stage0": "screened"
+    },
+    {
+      "id": "5889-tenderfoot-trail-163",
+      "sent": "Mar 23 2031",
+      "u": false,
+      "st": "TX",
+      "mkt": "DFW",
+      "nrank": 1.0,
+      "nscore": 9.43,
+      "addr": "5889 Tenderfoot Trail",
+      "type": "Industrial",
+      "bsf": 9234.0,
+      "asf": 9234.0,
+      "csf": 9234.0,
+      "ac": 2.98,
+      "yac": 2.77,
+      "cov": 7.1,
+      "yb": 1960.0,
+      "rrange": "$10.00\u2013$14.50",
+      "price": 797500.0,
+      "psf": 86.37,
+      "rating": 8.0,
+      "up": "Top-2 NIOS market (DFW #1); Favorable basis $86/SF; Low coverage 7% \u2014 strong land component",
+      "risk": "Older vintage (1960); In-place rent unknown; Lease expiry unknown; No broker contact info",
+      "notes": "Texas MLS #21203824 | Subd: Horse Shoe Hills Addition | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
+      "src": "CoStar Screen",
+      "lat": 31.02902,
+      "lon": -98.94706,
+      "geo": "state",
+      "ppa": 267617.4496644295,
+      "stage0": "screened"
+    },
+    {
+      "id": "3600-eldorado-parkway-1-164",
+      "sent": "Mar 26 2031",
+      "u": false,
+      "st": "TX",
+      "mkt": "DFW",
+      "nrank": 1.0,
+      "nscore": 9.43,
+      "addr": "3600 Eldorado Parkway #1",
+      "type": "Industrial",
+      "bsf": 2900.0,
+      "asf": 2900.0,
+      "csf": 2900.0,
+      "ac": 1.954,
+      "yac": 1.89,
+      "cov": 3.4,
+      "yb": 2015.0,
+      "rrange": "$10.00\u2013$14.50",
+      "price": 799000.0,
+      "psf": 275.52,
+      "rating": 8.0,
+      "up": "Top-2 NIOS market (DFW #1); Low coverage 3% \u2014 strong land component; Modern vintage (2015)",
+      "risk": "Elevated basis $276/SF; In-place rent unknown; Lease expiry unknown; No broker contact info",
+      "notes": "Texas MLS #21104394 | Subd: Capital Plaza Office Condo | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
+      "src": "CoStar Screen",
+      "lat": 31.58118,
+      "lon": -99.16667,
+      "geo": "state",
+      "ppa": 408904.8106448311,
+      "stage0": "screened"
+    },
+    {
+      "id": "701-w-central-texas-expressway-166",
+      "sent": "Mar 29 2031",
+      "u": false,
+      "st": "TX",
+      "mkt": "DFW",
+      "nrank": 1.0,
+      "nscore": 9.43,
+      "addr": "701 W Central Texas Expressway",
+      "type": "Industrial",
+      "bsf": 3474.0,
+      "asf": 3474.0,
+      "csf": 3474.0,
+      "ac": 0.25,
+      "yac": 0.17,
+      "cov": 31.9,
+      "yb": 1996.0,
+      "rrange": "$10.00\u2013$14.50",
+      "price": 799000.0,
+      "psf": 229.99,
+      "rating": 6.0,
+      "up": "Top-2 NIOS market (DFW #1)",
+      "risk": "Elevated basis $230/SF; In-place rent unknown; Lease expiry unknown; No broker contact info",
+      "notes": "Texas MLS #21217800 | Subd: Skyline Terrace 2nd Ext | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
+      "src": "CoStar Screen",
+      "lat": 30.9349,
+      "lon": -99.43333,
+      "geo": "state",
+      "ppa": 3196000.0,
+      "stage0": "screened"
+    },
+    {
+      "id": "412-early-boulevard-167",
+      "sent": "Mar 31 2031",
+      "u": false,
+      "st": "TX",
+      "mkt": "DFW",
+      "nrank": 1.0,
+      "nscore": 9.43,
+      "addr": "412 Early Boulevard",
+      "type": "Industrial",
+      "bsf": 5653.0,
+      "asf": 5653.0,
+      "csf": 5653.0,
+      "ac": 0.0,
+      "yb": 1988.0,
+      "rrange": "$10.00\u2013$14.50",
+      "price": 799000.0,
+      "psf": 141.34,
+      "rating": 8.0,
+      "up": "Top-2 NIOS market (DFW #1); Favorable basis $141/SF",
+      "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info; Acreage unconfirmed",
+      "notes": "Texas MLS #21171184 | Subd: Homewood Sub | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
+      "src": "CoStar Screen",
+      "lat": 31.40549,
+      "lon": -99.04745,
+      "geo": "state",
+      "stage0": "screened"
+    },
+    {
+      "id": "1341-hildreth-pool-road-168",
+      "sent": "Apr 5 2031",
+      "u": true,
+      "st": "TX",
+      "mkt": "DFW",
+      "nrank": 1.0,
+      "nscore": 9.43,
+      "addr": "1341 Hildreth Pool Road",
+      "type": "Industrial",
+      "bsf": 6992.0,
+      "asf": 6992.0,
+      "csf": 6992.0,
+      "ac": 10.75,
+      "yac": 10.59,
+      "cov": 1.5,
+      "yb": 2005.0,
+      "rrange": "$10.00\u2013$14.50",
+      "price": 799000.0,
+      "psf": 114.27,
+      "rating": 10.0,
+      "up": "Top-2 NIOS market (DFW #1); Favorable basis $114/SF; Low coverage 1% \u2014 strong land component; Modern vintage (2005)",
+      "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info",
+      "notes": "Texas MLS #21163211 | Subd: ETRR | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
+      "src": "CoStar Screen",
+      "lat": 31.35529,
+      "lon": -99.36745,
+      "geo": "state",
+      "ppa": 74325.58139534884,
+      "stage0": "underwriting"
+    },
+    {
+      "id": "4053-s-robinson-road-169",
+      "sent": "Apr 8 2031",
+      "u": false,
+      "st": "TX",
+      "mkt": "DFW",
+      "nrank": 1.0,
+      "nscore": 9.43,
+      "addr": "4053 S Robinson Road",
+      "type": "Industrial",
+      "bsf": 3200.0,
+      "asf": 3200.0,
+      "csf": 3200.0,
+      "ac": 0.484,
+      "yac": 0.41,
+      "cov": 15.2,
+      "yb": 1975.0,
+      "rrange": "$10.00\u2013$14.50",
+      "price": 799888.0,
+      "psf": 249.97,
+      "rating": 7.0,
+      "up": "Top-2 NIOS market (DFW #1); Low coverage 15% \u2014 strong land component",
+      "risk": "Elevated basis $250/SF; In-place rent unknown; Lease expiry unknown; No broker contact info",
+      "notes": "Texas MLS #21164353 | Subd: Stephen B McCommas Survey | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
+      "src": "CoStar Screen",
+      "lat": 31.2298,
+      "lon": -99.28275,
+      "geo": "state",
+      "ppa": 1652661.1570247933,
+      "stage0": "screened"
+    },
+    {
+      "id": "900-w-corsicana-street-170",
+      "sent": "Apr 9 2031",
+      "u": false,
+      "st": "TX",
+      "mkt": "DFW",
+      "nrank": 1.0,
+      "nscore": 9.43,
+      "addr": "900 W Corsicana Street",
+      "type": "Industrial",
+      "bsf": 32463.0,
+      "asf": 32463.0,
+      "csf": 32463.0,
+      "ac": 4.405,
+      "yac": 3.66,
+      "cov": 16.9,
+      "yb": 1960.0,
+      "rrange": "$10.00\u2013$14.50",
+      "price": 799900.0,
+      "psf": 24.64,
+      "rating": 9.0,
+      "up": "Top-2 NIOS market (DFW #1); Exceptional basis $25/SF; Low coverage 17% \u2014 strong land component",
+      "risk": "Older vintage (1960); In-place rent unknown; Lease expiry unknown; No broker contact info",
+      "notes": "Texas MLS #21198266 | Subd: Thomas Parmer League A-782 | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
+      "src": "CoStar Screen",
+      "lat": 31.47137,
+      "lon": -99.61843,
+      "geo": "state",
+      "ppa": 181589.10329171395,
+      "stage0": "screened"
+    },
+    {
+      "id": "550-n-judge-ely-boulevard-171",
+      "sent": "Apr 10 2031",
+      "u": false,
+      "st": "TX",
+      "mkt": "DFW",
+      "nrank": 1.0,
+      "nscore": 9.43,
+      "addr": "550 N Judge Ely Boulevard",
+      "type": "Industrial",
+      "bsf": 3036.0,
+      "asf": 3036.0,
+      "csf": 3036.0,
+      "ac": 0.637,
+      "yac": 0.57,
+      "cov": 10.9,
+      "yb": 1982.0,
+      "rrange": "$10.00\u2013$14.50",
+      "price": 799900.0,
+      "psf": 263.47,
+      "rating": 7.0,
+      "up": "Top-2 NIOS market (DFW #1); Low coverage 11% \u2014 strong land component",
+      "risk": "Elevated basis $263/SF; In-place rent unknown; Lease expiry unknown; No broker contact info",
+      "notes": "Texas MLS #21260317 | Subd: Radford Hills | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
+      "src": "CoStar Screen",
+      "lat": 31.07922,
+      "lon": -99.09765,
+      "geo": "state",
+      "ppa": 1255729.984301413,
+      "stage0": "screened"
+    },
+    {
+      "id": "630-n-i-35-frontage-road-172",
+      "sent": "Apr 11 2031",
+      "u": false,
+      "st": "TX",
+      "mkt": "DFW",
+      "nrank": 1.0,
+      "nscore": 9.43,
+      "addr": "630 N I-35 Frontage Road",
+      "type": "Industrial",
+      "bsf": 6432.0,
+      "asf": 6432.0,
+      "csf": 6432.0,
+      "ac": 1.458,
+      "yac": 1.31,
+      "cov": 10.1,
+      "yb": 1987.0,
+      "rrange": "$10.00\u2013$14.50",
+      "price": 799900.0,
+      "psf": 124.36,
+      "rating": 9.0,
+      "up": "Top-2 NIOS market (DFW #1); Favorable basis $124/SF; Low coverage 10% \u2014 strong land component",
+      "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info",
+      "notes": "Texas MLS #20960960 | Subd: S Clark | Missing: In-Place Rent PSF, Lease Expiry, Broker Name",
+      "src": "CoStar Screen",
+      "lat": 31.27059,
+      "lon": -99.39569,
+      "geo": "state",
+      "ppa": 548628.2578875172,
+      "stage0": "screened"
+    },
+    {
+      "id": "10525-newkirk-st-174",
+      "sent": "2026-07-13",
+      "u": true,
+      "st": "TX",
+      "mkt": "DFW",
+      "nrank": 1.0,
+      "nscore": 9.43,
+      "addr": "10525 Newkirk St",
+      "type": "Industrial",
+      "rrange": "$10.00\u2013$14.50",
+      "price": 2437230.0,
+      "rating": 7.0,
+      "up": "Top-2 NIOS market (DFW #1)",
+      "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info; Acreage unconfirmed",
+      "notes": "Texas MLS | Missing: Building SF, In-Place Rent PSF, Lease Expiry, Broker Name, Year Built",
+      "src": "CoStar Screen",
+      "lat": 31.42118,
+      "lon": -99.30784,
+      "geo": "state",
+      "stage0": "underwriting"
+    },
+    {
+      "id": "530-s-nolen-dr-176",
+      "sent": "2026-07-14",
+      "u": false,
+      "st": "TX",
+      "mkt": "DFW",
+      "nrank": 1.0,
+      "nscore": 9.43,
+      "addr": "530 S Nolen Dr",
+      "type": "Industrial",
+      "rrange": "$10.00\u2013$14.50",
+      "price": 4500000.0,
+      "rating": 7.0,
+      "up": "Top-2 NIOS market (DFW #1)",
+      "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info; Acreage unconfirmed",
+      "notes": "Texas MLS | Missing: Building SF, In-Place Rent PSF, Lease Expiry, Broker Name, Year Built",
+      "src": "CoStar Screen",
+      "lat": 31.04157,
+      "lon": -99.34549,
+      "geo": "state",
+      "stage0": "screened"
+    },
+    {
+      "id": "428-harwood-rd-177",
+      "sent": "2026-07-14",
+      "u": false,
+      "st": "TX",
+      "mkt": "DFW",
+      "nrank": 1.0,
+      "nscore": 9.43,
+      "addr": "428 Harwood Rd",
+      "type": "Industrial",
+      "rrange": "$10.00\u2013$14.50",
+      "price": 1175000.0,
+      "rating": 7.0,
+      "up": "Top-2 NIOS market (DFW #1)",
+      "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info; Acreage unconfirmed",
+      "notes": "Texas MLS | Missing: Building SF, In-Place Rent PSF, Lease Expiry, Broker Name, Year Built",
+      "src": "CoStar Screen",
+      "lat": 31.56549,
+      "lon": -99.58392,
+      "geo": "state",
+      "stage0": "screened"
+    },
+    {
+      "id": "430-s-aston-dr-178",
+      "sent": "Jul 14 2026",
+      "u": false,
+      "st": "TX",
+      "mkt": "DFW",
+      "nrank": 1.0,
+      "nscore": 9.43,
+      "addr": "430 S Aston Dr",
+      "type": "Industrial",
+      "rrange": "$10.00\u2013$14.50",
+      "price": 3300000.0,
+      "rating": 7.0,
+      "up": "Top-2 NIOS market (DFW #1)",
+      "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info; Acreage unconfirmed",
+      "notes": "Texas MLS | Missing: Building SF, In-Place Rent PSF, Lease Expiry, Broker Name, Year Built",
+      "src": "CoStar Screen",
+      "lat": 31.30196,
+      "lon": -98.93451,
+      "geo": "state",
+      "stage0": "screened"
+    },
+    {
+      "id": "4819-vicksburg-st-179",
+      "sent": "Jul 14 2026",
+      "u": false,
+      "st": "TX",
+      "mkt": "DFW",
+      "nrank": 1.0,
+      "nscore": 9.43,
+      "addr": "4819 Vicksburg St",
+      "type": "Industrial",
+      "rrange": "$10.00\u2013$14.50",
+      "price": 3000000.0,
+      "rating": 7.0,
+      "up": "Top-2 NIOS market (DFW #1)",
+      "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info; Acreage unconfirmed",
+      "notes": "Texas MLS | Missing: Building SF, In-Place Rent PSF, Lease Expiry, Broker Name, Year Built",
+      "src": "CoStar Screen",
+      "lat": 31.05725,
+      "lon": -99.4051,
+      "geo": "state",
+      "stage0": "screened"
+    },
+    {
+      "id": "1725-n-hwy-377-183",
+      "sent": "2026-07-15",
+      "u": false,
+      "st": "TX",
+      "mkt": "DFW",
+      "nrank": 1.0,
+      "nscore": 9.43,
+      "addr": "1725 N Hwy 377",
+      "type": "Industrial",
+      "rrange": "$10.00\u2013$14.50",
+      "price": 1450000.0,
+      "rating": 7.0,
+      "up": "Top-2 NIOS market (DFW #1)",
+      "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info; Acreage unconfirmed",
+      "notes": "Texas MLS | Missing: Building SF, In-Place Rent PSF, Lease Expiry, Broker Name, Year Built",
+      "src": "CoStar Screen",
+      "lat": 31.57804,
+      "lon": -99.54,
+      "geo": "state",
+      "stage0": "screened"
+    },
+    {
+      "id": "14301-n-freeway-185",
+      "sent": "2026-07-16",
+      "u": false,
+      "st": "TX",
+      "mkt": "DFW",
+      "nrank": 1.0,
+      "nscore": 9.43,
+      "addr": "14301 N Freeway",
+      "type": "Industrial",
+      "bsf": 111923.0,
+      "asf": 111923.0,
+      "csf": 111923.0,
+      "rrange": "$10.00\u2013$14.50",
+      "rating": 7.0,
+      "up": "Top-2 NIOS market (DFW #1)",
+      "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info; Acreage unconfirmed",
+      "notes": "Texas MLS | Missing: Asking Price, In-Place Rent PSF, Lease Expiry, Broker Name, Year Built",
+      "src": "CoStar Screen",
+      "lat": 31.23608,
+      "lon": -99.5149,
+      "geo": "state",
+      "stage0": "screened"
+    },
+    {
+      "id": "6001-old-decatur-rd-186",
+      "sent": "Jul 16, 2026",
+      "u": false,
+      "st": "TX",
+      "mkt": "DFW",
+      "nrank": 1.0,
+      "nscore": 9.43,
+      "addr": "6001 Old Decatur Rd",
+      "type": "Industrial",
+      "bsf": 70066.0,
+      "asf": 70066.0,
+      "csf": 70066.0,
+      "rrange": "$10.00\u2013$14.50",
+      "rating": 7.0,
+      "up": "Top-2 NIOS market (DFW #1)",
+      "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info; Acreage unconfirmed",
+      "notes": "Texas MLS | Missing: Asking Price, In-Place Rent PSF, Lease Expiry, Broker Name, Year Built",
+      "src": "CoStar Screen",
+      "lat": 31.02902,
+      "lon": -99.41451,
+      "geo": "state",
+      "stage0": "screened"
+    },
+    {
+      "id": "4728-iberia-ave-189",
+      "sent": "Jul 16, 2026",
+      "u": false,
+      "st": "TX",
+      "mkt": "DFW",
+      "nrank": 1.0,
+      "nscore": 9.43,
+      "addr": "4728 Iberia Ave",
+      "type": "Industrial",
+      "rrange": "$10.00\u2013$14.50",
+      "rating": 7.0,
+      "up": "Top-2 NIOS market (DFW #1)",
+      "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info; Acreage unconfirmed",
+      "notes": "Texas MLS | Missing: Building SF, Asking Price, In-Place Rent PSF, Lease Expiry, Broker Name, Year Built",
+      "src": "CoStar Screen",
+      "lat": 31.42745,
+      "lon": -99.68745,
+      "geo": "state",
+      "stage0": "screened"
+    },
+    {
+      "id": "2040-fort-worth-hwy-190",
+      "sent": "Jul 16, 2026",
+      "u": false,
+      "st": "TX",
+      "mkt": "DFW",
+      "nrank": 1.0,
+      "nscore": 9.43,
+      "addr": "2040 Fort Worth Hwy",
+      "type": "Industrial",
+      "rrange": "$10.00\u2013$14.50",
+      "price": 750000.0,
+      "rating": 7.0,
+      "up": "Top-2 NIOS market (DFW #1)",
+      "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info; Acreage unconfirmed",
+      "notes": "Texas MLS | Missing: Building SF, In-Place Rent PSF, Lease Expiry, Broker Name, Year Built",
+      "src": "CoStar Screen",
+      "lat": 31.47451,
+      "lon": -99.23882,
+      "geo": "state",
+      "stage0": "screened"
+    },
+    {
+      "id": "5878-w-us-highway-80-191",
+      "sent": "Jul 16, 2026",
+      "u": false,
+      "st": "TX",
+      "mkt": "DFW",
+      "nrank": 1.0,
+      "nscore": 9.43,
+      "addr": "5878 W US Highway 80",
+      "type": "Industrial",
+      "rrange": "$10.00\u2013$14.50",
+      "price": 1499900.0,
+      "rating": 7.0,
+      "up": "Top-2 NIOS market (DFW #1)",
+      "risk": "In-place rent unknown; Lease expiry unknown; No broker contact info; Acreage unconfirmed",
+      "notes": "Texas MLS | Missing: Building SF, In-Place Rent PSF, Lease Expiry, Broker Name, Year Built",
+      "src": "CoStar Screen",
+      "lat": 31.42745,
+      "lon": -99.58392,
+      "geo": "state",
+      "stage0": "screened"
+    },
+    {
+      "id": "2560-e-long-ave-192",
+      "sent": "Jul 16, 2026",
+      "u": true,
+      "st": "TX",
+      "mkt": "DFW",
+      "nrank": 1.0,
+      "nscore": 9.43,
+      "addr": "2560 E Long Ave",
+      "type": "Industrial",
+      "bsf": 11988.0,
+      "asf": 11988.0,
+      "csf": 11988.0,
+      "ac": 3.51,
+      "yac": 3.23,
+      "cov": 7.8,
+      "rrange": "$10.00\u2013$14.50",
+      "broker": "Matthews",
+      "rating": 7.0,
+      "up": "Top-2 NIOS market (DFW #1); Low coverage 8% \u2014 strong land component",
+      "risk": "In-place rent unknown; Lease expiry unknown",
+      "notes": "Texas MLS | Missing: Asking Price, In-Place Rent PSF, Lease Expiry, Year Built",
+      "src": "CoStar Screen",
+      "lat": 31.58745,
+      "lon": -99.12902,
+      "geo": "state",
+      "stage0": "screened"
+    },
+    {
+      "id": "2902-e-sligh-ave-193",
+      "sent": "Jul 16, 2026",
+      "u": false,
+      "st": "FL",
+      "mkt": "Tampa",
+      "nrank": 8.0,
+      "nscore": 7.89,
+      "addr": "2902 E Sligh Ave",
+      "type": "Industrial Outdoor Storage",
+      "ac": 3.0,
+      "yac": 3.0,
+      "rrange": "$9.00\u2013$11.00",
+      "broker": "Lober Real Estate/Alterra IOS",
+      "rating": 5.0,
+      "up": "Top-10 NIOS market (Tampa #8)",
+      "risk": "In-place rent unknown; Lease expiry unknown",
+      "notes": "Texas MLS | Missing: Building SF, Asking Price, In-Place Rent PSF, Lease Expiry, Year Built",
+      "src": "CoStar Screen",
+      "lat": 28.38196,
+      "lon": -82.06549,
+      "geo": "state",
+      "stage0": "screened"
     }
   ]
 };
