@@ -254,6 +254,7 @@ td.dimc{color:var(--dim)}
 .maplegend{position:absolute;bottom:14px;left:14px;z-index:800;background:color-mix(in srgb,var(--surf) 88%,transparent);backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:12px}
 .maplegend .row{display:flex;align-items:center;gap:8px;margin:2px 0}
 .lswatch{width:11px;height:11px;border-radius:50%}
+#floodbtn.on{background:#3b6fd9;color:#fff;border-color:#3b6fd9}
 .leaflet-popup-content-wrapper{background:var(--surf);color:var(--txt);border-radius:10px;border:1px solid var(--line)}
 .leaflet-popup-tip{background:var(--surf)}
 .leaflet-popup-content{margin:12px 14px;font:12.5px/1.5 Inter,sans-serif}
@@ -1254,6 +1255,48 @@ function baseLayer(){const dark=document.documentElement.dataset.theme!=='light'
 function satLayer(){return L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{attribution:'Esri',maxZoom:19});}
 function switchBase(){if(!BIGMAP)return;if(BASE)BIGMAP.removeLayer(BASE);BASE=SATON?satLayer():baseLayer();BASE.addTo(BIGMAP);}
 
+let FLOOD=null,FLOODON=false;
+// FEMA's NFHL MapServer ignores the standard `layers=show:N` export shorthand for this
+// service (confirmed empirically — it silently renders a blank image); the `dynamicLayers`
+// JSON param is what actually filters to a single layer here, so this is a small
+// hand-rolled Leaflet layer rather than esri-leaflet's DynamicMapLayer.
+const FloodZoneLayer=L.Layer.extend({
+  onAdd(map){
+    this._map=map;
+    this._img=L.DomUtil.create('img','leaflet-flood-img');
+    this._img.style.cssText='position:absolute;opacity:.55;pointer-events:none';
+    map.getPanes().overlayPane.appendChild(this._img);
+    map.on('moveend zoomend',this._update,this);
+    this._update();
+  },
+  onRemove(map){
+    L.DomUtil.remove(this._img);
+    map.off('moveend zoomend',this._update,this);
+  },
+  _update(){
+    const map=this._map,size=map.getSize();
+    const bounds=map.getBounds();
+    const sw=L.CRS.EPSG3857.project(bounds.getSouthWest());
+    const ne=L.CRS.EPSG3857.project(bounds.getNorthEast());
+    const bbox=[sw.x,sw.y,ne.x,ne.y].join(',');
+    const dynamicLayers=encodeURIComponent(JSON.stringify([{id:28,source:{type:'mapLayer',mapLayerId:28}}]));
+    const url=`https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/export?bbox=${bbox}&bboxSR=3857&imageSR=3857&size=${size.x},${size.y}&format=png32&transparent=true&dynamicLayers=${dynamicLayers}&f=image`;
+    this._img.src=url;
+    const topLeft=map.containerPointToLayerPoint([0,0]);
+    L.DomUtil.setPosition(this._img,topLeft);
+    this._img.style.width=size.x+'px';this._img.style.height=size.y+'px';
+  }
+});
+function floodLayer(){return new FloodZoneLayer();}
+function toggleFlood(){
+  if(!BIGMAP)return;
+  FLOODON=!FLOODON;
+  if(FLOODON){FLOOD=floodLayer();FLOOD.addTo(BIGMAP);}
+  else if(FLOOD){BIGMAP.removeLayer(FLOOD);FLOOD=null;}
+  const btn=$('#floodbtn');if(btn){btn.classList.toggle('on',FLOODON);btn.textContent=FLOODON?'🌊 Flood zones: on':'🌊 Flood zones';}
+  const lg=$('#floodlegend');if(lg)lg.style.display=FLOODON?'block':'none';
+}
+
 let MAPSCOPE='all'; // 'all' | 'screened' | 'unscreened' — screened = Sales Offers deals + processed Leads Raw; unscreened = Leads Raw pending screen
 function viewMap(el){
   el.innerHTML=`<div class="pagehead"><h2>Deal Map</h2><div class="sub">Pins colored by IOS-God rating · grey = screened lead, amber = not yet screened</div></div>
@@ -1264,13 +1307,21 @@ function viewMap(el){
     </div>
     <div class="toolbar" id="tb"></div>
     <div id="bigmapwrap"><div id="bigmap"></div>
-      <div class="mapctl"><button class="btn sm" id="satbtn">🛰 Satellite</button></div>
+      <div class="mapctl"><button class="btn sm" id="satbtn">🛰 Satellite</button><button class="btn sm ghost" id="floodbtn">🌊 Flood zones</button></div>
       <div class="maplegend">
         <div class="row"><span class="lswatch" style="background:#2fbf8f"></span>Rating 7–10</div>
         <div class="row"><span class="lswatch" style="background:#e0b357"></span>Rating 5–6</div>
         <div class="row"><span class="lswatch" style="background:#e5636c"></span>Rating 1–4</div>
         <div class="row"><span class="lswatch" style="background:#7d8ea8"></span>Screened lead (no rating)</div>
         <div class="row"><span class="lswatch" style="background:#e0913a"></span>Not screened yet</div>
+      </div>
+      <div class="maplegend" id="floodlegend" style="display:none;bottom:auto;top:14px">
+        <div class="row" style="font-weight:700;color:var(--txt);margin-bottom:3px">FEMA flood zones (NFHL)</div>
+        <div class="row"><span class="lswatch" style="background:#3b6fd9"></span>Zone AE/A/AH/AO — 1% annual chance (SFHA)</div>
+        <div class="row"><span class="lswatch" style="background:#7f3bd9"></span>Zone VE — coastal high hazard</div>
+        <div class="row"><span class="lswatch" style="background:#8fb0e8"></span>Zone X (shaded) — 0.2% annual chance</div>
+        <div class="row"><span class="lswatch" style="background:transparent;border:1px dashed var(--dim)"></span>No shading — Zone X, minimal risk</div>
+        <div class="row" style="color:var(--dim);font-size:11px;margin-top:2px">Zoom to street level to see shading</div>
       </div></div>`;
   $$('#scopetb .chip').forEach(c=>c.onclick=()=>{MAPSCOPE=c.dataset.scope;$$('#scopetb .chip').forEach(x=>x.classList.toggle('on',x===c));drawPins()});
   toolbar($('#tb'),drawPins);
@@ -1279,6 +1330,8 @@ function viewMap(el){
   CLUSTER=L.markerClusterGroup({maxClusterRadius:46,spiderfyOnMaxZoom:true,disableClusteringAtZoom:15});
   BIGMAP.addLayer(CLUSTER);
   $('#satbtn').onclick=()=>{SATON=!SATON;switchBase();$('#satbtn').textContent=SATON?'🗺 Map':'🛰 Satellite'};
+  FLOODON=false;FLOOD=null;
+  $('#floodbtn').onclick=toggleFlood;
   drawPins();}
 
 function drawPins(){
