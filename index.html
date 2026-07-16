@@ -313,6 +313,10 @@ td.dimc{color:var(--dim)}
 .introSub{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.2em;color:var(--faint);margin-top:5px;text-transform:uppercase}
 .introStatus{font-family:var(--f-mono);font-size:12px;color:var(--green);margin-top:18px;min-height:16px;letter-spacing:.02em}
 .introStatus.amber{color:var(--amber)}
+#introEnter{font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;color:var(--gold);margin-top:26px;opacity:0;transition:opacity .5s ease}
+#introEnter.show{opacity:1;animation:introEnterPulse 1.8s ease-in-out infinite}
+#introEnter .kbd{background:var(--gold);color:#141d30;border-color:var(--gold)}
+@keyframes introEnterPulse{0%,100%{opacity:.55}50%{opacity:1}}
 .cursor{animation:introblink 1s step-start infinite}
 @keyframes introblink{50%{opacity:0}}
 #introSkip{position:absolute;bottom:28px;font-family:var(--f-mono);font-size:10px;color:var(--faint);letter-spacing:.1em;text-transform:uppercase;opacity:.55}
@@ -394,8 +398,9 @@ td.dimc{color:var(--dim)}
     <div class="introEyebrow">RESERVE CAPITAL PARTNERS</div>
     <div class="introSub">IOS DEAL INTELLIGENCE PLATFORM</div>
     <div id="introStatus" class="introStatus">&gt; establishing uplink<span class="cursor">_</span></div>
+    <div id="introEnter">PRESS <span class="kbd">ENTER</span> TO START</div>
   </div>
-  <div id="introSkip">click or press any key to skip</div>
+  <div id="introSkip">press enter to continue</div>
 </div>
 <script>
 // Intro: the RCP mark assembles itself from particles sampled off the real
@@ -419,21 +424,25 @@ td.dimc{color:var(--dim)}
     overlay.classList.add('hide');
     setTimeout(()=>overlay.remove(),600);
   }
+  // Deliberate gate, not an auto-advancing splash: once the logo has
+  // formed and the real sync status is in, it waits right there — only
+  // Enter (or a click, as the conventional equivalent) dismisses it.
   overlay.addEventListener('click',finish);
-  window.addEventListener('keydown',finish,{once:true});
-  setTimeout(finish,6000);
+  window.addEventListener('keydown',e=>{if(e.key==='Enter')finish()});
 
   let introReady=false,animDone=false;
-  function maybeFinish(){if(introReady&&animDone)setTimeout(finish,450)}
+  function maybeReady(){
+    if(introReady&&animDone)document.getElementById('introEnter').classList.add('show');
+  }
   window.__introStatus=function(msg,ok){
     statusEl.textContent='> '+msg;
     statusEl.classList.toggle('amber',!ok);
-    introReady=true;maybeFinish();
+    introReady=true;maybeReady();
   };
 
   const img=new Image();
   img.onload=()=>startParticles(img);
-  img.onerror=()=>{wordmarkEl.classList.add('show');animDone=true;maybeFinish();};
+  img.onerror=()=>{wordmarkEl.classList.add('show');animDone=true;maybeReady();};
   img.src='assets/rcp-logo.png';
 
   function startParticles(img){
@@ -442,7 +451,7 @@ td.dimc{color:var(--dim)}
     const octx=off.getContext('2d');octx.drawImage(img,0,0,SAMPLE_W,SAMPLE_H);
     let data;
     try{data=octx.getImageData(0,0,SAMPLE_W,SAMPLE_H).data}
-    catch(e){wordmarkEl.classList.add('show');animDone=true;maybeFinish();return}
+    catch(e){wordmarkEl.classList.add('show');animDone=true;maybeReady();return}
 
     const DPR=Math.min(2,window.devicePixelRatio||1);
     const dispW=Math.min(360,window.innerWidth*0.65);
@@ -465,7 +474,7 @@ td.dimc{color:var(--dim)}
 
     if(reduceMotion){
       particles.forEach(p=>{ctx.fillStyle=`rgb(${p.r},${p.g},${p.b})`;ctx.fillRect(p.tx,p.ty,cell+.6,cell+.6)});
-      wordmarkEl.classList.add('show');animDone=true;maybeFinish();
+      wordmarkEl.classList.add('show');animDone=true;maybeReady();
       return;
     }
 
@@ -485,7 +494,7 @@ td.dimc{color:var(--dim)}
       }
       if(elapsed>TOTAL*0.55)wordmarkEl.classList.add('show');
       if(!allDone&&elapsed<TOTAL+700){requestAnimationFrame(frame)}
-      else{animDone=true;maybeFinish();}
+      else{animDone=true;maybeReady();}
     }
     requestAnimationFrame(frame);
   }
