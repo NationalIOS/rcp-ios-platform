@@ -300,6 +300,20 @@ td.dimc{color:var(--dim)}
 .tier span{font-size:10.5px;color:var(--faint);text-transform:uppercase;letter-spacing:.08em;margin-top:1px}
 .moreWrap{text-align:center;margin-top:4px}
 
+/* spotlight */
+.spotlight{position:relative;background:linear-gradient(120deg,color-mix(in srgb,var(--gold) 10%,var(--surf)),var(--surf));border:1px solid rgba(217,164,65,.45);border-radius:var(--r);padding:20px 24px;margin-bottom:18px;cursor:pointer;transition:.2s;box-shadow:var(--shadow)}
+.spotlight:hover{transform:translateY(-2px);border-color:var(--gold)}
+.spotlight-eyebrow{font-family:var(--f-mono);font-size:10.5px;color:var(--gold);letter-spacing:.14em;font-weight:700;margin-bottom:10px}
+.spotlight-body{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.spotlight-addr{font-family:var(--f-display);font-size:24px;line-height:1.1}
+.spotlight-mkt{color:var(--dim);font-size:13px;margin-top:3px}
+.spotlight-upside{color:var(--txt);font-size:13px;margin-top:10px;max-width:60ch;line-height:1.5}
+.spotlight-facts{display:flex;gap:22px;margin-top:14px;flex-wrap:wrap}
+.spotlight-facts .f{font-size:11.5px;color:var(--dim)}
+.spotlight-facts .f b{display:block;font-size:16px;color:var(--txt)}
+.spotlight-side{display:flex;flex-direction:column;align-items:flex-end;gap:9px;flex:none}
+.spotlight-rating{display:flex;align-items:center;gap:8px;margin-bottom:2px}
+
 /* intro */
 #intro{position:fixed;inset:0;z-index:99999;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:opacity .55s ease;cursor:pointer}
 #intro.hide{opacity:0;pointer-events:none}
@@ -541,6 +555,26 @@ td.dimc{color:var(--dim)}
     <div class="cmdk-hint"><span><b>↑↓</b> navigate</span><span><b>↵</b> select</span><span><b>esc</b> close</span></div>
   </div>
 </div>
+<div id="shortcutsmodal" style="display:none;position:fixed;inset:0;z-index:9998;background:rgba(0,0,0,.5);align-items:center;justify-content:center">
+  <div class="card" style="width:380px;max-width:90vw">
+    <h3>Keyboard Shortcuts</h3>
+    <div class="kv" style="margin-top:14px;grid-template-columns:90px 1fr">
+      <div class="k"><span class="kbd">⌘K</span></div><div class="v">Command palette</div>
+      <div class="k"><span class="kbd">T</span></div><div class="v">Go to Today</div>
+      <div class="k"><span class="kbd">D</span></div><div class="v">Go to Deals</div>
+      <div class="k"><span class="kbd">M</span></div><div class="v">Go to Map</div>
+      <div class="k"><span class="kbd">P</span></div><div class="v">Go to Pipeline</div>
+      <div class="k"><span class="kbd">A</span></div><div class="v">Go to Analytics</div>
+      <div class="k"><span class="kbd">/</span></div><div class="v">Focus search</div>
+      <div class="k"><span class="kbd">← →</span></div><div class="v">Prev / next deal</div>
+      <div class="k"><span class="kbd">Esc</span></div><div class="v">Back / close</div>
+      <div class="k"><span class="kbd">?</span></div><div class="v">This menu</div>
+    </div>
+    <div style="display:flex;justify-content:flex-end;margin-top:18px">
+      <button class="btn sm" id="shortcutsclose">Close</button>
+    </div>
+  </div>
+</div>
 <div id="settingsmodal" style="display:none;position:fixed;inset:0;z-index:9998;background:rgba(0,0,0,.5);align-items:center;justify-content:center">
   <div class="card" style="width:400px;max-width:90vw">
     <h3>Live Connection Settings</h3>
@@ -681,6 +715,7 @@ const CMDK_ACTIONS=[
   {label:'Sync tracker (load local xlsx)',run:()=>$('#connectbtn').click()},
   {label:'Toggle light / dark theme',run:()=>$('#themebtn').click()},
   {label:'Open live connection settings',run:()=>$('#settingsbtn').click()},
+  {label:'Show keyboard shortcuts',run:()=>openShortcuts()},
 ];
 let cmdkItems=[],cmdkActive=0;
 function cmdkOpen(){
@@ -1020,6 +1055,51 @@ $('#feedbtn').onclick=()=>$('#feeddrawer').classList.contains('open')?feedClose(
 $('#feedbackdrop').onclick=feedClose;
 $('#feedclear').onclick=()=>{localStorage.removeItem(FEED_KEY);feedRender();};
 
+// A real, rare event worth celebrating — most underwrites don't clear
+// 15% IRR / 1.8x EM (0 currently do in this dataset), so when one does
+// it's an actual Winner-track deal, not a routine pass. Lightweight
+// canvas confetti burst, no library.
+function celebrateHurdleClear(shortAddr){
+  const canvas=document.createElement('canvas');
+  canvas.style.cssText='position:fixed;inset:0;z-index:99998;pointer-events:none';
+  canvas.width=window.innerWidth;canvas.height=window.innerHeight;
+  document.body.appendChild(canvas);
+  const ctx=canvas.getContext('2d');
+  const colors=['#d9a441','#2fbf8f','#4494f8','#e9effa'];
+  const particles=Array.from({length:150},()=>({
+    x:canvas.width/2+(Math.random()-0.5)*220,
+    y:canvas.height*0.28+(Math.random()-0.5)*60,
+    vx:(Math.random()-0.5)*9,
+    vy:-7-Math.random()*8,
+    g:0.26+Math.random()*0.12,
+    size:4+Math.random()*5,
+    color:colors[Math.floor(Math.random()*colors.length)],
+    rot:Math.random()*Math.PI*2,
+    vr:(Math.random()-0.5)*0.3,
+    life:1,
+  }));
+  const t0=performance.now();
+  function frame(now){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    let alive=false;
+    for(const p of particles){
+      p.vy+=p.g;p.x+=p.vx;p.y+=p.vy;p.rot+=p.vr;p.life-=0.006;
+      if(p.life>0){
+        alive=true;
+        ctx.save();ctx.globalAlpha=Math.max(0,p.life);
+        ctx.translate(p.x,p.y);ctx.rotate(p.rot);ctx.fillStyle=p.color;
+        ctx.fillRect(-p.size/2,-p.size/2,p.size,p.size*0.6);
+        ctx.restore();
+      }
+    }
+    if(alive&&now-t0<3200)requestAnimationFrame(frame);
+    else canvas.remove();
+  }
+  requestAnimationFrame(frame);
+  toast(`🏆 <b>${shortAddr}</b> clears the firm hurdle — 15%+ IRR, 1.8x+ EM`,'good');
+  logActivity(`🏆 <b>${shortAddr}</b> cleared the firm hurdle — real Winner-track deal`,'good');
+}
+
 async function approveDeal(id){
   const d=DEALS.find(x=>x.id===id);if(!d)return;
   try{
@@ -1035,6 +1115,7 @@ async function approveDeal(id){
         if(r.model_link)d.modelLink=r.model_link;
         toast(`<b>${shortAddr}</b> underwritten — LP IRR ${r.lp_irr!=null?fmt.pct(r.lp_irr):'—'}`,'good');
         logActivity(`Underwrote <b>${shortAddr}</b> — LP IRR ${r.lp_irr!=null?fmt.pct(r.lp_irr):'—'}, EM ${r.lp_em!=null?fmt.x(r.lp_em):'—'}`,'good');
+        if(r.lp_irr!=null&&r.lp_em!=null&&r.lp_irr>=T.irr&&r.lp_em>=T.em)celebrateHurdleClear(shortAddr);
       }else{
         toast(`<b>Underwrite failed</b> for ${shortAddr} — ${esc(res.error||'unknown error')}`,'bad');
         logActivity(`Underwrite failed for <b>${shortAddr}</b> — ${esc(res.error||'unknown error')}`,'bad');
@@ -1305,24 +1386,53 @@ function cardSection(containerId, moreBtnId, list, opts, step=24){
   render();
 }
 
+function spotlightCard(d){
+  if(!d)return'';
+  const upside=d.up?String(d.up).split(';')[0]:'';
+  return `<div class="spotlight" onclick="location.hash='#/deal/${d.id}'">
+    <div class="spotlight-eyebrow">★ TOP PICK — HIGHEST RATED OPEN CALL</div>
+    <div class="spotlight-body">
+      <div class="spotlight-main">
+        <div class="spotlight-addr">${esc(String(d.addr).split(',').slice(0,2).join(','))}</div>
+        <div class="spotlight-mkt">${esc(d.mkt||d.st||'')}${d.nrank?' · NIOS #'+Math.round(d.nrank):''}</div>
+        ${upside?`<div class="spotlight-upside">${esc(upside)}</div>`:''}
+        <div class="spotlight-facts">
+          <div class="f">Price<b class="num">${d.price?fmt.moneyK(d.price):'—'}</b></div>
+          <div class="f">SF<b class="num">${d.bsf?fmt.num(d.bsf):'—'}</b></div>
+          <div class="f">Acres<b class="num">${d.ac!=null?fmt.dec(d.ac,2):'—'}</b></div>
+          <div class="f">$/SF<b class="num">${d.psf?'$'+Math.round(d.psf):'—'}</b></div>
+        </div>
+      </div>
+      <div class="spotlight-side">
+        <div class="spotlight-rating">${ratingPill(d.rating)}${completenessDots(d)}</div>
+        <button class="btn primary" onclick="event.stopPropagation();approveDeal('${d.id}')">✓ Approve</button>
+        <button class="btn ghost" onclick="event.stopPropagation();rejectDeal('${d.id}')">✕ Reject</button>
+      </div>
+    </div>
+  </div>`;
+}
+
 function viewToday(el){
   // Needs a decision: rated 6+, not yet approved into underwriting or
   // rejected. Refreshes automatically as new batches get screened — not
   // tied to a single calendar date.
-  const pending=DEALS.filter(d=>(d.rating||0)>=6&&['new','screened'].includes(getStage(d)))
+  const pendingAll=DEALS.filter(d=>(d.rating||0)>=6&&['new','screened'].includes(getStage(d)))
     .sort((a,b)=>(b.rating||0)-(a.rating||0)||(b.nscore||0)-(a.nscore||0));
+  const topPick=pendingAll[0];
+  const pending=pendingAll.slice(1);
   const upicks=DEALS.filter(d=>d.u&&getStage(d)!=='dead')
     .sort((a,b)=>(b.rating||0)-(a.rating||0));
-  const tiers=[10,9,8,7,6].map(r=>({r,n:pending.filter(d=>Math.round(d.rating)===r).length})).filter(t=>t.n);
+  const tiers=[10,9,8,7,6].map(r=>({r,n:pendingAll.filter(d=>Math.round(d.rating)===r).length})).filter(t=>t.n);
 
   el.innerHTML=`
     <div class="briefing">
       <div class="briefing-scan"></div>
       <div class="briefing-eyebrow">MORNING BRIEFING · ${new Date().toLocaleDateString(undefined,{weekday:'long',month:'short',day:'numeric'})}</div>
-      <h2 class="briefing-headline">${pending.length.toLocaleString()} propert${pending.length===1?'y needs':'ies need'} your call</h2>
+      <h2 class="briefing-headline">${pendingAll.length.toLocaleString()} propert${pendingAll.length===1?'y needs':'ies need'} your call</h2>
       ${tiers.length?`<div class="briefing-tiers">${tiers.map(t=>`<div class="tier"><b class="num">${t.n}</b><span>rated ${t.r}</span></div>`).join('')}</div>`:''}
     </div>
     <div class="kpis" id="kpirow"></div>
+    ${spotlightCard(topPick)}
     <div class="daysec"><h3>NEEDS REVIEW — RATING 6+ · BEST FIRST</h3>
       <div class="cards" id="pendingcards"></div>
       <div id="pendingmore" class="moreWrap"></div>
@@ -1359,12 +1469,35 @@ function dcard(d,opts={}){
     </div>`:''}
   </div>`}
 
+/* Keyboard-first navigation */
+function openShortcuts(){$('#shortcutsmodal').style.display='flex'}
+function closeShortcuts(){$('#shortcutsmodal').style.display='none'}
+$('#shortcutsclose').onclick=closeShortcuts;
+$('#shortcutsmodal').onclick=e=>{if(e.target.id==='shortcutsmodal')closeShortcuts()};
+const NAV_KEYS={t:'#/today',d:'#/deals',m:'#/map',p:'#/pipeline',a:'#/analytics'};
+
 /* INIT */
 stamp();
 if(!location.hash)location.hash='#/today';else route();
 document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'&&$('#dealpage').style.display!=='none')location.hash=prevHash;
-  if(e.key==='/'&&!/INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName)){e.preventDefault();const q=$('#f_q');if(q)q.focus()}});
+  if(e.key==='Escape'){
+    if($('#shortcutsmodal').style.display==='flex'){closeShortcuts();return}
+    if($('#dealpage').style.display!=='none')location.hash=prevHash;
+    return;
+  }
+  const typing=/INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName);
+  const modalOpen=$('#cmdk').style.display==='flex'||$('#settingsmodal').style.display==='flex'||$('#shortcutsmodal').style.display==='flex';
+  if(typing||modalOpen||e.metaKey||e.ctrlKey)return;
+
+  if(e.key==='/'){e.preventDefault();const q=$('#f_q');if(q)q.focus();return}
+  if(e.key==='?'){e.preventDefault();openShortcuts();return}
+  const navHash=NAV_KEYS[e.key.toLowerCase()];
+  if(navHash){e.preventDefault();location.hash=navHash;return}
+  if((e.key==='ArrowLeft'||e.key==='ArrowRight')&&$('#dealpage').style.display!=='none'){
+    const btn=[...document.querySelectorAll('.crumb .btn.ghost')].find(b=>b.textContent.includes(e.key==='ArrowLeft'?'Prev':'Next'));
+    if(btn){e.preventDefault();btn.click()}
+  }
+});
 </script>
 </body>
 </html>
