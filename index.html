@@ -1561,24 +1561,28 @@ const BRAIN_NODES=[
     detail:'Writes Pillar MCP parcel data into the Sheet. Pillar\'s connection pool is shared across every user — calls are made strictly sequentially so one session can\'t exhaust it for everyone.'},
   {id:'rating',x:BRAIN_COLX[3],y:81,cat:'brain',big:true,lbl:'ios_rating.py',file:'the scoring engine',
     detail:'Haversine distance to the nearest top-40 NIOS market center (sprawl-adjusted for Sun Belt metros), clear height, yard/coverage ratio, a highway-access heuristic, flood zone, an infill proxy, and a non-IOS-use reject list scanning tenant/notes text. A rating above 8 requires confirmed IOS use + a real market match within 10mi + a genuine price-discount signal, all three at once.'},
-  {id:'tracker',x:BRAIN_COLX[4],y:81,cat:'flow',big:true,lbl:'Sales Offers',file:'the live tracker',
-    detail:'The single pool every screened deal lands in, carrying its rating, U marker, and every enrichment field. The platform UI reads from this directly — not a copy.'},
+  {id:'tracker',x:BRAIN_COLX[4],y:81,cat:'flow',big:true,lbl:'📊 Sales Offers',file:'Google Sheet — main tab',
+    detail:'The single pool every screened deal lands in, carrying its rating, U marker, and every enrichment field. The platform UI reads from this Google Sheet tab directly — not a copy. Every script on this board that scores, enriches, or routes a deal is reading or writing this exact tab.'},
+  {id:'brokerstab',x:BRAIN_COLX[4],y:150,cat:'flow',lbl:'📊 Brokers',file:'Google Sheet tab',
+    detail:'Top-10-per-market aggregated broker output, rebuilt from scratch each run by broker_tracker.py — safe to fully overwrite since the real per-property broker data lives on Sales Offers columns BE–BH, this tab is just the ranked view of it.'},
   {id:'trigger',x:BRAIN_COLX[5],y:40,cat:'flow',lbl:'/underwrite_&lt;addr&gt;',file:'or the Approve button',
     detail:'Either the slash command or the platform\'s Approve button (POST /api/approve) triggers the real underwriting run as a background job.'},
   {id:'fillmodel',x:BRAIN_COLX[5],y:132,cat:'flow',lbl:'fill_model.py',file:'regex XML·LibreOffice',
     detail:'Fills the Excel template via regex set_cell() — never ET.tostring(), which corrupts Excel\'s XML namespaces. Zeroes unused suites, strips the formula cache, recalculates headlessly, reads LP IRR/EM back out.'},
-  {id:'winners',x:BRAIN_COLX[6],y:0,cat:'win',lbl:'Winners',file:'LP IRR ≥ 15%, confirmed',
-    detail:'Confirmed data (no assumptions used) and LP IRR at or above the firm\'s 15% hurdle. The only tier that triggers deck generation.'},
-  {id:'rejected',x:BRAIN_COLX[6],y:58,cat:'reject',lbl:'Rejected UW',file:'LP IRR &lt; 15%',
-    detail:'Confirmed data, return below the bar. Dead — logged, no deck built.'},
-  {id:'needconfirm',x:BRAIN_COLX[6],y:116,cat:'source',lbl:'Needs Confirmation',file:'any [ASSUMPTION] used',
-    detail:'Any assumption used anywhere in the model routes here instead of Winners, no matter how the IRR comes out.'},
-  {id:'outreach',x:BRAIN_COLX[6],y:174,cat:'source',lbl:'Outreach Queue',file:'missing price/acres',
-    detail:'A U-marked deal missing price or acreage gets a drafted — never auto-sent — broker email here, signed per the firm convention.'},
+  {id:'winners',x:BRAIN_COLX[6],y:0,cat:'win',lbl:'📊 Winners',file:'Sheet tab · LP IRR ≥ 15%, confirmed',
+    detail:'Confirmed data (no assumptions used) and LP IRR at or above the firm\'s 15% hurdle. The only tier that triggers deck generation. A real Google Sheet tab, written by fill_model.py.'},
+  {id:'rejected',x:BRAIN_COLX[6],y:58,cat:'reject',lbl:'📊 Rejected UW',file:'Sheet tab · LP IRR &lt; 15%',
+    detail:'Confirmed data, return below the bar. Dead — logged, no deck built. A real Google Sheet tab, written by fill_model.py.'},
+  {id:'needconfirm',x:BRAIN_COLX[6],y:116,cat:'source',lbl:'📊 Needs Confirmation',file:'Sheet tab · any [ASSUMPTION] used',
+    detail:'Any assumption used anywhere in the model routes here instead of Winners, no matter how the IRR comes out. A real Google Sheet tab.'},
+  {id:'outreach',x:BRAIN_COLX[6],y:174,cat:'source',lbl:'📊 Outreach Queue',file:'Sheet tab · missing price/acres',
+    detail:'A U-marked deal missing price or acreage gets a drafted — never auto-sent — broker email here, signed per the firm convention. A real Google Sheet tab.'},
   {id:'deck',x:BRAIN_COLX[7],y:40,cat:'win',lbl:'deal_deck.py',file:'→ Google Slides',
     detail:'Builds the deck from Sales Offers + Winners data with real, never-placeholder justification text, uploads to Drive, writes the link back to the Sheet.'},
+  {id:'brokertracker',x:BRAIN_COLX[7],y:192,cat:'flow',lbl:'broker_tracker.py',file:'→ 📊 Brokers tab',
+    detail:'Aggregates real individual brokers (never a bare firm name) from Sales Offers columns BE–BH plus names parsed out of Listing Company text, ranked top-10 per NIOS market, into the Brokers Sheet tab. Runs automatically at the end of any Egnyte OM import that included a broker contact — otherwise re-run by hand after other Sheet edits.'},
   {id:'platform',x:BRAIN_COLX[7],y:120,cat:'flow',big:true,lbl:'sync_server + push_data',file:'→ this screen',
-    detail:'sync_server.py serves the live-tunnel API (approve/reject/generate-deck/set-stage) this platform calls directly; push_data.py regenerates the static data.js fallback for the deployed site. Both read the same Sheet.'},
+    detail:'sync_server.py serves the live-tunnel API (approve/reject/generate-deck/set-stage) this platform calls directly; push_data.py regenerates the static data.js fallback for the deployed site. Both read the same Sheet — including the Brokers tab, for the Broker Tracker page.'},
 ];
 const BRAIN_EDGES=[
   {a:'lindy',b:'screen'},{a:'costar',b:'rating'},{a:'egnyte',b:'geocode'},{a:'chase',b:'tracker',dashed:true},
@@ -1588,10 +1592,11 @@ const BRAIN_EDGES=[
   {a:'fillmodel',b:'winners'},{a:'fillmodel',b:'rejected'},{a:'fillmodel',b:'needconfirm'},
   {a:'winners',b:'deck'},{a:'winners',b:'platform'},{a:'rejected',b:'platform'},{a:'needconfirm',b:'platform'},
   {a:'outreach',b:'platform'},{a:'tracker',b:'platform'},{a:'deck',b:'platform'},
+  {a:'tracker',b:'brokertracker'},{a:'brokertracker',b:'brokerstab'},{a:'brokerstab',b:'platform'},
   {a:'platform',b:'tracker',loop:'down2',label:'Approve · Reject · Set Stage — you, closing the loop'},
 ];
 function viewBrain(el){
-  el.innerHTML=`<div class="pagehead"><h2>The Brain</h2><div class="sub">Every box is a real script, tab, or trigger in the live pipeline — click one to trace it</div></div>
+  el.innerHTML=`<div class="pagehead"><h2>The Brain</h2><div class="sub">Every box is a real script, trigger, or Google Sheet tab (📊) in the live pipeline — click one to trace it</div></div>
     <div class="br-wrap">
       <div class="br-legend" id="brlegend"></div>
       <div class="br-stage" id="brstage"><div id="brcanvas" style="position:absolute;left:0;top:0;transform-origin:top left"></div></div>
