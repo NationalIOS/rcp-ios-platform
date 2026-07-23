@@ -264,6 +264,34 @@ td.dimc{color:var(--dim)}
 .leaflet-popup-content{margin:12px 14px;font:12.5px/1.5 Inter,sans-serif}
 .pin{border-radius:50%;border:2px solid rgba(255,255,255,.85);box-shadow:0 1px 5px rgba(0,0,0,.5)}
 
+/* brain — system workflow map */
+.br-wrap{height:calc(100vh - 210px);min-height:460px;display:flex;flex-direction:column;gap:10px}
+.br-legend{display:flex;flex-wrap:wrap;gap:6px 16px;padding:9px 14px;background:var(--surf);border:1px solid var(--line);border-radius:var(--r);font-family:var(--f-mono);font-size:11px;color:var(--dim);flex:none}
+.br-legend .item{display:flex;align-items:center;gap:6px;white-space:nowrap}
+.br-legend .dot{width:8px;height:8px;border-radius:50%;box-shadow:0 0 6px currentColor}
+.br-legend .hint{margin-left:auto;color:var(--faint);font-style:normal}
+.br-stage{position:relative;flex:1;min-height:0;background:var(--surf);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.br-collabel{position:absolute;top:5px;font-family:var(--f-mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+.br-node{position:absolute;background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:6px 9px;cursor:pointer;transition:transform .15s ease,border-color .15s ease,opacity .2s ease,box-shadow .15s ease;outline:none;overflow:hidden}
+.br-node:focus-visible{box-shadow:0 0 0 2px var(--acc)}
+.br-node .bar{position:absolute;left:0;top:0;bottom:0;width:3px}
+.br-node .lbl{font-size:11.5px;font-weight:700;letter-spacing:-.005em;margin:0 0 1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.br-node .file{font-family:var(--f-mono);font-size:9px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.br-node.dashed{border-style:dashed;opacity:.75}
+.br-node:hover{transform:translateY(-1px);border-color:var(--nc);z-index:5}
+.br-node.selected{border-color:var(--nc);box-shadow:0 0 0 1px var(--nc);transform:translateY(-1px);z-index:6}
+.br-node.dim{opacity:.25;filter:saturate(.5)}
+.br-edge-label{position:absolute;font-family:var(--f-mono);font-size:8.5px;color:var(--faint);background:var(--surf);padding:1px 5px;border-radius:4px;white-space:nowrap;border:1px solid var(--line);pointer-events:none}
+.br-edge-label.dim{opacity:.15}
+.br-drawer{flex:none;background:var(--surf);border:1px solid var(--line);border-radius:var(--r);padding:11px 16px;min-height:20px;display:flex;gap:14px;align-items:center}
+.br-drawer .swatch{width:4px;align-self:stretch;border-radius:3px;flex:none}
+.br-drawer .body{flex:1;min-width:0}
+.br-drawer .placeholder{color:var(--faint);font-size:12.5px}
+.br-drawer h3{font-size:13.5px;margin:0 0 1px;display:inline;letter-spacing:-.005em}
+.br-drawer .file{font-family:var(--f-mono);font-size:10.5px;color:var(--dim);display:inline;margin-left:9px}
+.br-drawer p{margin:3px 0 0;font-size:12.5px;line-height:1.5;color:var(--txt)}
+.br-drawer .cat{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:5px;flex:none}
+
 /* kanban */
 #board{display:grid;grid-template-columns:repeat(6,minmax(215px,1fr));gap:12px;overflow-x:auto;align-items:start}
 .kcol{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);min-height:220px;display:flex;flex-direction:column}
@@ -534,6 +562,7 @@ td.dimc{color:var(--dim)}
     <a href="#/map" data-v="map">Map</a>
     <a href="#/pipeline" data-v="pipeline">Pipeline</a>
     <a href="#/analytics" data-v="analytics">Analytics</a>
+    <a href="#/brain" data-v="brain">Brain</a>
   </nav>
   <div id="topright">
     <div id="datastamp"></div>
@@ -717,6 +746,7 @@ function route(){
   else if(v==='map')viewMap(el);
   else if(v==='pipeline')viewPipeline(el);
   else if(v==='analytics')viewAnalytics(el);
+  else if(v==='brain')viewBrain(el);
   else viewToday(el);
   window.scrollTo(0,0);}
 window.addEventListener('hashchange',route);
@@ -781,6 +811,7 @@ const CMDK_PAGES=[
   {label:'Map — screened & unscreened',hash:'#/map'},
   {label:'Pipeline — kanban board',hash:'#/pipeline'},
   {label:'Analytics — market intelligence',hash:'#/analytics'},
+  {label:'Brain — system workflow map',hash:'#/brain'},
 ];
 const CMDK_ACTIONS=[
   {label:'Screen pending leads now',run:()=>screenPending()},
@@ -1461,6 +1492,184 @@ function kcard(d){
     <div class="m">${esc(d.city||'')}${d.st?', '+d.st:''}</div>
     <div class="r">${ratingPill(d.rating)}${d.price?`<span class="num" style="font-size:12px;color:var(--dim)">${fmt.moneyK(d.price)}</span>`:''}
       ${d.irr!=null?`<span class="num ${d.irr>=T.irr?'pass':'fail'}" style="font-size:11.5px">${fmt.pct(d.irr)}</span>`:''}</div></div>`}
+
+/* BRAIN — system workflow map */
+const BRAIN_CAT={
+  source:{label:'Intake / awaiting input',v:'--amber'},
+  flow:{label:'Pipeline mechanics',v:'--acc'},
+  brain:{label:'Scoring logic',v:'--gold'},
+  win:{label:'Winner / output',v:'--green'},
+  reject:{label:'Rejected / dead',v:'--red'},
+};
+const BRAIN_VW=1500,BRAIN_VH=360;
+const BRAIN_COLX=[16,204,392,580,768,956,1144,1332];
+const BRAIN_COLLABEL=['SOURCES','SCREEN','ENRICH','SCORE','TRACKER','UNDERWRITE','OUTCOME','OUTPUT'];
+const BRAIN_NODES=[
+  {id:'lindy',x:BRAIN_COLX[0],y:0,cat:'source',lbl:'Lindy AI',file:'email intake',
+    detail:'External automation on Lindy\'s own platform. Populates Leads Raw columns A–Q only, leaves Status blank/New. Never touches Status, Date Processed, or U Marker — the screening pipeline owns those.'},
+  {id:'costar',x:BRAIN_COLX[0],y:58,cat:'source',lbl:'CoStar / Screenshots',file:'"Add today\'s deals"',
+    detail:'Daily manual batch trigger. Screens a batch, rates every deal, marks U on each one clearing the strict criteria, writes MLA assumptions and top-3 summaries.'},
+  {id:'egnyte',x:BRAIN_COLX[0],y:116,cat:'source',lbl:'Egnyte OM Ingestion',file:'~2-week cadence',
+    detail:'Jake\'s scraper drops broker OM PDFs into Egnyte. No API key for a standalone script, so every file is pulled through the Egnyte MCP connector by hand — judged against a 6-point rubric (implicit yard signals, redevelopment-framing overrides, development-site tells, and more).'},
+  {id:'chase',x:BRAIN_COLX[0],y:174,cat:'source',dashed:true,lbl:'Chase Tracker Import',file:'one-time, historical',
+    detail:'A one-time historical bulk import of 3,105 deals via import_chase_tracker.py — not part of the live recurring loop.'},
+  {id:'screen',x:BRAIN_COLX[1],y:87,cat:'flow',lbl:'screen_pipeline.py',file:'Leads Raw triage',
+    detail:'First pass over any Leads Raw row with Status blank/New. Runs before that row is geocoded, so location/infill/flood factors are neutral at this stage.'},
+  {id:'geocode',x:BRAIN_COLX[2],y:29,cat:'flow',lbl:'geocode_pipeline.py',file:'Census→Nominatim→Google',
+    detail:'Confidence-gated: house-number + state match required for a real result, or the row is marked "N/A" in all three columns. Never a city/state centroid guess.'},
+  {id:'flood',x:BRAIN_COLX[2],y:87,cat:'flow',lbl:'flood_zone_pipeline.py',file:'FEMA NFHL layer-28',
+    detail:'Bulk-queries the same FEMA flood layer the platform map overlay uses, for every row with a real coordinate. Idempotent — only fills blank cells.'},
+  {id:'pillar',x:BRAIN_COLX[2],y:145,cat:'flow',lbl:'pillar_sheet_sync.py',file:'owner·APN·zoning·FAR',
+    detail:'Writes Pillar MCP parcel data into the Sheet. Pillar\'s connection pool is shared across every user — calls are made strictly sequentially so one session can\'t exhaust it for everyone.'},
+  {id:'rating',x:BRAIN_COLX[3],y:81,cat:'brain',big:true,lbl:'ios_rating.py',file:'the scoring engine',
+    detail:'Haversine distance to the nearest top-40 NIOS market center (sprawl-adjusted for Sun Belt metros), clear height, yard/coverage ratio, a highway-access heuristic, flood zone, an infill proxy, and a non-IOS-use reject list scanning tenant/notes text. A rating above 8 requires confirmed IOS use + a real market match within 10mi + a genuine price-discount signal, all three at once.'},
+  {id:'tracker',x:BRAIN_COLX[4],y:81,cat:'flow',big:true,lbl:'Sales Offers',file:'the live tracker',
+    detail:'The single pool every screened deal lands in, carrying its rating, U marker, and every enrichment field. The platform UI reads from this directly — not a copy.'},
+  {id:'trigger',x:BRAIN_COLX[5],y:40,cat:'flow',lbl:'/underwrite_&lt;addr&gt;',file:'or the Approve button',
+    detail:'Either the slash command or the platform\'s Approve button (POST /api/approve) triggers the real underwriting run as a background job.'},
+  {id:'fillmodel',x:BRAIN_COLX[5],y:132,cat:'flow',lbl:'fill_model.py',file:'regex XML·LibreOffice',
+    detail:'Fills the Excel template via regex set_cell() — never ET.tostring(), which corrupts Excel\'s XML namespaces. Zeroes unused suites, strips the formula cache, recalculates headlessly, reads LP IRR/EM back out.'},
+  {id:'winners',x:BRAIN_COLX[6],y:0,cat:'win',lbl:'Winners',file:'LP IRR ≥ 15%, confirmed',
+    detail:'Confirmed data (no assumptions used) and LP IRR at or above the firm\'s 15% hurdle. The only tier that triggers deck generation.'},
+  {id:'rejected',x:BRAIN_COLX[6],y:58,cat:'reject',lbl:'Rejected UW',file:'LP IRR &lt; 15%',
+    detail:'Confirmed data, return below the bar. Dead — logged, no deck built.'},
+  {id:'needconfirm',x:BRAIN_COLX[6],y:116,cat:'source',lbl:'Needs Confirmation',file:'any [ASSUMPTION] used',
+    detail:'Any assumption used anywhere in the model routes here instead of Winners, no matter how the IRR comes out.'},
+  {id:'outreach',x:BRAIN_COLX[6],y:174,cat:'source',lbl:'Outreach Queue',file:'missing price/acres',
+    detail:'A U-marked deal missing price or acreage gets a drafted — never auto-sent — broker email here, signed per the firm convention.'},
+  {id:'deck',x:BRAIN_COLX[7],y:40,cat:'win',lbl:'deal_deck.py',file:'→ Google Slides',
+    detail:'Builds the deck from Sales Offers + Winners data with real, never-placeholder justification text, uploads to Drive, writes the link back to the Sheet.'},
+  {id:'platform',x:BRAIN_COLX[7],y:120,cat:'flow',big:true,lbl:'sync_server + push_data',file:'→ this screen',
+    detail:'sync_server.py serves the live-tunnel API (approve/reject/generate-deck/set-stage) this platform calls directly; push_data.py regenerates the static data.js fallback for the deployed site. Both read the same Sheet.'},
+];
+const BRAIN_EDGES=[
+  {a:'lindy',b:'screen'},{a:'costar',b:'rating'},{a:'egnyte',b:'geocode'},{a:'chase',b:'tracker',dashed:true},
+  {a:'screen',b:'rating'},{a:'geocode',b:'flood'},{a:'flood',b:'pillar'},{a:'pillar',b:'rating'},{a:'rating',b:'tracker'},
+  {a:'tracker',b:'geocode',loop:'down1',dashed:true,label:'bulk rescore · rescore_sheet.py'},
+  {a:'tracker',b:'trigger'},{a:'tracker',b:'outreach'},{a:'trigger',b:'fillmodel'},
+  {a:'fillmodel',b:'winners'},{a:'fillmodel',b:'rejected'},{a:'fillmodel',b:'needconfirm'},
+  {a:'winners',b:'deck'},{a:'winners',b:'platform'},{a:'rejected',b:'platform'},{a:'needconfirm',b:'platform'},
+  {a:'outreach',b:'platform'},{a:'tracker',b:'platform'},{a:'deck',b:'platform'},
+  {a:'platform',b:'tracker',loop:'down2',label:'Approve · Reject · Set Stage — you, closing the loop'},
+];
+function viewBrain(el){
+  el.innerHTML=`<div class="pagehead"><h2>The Brain</h2><div class="sub">Every box is a real script, tab, or trigger in the live pipeline — click one to trace it</div></div>
+    <div class="br-wrap">
+      <div class="br-legend" id="brlegend"></div>
+      <div class="br-stage" id="brstage"><div id="brcanvas" style="position:absolute;left:0;top:0;transform-origin:top left"></div></div>
+      <div class="br-drawer" id="brdrawer"><div class="swatch" style="background:var(--faint)"></div>
+        <div class="body"><span class="placeholder">Click a node to read what it actually does — the real file, the real logic, the real failure modes.</span></div></div>
+    </div>`;
+  const legend=$('#brlegend');
+  legend.innerHTML=Object.keys(BRAIN_CAT).map(k=>`<div class="item"><span class="dot" style="background:var(${BRAIN_CAT[k].v});color:var(${BRAIN_CAT[k].v})"></span>${BRAIN_CAT[k].label}</div>`).join('')
+    +`<div class="item hint">${BRAIN_NODES.length} stages · ${BRAIN_EDGES.length} connections · click to trace</div>`;
+
+  const nodeById={};
+  BRAIN_NODES.forEach(n=>{n.w=n.big?178:168;n.h=n.big?58:46;n.cx=n.x+n.w/2;n.cy=n.y+n.h/2;nodeById[n.id]=n;});
+
+  const canvas=$('#brcanvas');
+  canvas.style.width=BRAIN_VW+'px';canvas.style.height=BRAIN_VH+'px';
+  canvas.innerHTML='';
+
+  BRAIN_COLLABEL.forEach((lbl,i)=>{
+    const d=document.createElement('div');d.className='br-collabel';
+    d.style.left=BRAIN_COLX[i]+'px';d.style.top='0px';d.textContent=lbl;canvas.appendChild(d);
+  });
+
+  const svgNS='http://www.w3.org/2000/svg';
+  const svg=document.createElementNS(svgNS,'svg');
+  svg.setAttribute('width',BRAIN_VW);svg.setAttribute('height',BRAIN_VH);
+  svg.style.position='absolute';svg.style.left='0';svg.style.top='16px';svg.style.overflow='visible';
+  canvas.appendChild(svg);
+  const defs=document.createElementNS(svgNS,'defs');
+  const filter=document.createElementNS(svgNS,'filter');
+  filter.setAttribute('id','brglow');filter.setAttribute('x','-200%');filter.setAttribute('y','-200%');filter.setAttribute('width','500%');filter.setAttribute('height','500%');
+  const blur=document.createElementNS(svgNS,'feGaussianBlur');blur.setAttribute('stdDeviation','2.4');blur.setAttribute('result','blur');
+  const merge=document.createElementNS(svgNS,'feMerge');
+  const m1=document.createElementNS(svgNS,'feMergeNode');m1.setAttribute('in','blur');
+  const m2=document.createElementNS(svgNS,'feMergeNode');m2.setAttribute('in','SourceGraphic');
+  merge.appendChild(m1);merge.appendChild(m2);filter.appendChild(blur);filter.appendChild(merge);defs.appendChild(filter);svg.appendChild(defs);
+
+  const reduceMotion=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const gridBottom=220;
+  function pathFor(e){
+    const n1=nodeById[e.a],n2=nodeById[e.b];
+    if(e.loop==='down1'||e.loop==='down2'){
+      const dip=e.loop==='down1'?gridBottom+40:gridBottom+92;
+      return `M ${n1.cx} ${n1.y+n1.h} C ${n1.cx} ${dip}, ${n2.cx} ${dip}, ${n2.cx} ${n2.y+n2.h}`;
+    }
+    const mx=(n1.cx+n2.cx)/2;
+    return `M ${n1.cx} ${n1.cy} C ${mx} ${n1.cy}, ${mx} ${n2.cy}, ${n2.cx} ${n2.cy}`;
+  }
+  const adj={};BRAIN_NODES.forEach(n=>adj[n.id]=new Set());
+  BRAIN_EDGES.forEach((e,i)=>{
+    adj[e.a].add(e.b);adj[e.b].add(e.a);
+    const color=`var(${BRAIN_CAT[nodeById[e.a].cat].v})`;
+    const path=document.createElementNS(svgNS,'path');
+    const pid='bredge-'+i;path.setAttribute('id',pid);path.setAttribute('d',pathFor(e));
+    path.setAttribute('fill','none');path.setAttribute('stroke',color);
+    path.setAttribute('stroke-width',e.loop?1.1:1.4);path.setAttribute('stroke-opacity',e.loop?.4:.32);
+    if(e.dashed||e.loop)path.setAttribute('stroke-dasharray','3 3');
+    path.setAttribute('data-a',e.a);path.setAttribute('data-b',e.b);path.setAttribute('class','bredge');
+    svg.appendChild(path);
+    if(!reduceMotion){
+      const dot=document.createElementNS(svgNS,'circle');
+      dot.setAttribute('r',e.loop?2:2.6);dot.setAttribute('fill',color);dot.setAttribute('filter','url(#brglow)');
+      dot.setAttribute('class','bpulse');dot.setAttribute('data-a',e.a);dot.setAttribute('data-b',e.b);
+      const anim=document.createElementNS(svgNS,'animateMotion');
+      const len=Math.hypot(nodeById[e.b].cx-nodeById[e.a].cx,nodeById[e.b].cy-nodeById[e.a].cy);
+      const dur=Math.max(2,Math.min(4.5,len/150));
+      anim.setAttribute('dur',dur+'s');anim.setAttribute('repeatCount','indefinite');anim.setAttribute('begin',(Math.random()*dur).toFixed(2)+'s');
+      const mpath=document.createElementNS(svgNS,'mpath');mpath.setAttributeNS('http://www.w3.org/1999/xlink','href','#'+pid);
+      anim.appendChild(mpath);dot.appendChild(anim);svg.appendChild(dot);
+    }
+    if(e.label){
+      const lx=(nodeById[e.a].cx+nodeById[e.b].cx)/2;
+      const ly=e.loop==='down1'?gridBottom+40:e.loop==='down2'?gridBottom+92:(nodeById[e.a].cy+nodeById[e.b].cy)/2-8;
+      const lab=document.createElement('div');lab.className='br-edge-label';lab.innerHTML=e.label;
+      lab.style.left=(lx-95)+'px';lab.style.top=(ly+16+ (e.loop?6:34))+'px';lab.style.width='190px';lab.style.textAlign='center';
+      lab.setAttribute('data-a',e.a);lab.setAttribute('data-b',e.b);canvas.appendChild(lab);
+    }
+  });
+
+  const drawer=$('#brdrawer');let selected=null;
+  BRAIN_NODES.forEach(n=>{
+    const nEl=document.createElement('div');nEl.className='br-node'+(n.big?' big':'')+(n.dashed?' dashed':'');
+    nEl.style.left=n.x+'px';nEl.style.top=(n.y+16)+'px';nEl.style.width=n.w+'px';nEl.style.height=n.h+'px';
+    nEl.style.setProperty('--nc',`var(${BRAIN_CAT[n.cat].v})`);
+    nEl.tabIndex=0;nEl.setAttribute('role','button');nEl.setAttribute('aria-label',n.lbl);
+    nEl.innerHTML=`<div class="bar" style="background:var(${BRAIN_CAT[n.cat].v})"></div><div class="lbl">${n.lbl}</div><div class="file">${n.file}</div>`;
+    nEl.id='brnode-'+n.id;
+    nEl.addEventListener('click',()=>brSelect(n.id));
+    nEl.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();brSelect(n.id)}});
+    canvas.appendChild(nEl);
+  });
+  function brSelect(id){
+    if(selected===id){brClear();return}
+    selected=id;const n=nodeById[id];const cv=`var(${BRAIN_CAT[n.cat].v})`;
+    $$('.br-node').forEach(e=>{const nid=e.id.replace('brnode-','');const c=nid===id||adj[id].has(nid);e.classList.toggle('dim',!c);e.classList.toggle('selected',nid===id)});
+    $$('.bredge').forEach(p=>{p.style.opacity=(p.getAttribute('data-a')===id||p.getAttribute('data-b')===id)?1:.06});
+    $$('.bpulse').forEach(p=>{p.style.opacity=(p.getAttribute('data-a')===id||p.getAttribute('data-b')===id)?1:.05});
+    $$('.br-edge-label').forEach(l=>l.classList.toggle('dim',!(l.getAttribute('data-a')===id||l.getAttribute('data-b')===id)));
+    drawer.innerHTML=`<div class="swatch" style="background:${cv}"></div><div class="body"><h3>${n.lbl}</h3><span class="file">${n.file}</span><p>${n.detail}</p></div><div class="cat" style="background:color-mix(in srgb, ${cv} 18%, transparent);color:${cv}">${BRAIN_CAT[n.cat].label}</div>`;
+  }
+  function brClear(){
+    selected=null;
+    $$('.br-node').forEach(e=>e.classList.remove('dim','selected'));
+    $$('.bredge').forEach(p=>p.style.opacity='');$$('.bpulse').forEach(p=>p.style.opacity='');
+    $$('.br-edge-label').forEach(l=>l.classList.remove('dim'));
+    drawer.innerHTML=`<div class="swatch" style="background:var(--faint)"></div><div class="body"><span class="placeholder">Click a node to read what it actually does — the real file, the real logic, the real failure modes.</span></div>`;
+  }
+  function brFit(){
+    const st=$('#brstage'),cv=$('#brcanvas');
+    if(!st||!cv)return;
+    const r=st.getBoundingClientRect();
+    const s=Math.max(.5,Math.min(1.5,Math.min(r.width/BRAIN_VW,r.height/BRAIN_VH)));
+    cv.style.transform=`translate(${(r.width-BRAIN_VW*s)/2}px,${(r.height-BRAIN_VH*s)/2}px) scale(${s})`;
+  }
+  brFit();
+  if(!window._brFitBound){window._brFitBound=true;window.addEventListener('resize',brFit);}
+}
 
 /* ANALYTICS */
 let CHARTS=[];
