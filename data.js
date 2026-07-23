@@ -1,11 +1,11 @@
 // RCP IOS Deal Platform — data.js
 // Full merge: base (89) + Sales Offers + MLA Assumptions + Winners + Needs Confirmation + Outreach Queue
 // Built: 2026-07-23
-// 210 deals | 16 U picks | 15 underwritten | 1 winners
+// 228 deals | 18 U picks | 15 underwritten | 1 winners
 window.RCP_DATA = {
   "meta": {
     "built": "2026-07-23",
-    "count": 210,
+    "count": 228,
     "targets": {
       "irr": 0.15,
       "em": 1.8
@@ -72,7 +72,10 @@ window.RCP_DATA = {
         "Modeled Sale Price": "3885938",
         "Assumption Notes": "Rating 7/10. Missing: Sale Price, Acres, In-Place Rent PSF, Lease Expiry, Broker Email. Broker contact needed. Rerun model once price confirmed."
       },
-      "listingType": "Sale",
+      "flood": {
+        "zone": "X",
+        "sfha": false
+      },
       "pillar": {
         "confidence": "exact",
         "owner": "Pelangi Properties LLC",
@@ -86,10 +89,7 @@ window.RCP_DATA = {
         "far_flag": "LOW (<=20%) - strong land component",
         "mapUrl": "https://app.pillar.codes/workspace?view=map&lat=30.089541&lon=-95.587047&zoom=17&parcel=9e268706-d053-4a80-9a56-a30b1db84508"
       },
-      "flood": {
-        "zone": "X",
-        "sfha": false
-      },
+      "listingType": "Sale",
       "outreach_status": "Draft"
     },
     {
@@ -121,11 +121,11 @@ window.RCP_DATA = {
       "lon": -100.95637,
       "geo": "nominatim",
       "stage0": "screened",
-      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "listingType": "Sale"
     },
     {
       "id": "115-industrial-way-fayetteville-ga-30215-3",
@@ -154,11 +154,11 @@ window.RCP_DATA = {
       "lon": -84.4426,
       "geo": "chase-import",
       "stage0": "underwriting",
-      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
       },
+      "listingType": "Sale",
       "winner": true
     },
     {
@@ -185,13 +185,13 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
-      "lon": -90.4683,
-      "lat": 38.54376,
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "lat": 38.54376,
+      "lon": -90.4683,
+      "listingType": "Sale"
     },
     {
       "id": "1050-e-h-hwy-liberty-mo-64068-5",
@@ -216,13 +216,13 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
-      "lon": -94.41908,
-      "lat": 39.24648,
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "lat": 39.24648,
+      "lon": -94.41908,
+      "listingType": "Sale"
     },
     {
       "id": "18596-longs-way-parker-co-80134-6",
@@ -252,11 +252,11 @@ window.RCP_DATA = {
       "lon": -104.77372,
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "listingType": "Sale"
     },
     {
       "id": "17300-w-valley-hwy-tukwila-wa-98188-7",
@@ -286,13 +286,13 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
-      "lon": -122.24269,
-      "lat": 47.44803,
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "lat": 47.44803,
+      "lon": -122.24269,
+      "listingType": "Sale"
     },
     {
       "id": "5451-communications-pkwy-lakewood-ranch-fl-34240-8",
@@ -323,11 +323,11 @@ window.RCP_DATA = {
       "lon": -82.4266,
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "listingType": "Sale"
     },
     {
       "id": "400-s-heatherwilde-blvd-pflugerville-tx-78660-9",
@@ -394,7 +394,10 @@ window.RCP_DATA = {
         "Initial Rent PSF": 15,
         "Site Acres": 3.88
       },
-      "listingType": "Sale",
+      "flood": {
+        "zone": "X",
+        "sfha": false
+      },
       "pillar": {
         "confidence": "exact",
         "owner": "400 Heatherwilde Boulevard",
@@ -408,10 +411,7 @@ window.RCP_DATA = {
         "far_flag": "MODERATE",
         "mapUrl": "https://app.pillar.codes/workspace?view=map&lat=30.445040&lon=-97.641260&zoom=17&parcel=5cf7940f-994b-489d-a692-01d50b7ead14"
       },
-      "flood": {
-        "zone": "X",
-        "sfha": false
-      }
+      "listingType": "Sale"
     },
     {
       "id": "1808-barnett-dr-weatherford-tx-76087-10",
@@ -440,11 +440,11 @@ window.RCP_DATA = {
       "lon": -97.74614,
       "geo": "nominatim",
       "stage0": "screened",
-      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "listingType": "Sale"
     },
     {
       "id": "808-rhoads-ave-columbus-oh-43205-11",
@@ -473,13 +473,13 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
-      "lon": -82.94883,
-      "lat": 39.95038,
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "lat": 39.95038,
+      "lon": -82.94883,
+      "listingType": "Sale"
     },
     {
       "id": "11111-guard-ln-north-bend-oh-45052-12",
@@ -508,13 +508,13 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
-      "lon": -84.748,
-      "lat": 39.15256,
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "lat": 39.15256,
+      "lon": -84.748,
+      "listingType": "Sale"
     },
     {
       "id": "4830-hovis-rd-charlotte-nc-28208-13",
@@ -543,11 +543,11 @@ window.RCP_DATA = {
       "lon": -80.89783,
       "geo": "nominatim",
       "stage0": "screened",
-      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
       },
+      "listingType": "Sale",
       "mla": {
         "Sent Date": "2026-06-10",
         "U Marker": "U",
@@ -610,11 +610,11 @@ window.RCP_DATA = {
       "lon": -80.86225,
       "geo": "nominatim",
       "stage0": "screened",
-      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
       },
+      "listingType": "Sale",
       "mla": {
         "Sent Date": "2026-06-10",
         "U Marker": "U",
@@ -672,13 +672,13 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
-      "lon": -87.67987,
-      "lat": 41.6573,
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "lat": 41.6573,
+      "lon": -87.67987,
+      "listingType": "Sale"
     },
     {
       "id": "6701-ringwood-rd-oxford-oh-45056-16",
@@ -706,13 +706,13 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
-      "lon": -84.77422,
-      "lat": 39.52999,
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "lat": 39.52999,
+      "lon": -84.77422,
+      "listingType": "Sale"
     },
     {
       "id": "10240-fm-1488-magnolia-tx-77354-17",
@@ -739,11 +739,11 @@ window.RCP_DATA = {
       "lon": -95.63038,
       "geo": "nominatim",
       "stage0": "screened",
-      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "listingType": "Sale"
     },
     {
       "id": "11956-11980-oak-creek-pkwy-huntley-il-60142-18",
@@ -769,13 +769,13 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
-      "lon": -88.42692,
-      "lat": 42.17225,
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "lat": 42.17225,
+      "lon": -88.42692,
+      "listingType": "Sale"
     },
     {
       "id": "16115-sh-123-san-marcos-tx-78666-19",
@@ -834,7 +834,6 @@ window.RCP_DATA = {
         "Exit Cap (e.g. 0.065)": "0.07",
         "Assumption Notes": "Confirmed from firm completed model"
       },
-      "listingType": "Sale",
       "pillar": {
         "confidence": "nearest",
         "owner": null,
@@ -848,6 +847,7 @@ window.RCP_DATA = {
         "far_flag": null,
         "mapUrl": "https://app.pillar.codes/workspace?view=map&lat=29.790920&lon=-97.945280&zoom=16"
       },
+      "listingType": "Sale",
       "outreach_status": "Draft"
     },
     {
@@ -875,13 +875,13 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
-      "lon": -96.11081,
-      "lat": 33.13845,
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "lat": 33.13845,
+      "lon": -96.11081,
+      "listingType": "Sale"
     },
     {
       "id": "2200-e-eleven-mile-rd-warren-mi-48091-21",
@@ -910,13 +910,13 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
-      "lon": -83.00627,
-      "lat": 42.49326,
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "lat": 42.49326,
+      "lon": -83.00627,
+      "listingType": "Sale"
     },
     {
       "id": "6416-33rd-st-e-sarasota-fl-34243-22",
@@ -945,11 +945,11 @@ window.RCP_DATA = {
       "lon": -82.53085,
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "listingType": "Sale"
     },
     {
       "id": "8002-n-83rd-ave-peoria-az-85345-23",
@@ -980,11 +980,11 @@ window.RCP_DATA = {
       "lon": -112.23769,
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "listingType": "Sale"
     },
     {
       "id": "3002-a-temtex-blvd-terrell-tx-75160-24",
@@ -1107,7 +1107,6 @@ window.RCP_DATA = {
         "Initial Rent PSF": 5.4,
         "Site Acres": 4.92
       },
-      "listingType": "Sale",
       "pillar": {
         "confidence": "exact",
         "owner": "Accurate Inc",
@@ -1121,6 +1120,7 @@ window.RCP_DATA = {
         "far_flag": "LOW (<=20%) - strong land component",
         "mapUrl": "https://app.pillar.codes/workspace?view=map&lat=30.572400&lon=-97.396080&zoom=17&parcel=8689c926-56ad-462e-9093-3030cf8fc709"
       },
+      "listingType": "Sale",
       "outreach_status": "Draft"
     },
     {
@@ -1149,11 +1149,11 @@ window.RCP_DATA = {
       "lon": -81.02508,
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "listingType": "Sale"
     },
     {
       "id": "10025-jacksboro-hwy-fort-worth-tx-76135-27",
@@ -1180,11 +1180,11 @@ window.RCP_DATA = {
       "lon": -97.49119,
       "geo": "nominatim",
       "stage0": "screened",
-      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "listingType": "Sale"
     },
     {
       "id": "9701-9709-green-park-industrial-ct-saint-louis-mo--28",
@@ -1209,13 +1209,13 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
-      "lon": -90.19001,
-      "lat": 38.62541,
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "lat": 38.62541,
+      "lon": -90.19001,
+      "listingType": "Sale"
     },
     {
       "id": "2316-n-san-fernando-rd-los-angeles-ca-90065-29",
@@ -1244,13 +1244,13 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
-      "lon": -118.23921,
-      "lat": 34.10593,
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "lat": 34.10593,
+      "lon": -118.23921,
+      "listingType": "Sale"
     },
     {
       "id": "6030-ga-85-hwy-riverdale-ga-30274-30",
@@ -1373,7 +1373,10 @@ window.RCP_DATA = {
         "Modeled Sale Price": "2638462",
         "Assumption Notes": "Rating 7/10. Missing: Sale Price, Acres, In-Place Rent PSF, Lease Expiry, Broker Email. Truck terminal = purpose-built IOS. Broker contact needed. Rerun model once price confirmed."
       },
-      "listingType": "Sale",
+      "flood": {
+        "zone": "X",
+        "sfha": false
+      },
       "pillar": {
         "confidence": "nearest",
         "owner": null,
@@ -1387,10 +1390,7 @@ window.RCP_DATA = {
         "far_flag": null,
         "mapUrl": "https://app.pillar.codes/workspace?view=map&lat=33.263830&lon=-97.181010&zoom=16"
       },
-      "flood": {
-        "zone": "X",
-        "sfha": false
-      },
+      "listingType": "Sale",
       "outreach_status": "Draft Ready \u2014 Needs Email"
     },
     {
@@ -1421,11 +1421,11 @@ window.RCP_DATA = {
       "lon": -81.9498,
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "listingType": "Sale"
     },
     {
       "id": "731-soechting-ln-new-braunfels-tx-78130-33",
@@ -1454,11 +1454,11 @@ window.RCP_DATA = {
       "lon": -98.01448,
       "geo": "nominatim",
       "stage0": "screened",
-      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "listingType": "Sale"
     },
     {
       "id": "1815-w-500-s-salt-lake-city-ut-84104-34",
@@ -1485,13 +1485,13 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
-      "lon": -111.92331,
-      "lat": 40.75847,
       "flood": {
         "zone": "AE",
         "sfha": true
-      }
+      },
+      "lat": 40.75847,
+      "lon": -111.92331,
+      "listingType": "Sale"
     },
     {
       "id": "1360-e-county-road-e-rd-e-vadnais-heights-mn-55110-35",
@@ -1518,13 +1518,13 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
-      "lon": -93.0739,
-      "lat": 45.05753,
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "lat": 45.05753,
+      "lon": -93.0739,
+      "listingType": "Sale"
     },
     {
       "id": "8205-estates-pkwy-plain-city-oh-43064-36",
@@ -1553,13 +1553,13 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
-      "lon": -83.26697,
-      "lat": 40.10788,
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "lat": 40.10788,
+      "lon": -83.26697,
+      "listingType": "Sale"
     },
     {
       "id": "5401-e-washington-st-phoenix-az-85034-37",
@@ -1589,11 +1589,11 @@ window.RCP_DATA = {
       "lon": -111.96524,
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "listingType": "Sale"
     },
     {
       "id": "3200-s-70th-st-philadelphia-pa-19153-38",
@@ -1619,13 +1619,13 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
-      "lon": -75.22823,
-      "lat": 39.90642,
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "lat": 39.90642,
+      "lon": -75.22823,
+      "listingType": "Sale"
     },
     {
       "id": "540-558-s-falkenburg-rd-tampa-fl-33619-39",
@@ -1679,11 +1679,11 @@ window.RCP_DATA = {
       "lon": -98.41844,
       "geo": "nominatim",
       "stage0": "screened",
-      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "listingType": "Sale"
     },
     {
       "id": "504-520-s-falkenburg-rd-tampa-fl-33619-41",
@@ -1735,13 +1735,13 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
-      "lon": -90.19001,
-      "lat": 38.62541,
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "lat": 38.62541,
+      "lon": -90.19001,
+      "listingType": "Sale"
     },
     {
       "id": "6175-nw-102nd-ave-doral-fl-33178-43",
@@ -1768,11 +1768,11 @@ window.RCP_DATA = {
       "lon": -80.36197,
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "listingType": "Sale"
     },
     {
       "id": "1761-dobbs-rd-saint-augustine-fl-32084-44",
@@ -1802,11 +1802,11 @@ window.RCP_DATA = {
       "lon": -81.33493,
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "listingType": "Sale"
     },
     {
       "id": "901-s-2nd-ave-mansfield-tx-76063-45",
@@ -1834,7 +1834,10 @@ window.RCP_DATA = {
       "lon": -96.76583,
       "geo": "nominatim",
       "stage0": "underwriting",
-      "listingType": "Sale",
+      "flood": {
+        "zone": "X",
+        "sfha": false
+      },
       "pillar": {
         "confidence": "exact",
         "owner": "BCB Transport Holdings Company",
@@ -1848,10 +1851,7 @@ window.RCP_DATA = {
         "far_flag": "MODERATE",
         "mapUrl": "https://app.pillar.codes/workspace?view=map&lat=32.551447&lon=-97.141098&zoom=17&parcel=42d85159-307f-4814-b56a-8fadf50a6620"
       },
-      "flood": {
-        "zone": "X",
-        "sfha": false
-      }
+      "listingType": "Sale"
     },
     {
       "id": "1207-n-fm-3083-rd-conroe-tx-77303-46",
@@ -1908,13 +1908,13 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
-      "lon": -93.29809,
-      "lat": 44.98845,
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "lat": 44.98845,
+      "lon": -93.29809,
+      "listingType": "Sale"
     },
     {
       "id": "3229-n-main-st-cleburne-tx-76033-48",
@@ -1943,11 +1943,11 @@ window.RCP_DATA = {
       "lon": -95.3685,
       "geo": "nominatim",
       "stage0": "underwriting",
-      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "listingType": "Sale"
     },
     {
       "id": "9610-harney-rd-thonotosassa-fl-33592-49",
@@ -2013,7 +2013,10 @@ window.RCP_DATA = {
         "Initial Rent PSF": 10.5,
         "Site Acres": 2.73
       },
-      "listingType": "Sale",
+      "flood": {
+        "zone": "X",
+        "sfha": false
+      },
       "pillar": {
         "confidence": "exact",
         "owner": "Pc Acquisition Company Llc",
@@ -2027,10 +2030,7 @@ window.RCP_DATA = {
         "far_flag": "MODERATE",
         "mapUrl": "https://app.pillar.codes/workspace?view=map&lat=28.044045&lon=-82.332315&zoom=17&parcel=fe782a1c-9d7b-4bae-a3e1-125bf299ff29"
       },
-      "flood": {
-        "zone": "X",
-        "sfha": false
-      }
+      "listingType": "Sale"
     },
     {
       "id": "18155-chisholm-trl-houston-tx-77060-50",
@@ -2093,11 +2093,11 @@ window.RCP_DATA = {
         "Modeled Sale Price": "3715385",
         "Assumption Notes": "Rating 7/10. Missing: Acres, Lease Expiry, Broker Email. Broker contact needed. Rerun model once price confirmed."
       },
-      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "listingType": "Sale"
     },
     {
       "id": "420-s-16th-st-la-porte-tx-77571-51",
@@ -2126,11 +2126,11 @@ window.RCP_DATA = {
       "lon": -97.13857,
       "geo": "nominatim",
       "stage0": "screened",
-      "listingType": "Sale",
       "flood": {
         "zone": "AE",
         "sfha": true
-      }
+      },
+      "listingType": "Sale"
     },
     {
       "id": "5909-5915-broadway-st-denver-co-80216-52",
@@ -2182,13 +2182,13 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
-      "lon": -70.87319,
-      "lat": 42.86062,
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "lat": 42.86062,
+      "lon": -70.87319,
+      "listingType": "Sale"
     },
     {
       "id": "987-n-highway-183-liberty-hill-tx-78842-54",
@@ -2251,7 +2251,6 @@ window.RCP_DATA = {
         "Initial Rent PSF": 10.5,
         "Site Acres": 1.34
       },
-      "listingType": "Sale",
       "pillar": {
         "confidence": "no_coverage",
         "owner": null,
@@ -2265,6 +2264,7 @@ window.RCP_DATA = {
         "far_flag": null,
         "mapUrl": "https://app.pillar.codes/workspace?view=map&lat=30.666390&lon=-97.880780&zoom=16"
       },
+      "listingType": "Sale",
       "needs_confirmation": true,
       "outreach_status": "Draft Ready \u2014 Needs Email"
     },
@@ -2294,11 +2294,11 @@ window.RCP_DATA = {
       "lon": -111.8974,
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
       "flood": {
         "zone": "AO",
         "sfha": true
-      }
+      },
+      "listingType": "Sale"
     },
     {
       "id": "17799-n-85th-st-scottsdale-az-85255-56",
@@ -2326,11 +2326,11 @@ window.RCP_DATA = {
       "lon": -111.89752,
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
       "flood": {
         "zone": "AO",
         "sfha": true
-      }
+      },
+      "listingType": "Sale"
     },
     {
       "id": "17821-n-85th-st-scottsdale-az-85255-57",
@@ -2358,11 +2358,11 @@ window.RCP_DATA = {
       "lon": -111.89791,
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
       "flood": {
         "zone": "AO",
         "sfha": true
-      }
+      },
+      "listingType": "Sale"
     },
     {
       "id": "90-1-bolt-st-lowell-ma-01852-59",
@@ -2388,13 +2388,13 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
-      "lon": -71.29933,
-      "lat": 42.62509,
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "lat": 42.62509,
+      "lon": -71.29933,
+      "listingType": "Sale"
     },
     {
       "id": "19850-highway-72-arvada-co-80007-60",
@@ -2457,7 +2457,6 @@ window.RCP_DATA = {
         "Initial Rent PSF": 13,
         "Site Acres": 30.35
       },
-      "listingType": "Sale",
       "pillar": {
         "confidence": "nearest",
         "owner": null,
@@ -2471,6 +2470,7 @@ window.RCP_DATA = {
         "far_flag": null,
         "mapUrl": "https://app.pillar.codes/workspace?view=map&lat=39.863895&lon=-105.225647&zoom=16"
       },
+      "listingType": "Sale",
       "outreach_status": "Draft"
     },
     {
@@ -2502,11 +2502,11 @@ window.RCP_DATA = {
       "lon": -87.17126,
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "listingType": "Sale"
     },
     {
       "id": "2912-chambers-st-venus-tx-76084-62",
@@ -2536,11 +2536,11 @@ window.RCP_DATA = {
       "lon": -97.09986,
       "geo": "nominatim",
       "stage0": "screened",
-      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "listingType": "Sale"
     },
     {
       "id": "1811-n-topping-ave-kansas-city-mo-64120-63",
@@ -2569,13 +2569,13 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
-      "lon": -94.51292,
-      "lat": 39.14064,
       "flood": {
         "zone": "AH",
         "sfha": true
-      }
+      },
+      "lat": 39.14064,
+      "lon": -94.51292,
+      "listingType": "Sale"
     },
     {
       "id": "15116-fm-1518-selma-tx-78154-64",
@@ -2606,11 +2606,11 @@ window.RCP_DATA = {
       "lon": -98.30362,
       "geo": "nominatim",
       "stage0": "screened",
-      "listingType": "Sale",
       "flood": {
         "zone": "AE",
         "sfha": true
-      }
+      },
+      "listingType": "Sale"
     },
     {
       "id": "7176-15th-st-e-sarasota-fl-34243-65",
@@ -2642,11 +2642,11 @@ window.RCP_DATA = {
       "lon": -82.53085,
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "listingType": "Sale"
     },
     {
       "id": "529-sh-46-e-boerne-tx-78006-66",
@@ -2676,11 +2676,11 @@ window.RCP_DATA = {
       "lon": -98.6904,
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "listingType": "Sale"
     },
     {
       "id": "119-white-oak-dr-berlin-ct-06037-67",
@@ -2707,13 +2707,13 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
-      "lon": -72.72565,
-      "lat": 41.64011,
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "lat": 41.64011,
+      "lon": -72.72565,
+      "listingType": "Sale"
     },
     {
       "id": "111-e-mccarty-ln-san-marcos-tx-78666-68",
@@ -2769,13 +2769,13 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
-      "lon": -89.88154,
-      "lat": 39.29511,
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "lat": 39.29511,
+      "lon": -89.88154,
+      "listingType": "Sale"
     },
     {
       "id": "1000-harding-st-fort-worth-tx-76102-70",
@@ -2802,11 +2802,11 @@ window.RCP_DATA = {
       "lon": -97.32166,
       "geo": "nominatim",
       "stage0": "screened",
-      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
       },
+      "listingType": "Sale",
       "mla": {
         "Sent Date": "2026-06-19",
         "U Marker": "U",
@@ -2862,13 +2862,13 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
-      "lon": -74.0832,
-      "lat": 40.88232,
       "flood": {
         "zone": "AE",
         "sfha": true
-      }
+      },
+      "lat": 40.88232,
+      "lon": -74.0832,
+      "listingType": "Sale"
     },
     {
       "id": "24348-n-11th-ave-phoenix-az-85085-72",
@@ -2928,7 +2928,10 @@ window.RCP_DATA = {
         "Modeled Sale Price": "3578462",
         "Assumption Notes": "Rating 8/10. Missing: Sale Price, Acres, Lease Expiry, Broker Email. Truck terminal = purpose-built IOS. Broker contact needed. Rerun model once price confirmed."
       },
-      "listingType": "Sale",
+      "flood": {
+        "zone": "X",
+        "sfha": false
+      },
       "pillar": {
         "confidence": "exact",
         "owner": "27th Ave Business Park LLC",
@@ -2942,10 +2945,7 @@ window.RCP_DATA = {
         "far_flag": "LOW (<=20%) - strong land component",
         "mapUrl": "https://app.pillar.codes/workspace?view=map&lat=33.707050&lon=-112.087456&zoom=17&parcel=5ea6a839-ddcd-4ddc-b9d4-d4dec2e24705"
       },
-      "flood": {
-        "zone": "X",
-        "sfha": false
-      },
+      "listingType": "Sale",
       "outreach_status": "Draft Ready \u2014 Needs Email"
     },
     {
@@ -2973,13 +2973,13 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
-      "lon": -115.17379,
-      "lat": 36.13617,
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "lat": 36.13617,
+      "lon": -115.17379,
+      "listingType": "Sale"
     },
     {
       "id": "1003-atascocita-rd-humble-tx-77396-74",
@@ -3005,11 +3005,11 @@ window.RCP_DATA = {
       "lon": -95.25346,
       "geo": "nominatim",
       "stage0": "screened",
-      "listingType": "Sale",
       "flood": {
         "zone": "AE",
         "sfha": true
-      }
+      },
+      "listingType": "Sale"
     },
     {
       "id": "3630-s-highland-dr-las-vegas-nv-89103-75",
@@ -3036,13 +3036,13 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
-      "lon": -115.17379,
-      "lat": 36.13617,
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "lat": 36.13617,
+      "lon": -115.17379,
+      "listingType": "Sale"
     },
     {
       "id": "608-riverside-pky-austell-ga-30168-76",
@@ -3069,11 +3069,11 @@ window.RCP_DATA = {
       "lon": -84.40549,
       "geo": "nominatim",
       "stage0": "screened",
-      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
       },
+      "listingType": "Sale",
       "mla": {
         "Sent Date": "2026-06-19",
         "U Marker": "U",
@@ -3127,13 +3127,13 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
-      "lon": -87.67327,
-      "lat": 41.81043,
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "lat": 41.81043,
+      "lon": -87.67327,
+      "listingType": "Sale"
     },
     {
       "id": "2399-avon-industrial-dr-rochester-hills-mi-48309-78",
@@ -3159,13 +3159,13 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
-      "lon": -83.17945,
-      "lat": 42.64557,
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "lat": 42.64557,
+      "lon": -83.17945,
+      "listingType": "Sale"
     },
     {
       "id": "707-sw-10th-st-blue-springs-mo-64015-79",
@@ -3190,13 +3190,13 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "nominatim",
       "stage0": "screened",
-      "listingType": "Sale",
-      "lon": -94.2772,
-      "lat": 39.01257,
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "lat": 39.01257,
+      "lon": -94.2772,
+      "listingType": "Sale"
     },
     {
       "id": "2220-s-burleson-blvd-burleson-tx-76028-80",
@@ -3224,11 +3224,11 @@ window.RCP_DATA = {
       "lon": -97.28749,
       "geo": "nominatim",
       "stage0": "screened",
-      "listingType": "Sale",
       "flood": {
         "zone": "AE",
         "sfha": true
-      }
+      },
+      "listingType": "Sale"
     },
     {
       "id": "18614-18636-kermier-rd-hockley-tx-77447-81",
@@ -3255,11 +3255,11 @@ window.RCP_DATA = {
       "lon": -95.84521,
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "listingType": "Sale"
     },
     {
       "id": "15939-piuma-ave-cerritos-ca-90703-82",
@@ -3286,13 +3286,13 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
-      "lon": -118.10574,
-      "lat": 33.88647,
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "lat": 33.88647,
+      "lon": -118.10574,
+      "listingType": "Sale"
     },
     {
       "id": "220-recker-hwy-auburndale-fl-33823-83",
@@ -3321,11 +3321,11 @@ window.RCP_DATA = {
       "lon": -81.8126,
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "listingType": "Sale"
     },
     {
       "id": "12307-woodworth-dr-cypress-tx-77429-84",
@@ -3388,7 +3388,10 @@ window.RCP_DATA = {
         "Initial Rent PSF": 10.5,
         "Site Acres": 2.5
       },
-      "listingType": "Sale",
+      "flood": {
+        "zone": "X",
+        "sfha": false
+      },
       "pillar": {
         "confidence": "exact",
         "owner": "AMRJ Development LLC",
@@ -3402,10 +3405,7 @@ window.RCP_DATA = {
         "far_flag": "HIGH - limited open land",
         "mapUrl": "https://app.pillar.codes/workspace?view=map&lat=29.955427&lon=-95.667904&zoom=17&parcel=3f16e2cf-1c92-4751-a3ef-4952c53435b1"
       },
-      "flood": {
-        "zone": "X",
-        "sfha": false
-      }
+      "listingType": "Sale"
     },
     {
       "id": "8400-colorado-st-merrillville-in-46410-85",
@@ -3434,13 +3434,13 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
-      "lon": -87.29715,
-      "lat": 41.46537,
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "lat": 41.46537,
+      "lon": -87.29715,
+      "listingType": "Sale"
     },
     {
       "id": "12001-e-33rd-ave-aurora-co-80010-86",
@@ -3470,11 +3470,11 @@ window.RCP_DATA = {
       "lon": -104.84823,
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "listingType": "Sale"
     },
     {
       "id": "4809-century-dr-forest-hill-tx-76140-87",
@@ -3536,11 +3536,11 @@ window.RCP_DATA = {
         "Exit Cap": 0.0675,
         "Assumption Notes": "SUITE A (Primary, 11,826 SF, 0.68 AC yard): 4,750 SF office + 1,250 SF HVAC prod + 5,826 SF warehouse. 13' clear, 1 grade door, 2 docks. Heavy-office buildout needs partial demo for IOS use. Initial rent $9.00/SF (below $9.50 market to compensate for conversion). 6-mo downtime, 60-mo term, 2 free rent, $7 TI, 6% LC, 3% bumps, 40c capex, $5.00 NNN. | SUITE B (Secondary, 14,160 SF, 2.14 AC yard): 200 SF office + 13,960 SF warehouse. 13-16' clear, 3 grade doors \u2014 true IOS suite. Market rent $10.00/SF, initial $9.50/SF. 5-mo downtime, 60-mo term, 2 free rent, $5 TI, 6% LC, 3% bumps, 30c capex, $5.00 NNN. | DEAL: $3.4M / 3.62 AC = $939K/AC; $130/SF; 2.76 AC usable yard (76% of lot). DFW NIOS #1 \u2014 South Fort Worth secondary submarket vs I-35 corridor but strong. 1976 masonry vintage = elevated capex risk but low price compensates. Call Stream Realty (Matt Blackburn/Connor Land) to confirm acreage, truck access, fencing, and flood."
       },
-      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "listingType": "Sale"
     },
     {
       "id": "12105-n-28th-st-saint-petersburg-fl-33716-88",
@@ -3570,11 +3570,11 @@ window.RCP_DATA = {
       "lon": -82.67057,
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
       "flood": {
         "zone": "AE",
         "sfha": true
-      }
+      },
+      "listingType": "Sale"
     },
     {
       "id": "7515-long-point-rd-houston-tx-77055-89",
@@ -3606,11 +3606,11 @@ window.RCP_DATA = {
       "lon": -95.47824,
       "geo": "chase-import",
       "stage0": "screened",
-      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      }
+      },
+      "listingType": "Sale"
     },
     {
       "id": "2010-n-mcdonald-st-1",
@@ -7794,6 +7794,1101 @@ window.RCP_DATA = {
         "mapUrl": "https://app.pillar.codes/workspace?view=map&lat=40.462543&lon=-105.078483&zoom=17&parcel=62451ae1-a859-44d6-b011-2f7de9d4e7ad"
       },
       "stage0": "screened"
+    },
+    {
+      "id": "201-williams-street-lorain-oh-213",
+      "sent": "2026-07-23",
+      "u": false,
+      "st": "OH",
+      "mkt": "Cleveland",
+      "nrank": 33.0,
+      "nscore": 5.5809,
+      "addr": "201 Williams Street, Lorain, OH",
+      "type": "Industrial",
+      "bsf": 35576.0,
+      "asf": 35576.0,
+      "csf": 35576.0,
+      "ac": 3.75,
+      "yac": 2.93328742,
+      "cov": 21.8,
+      "clr": "14",
+      "tenant": "Xpress Asphalt (former Blue Star recycling center)",
+      "rating": 1.0,
+      "up": "2.9 yard acres \u2014 majority of the lot is open storage",
+      "risk": "23mi from the nearest top-40 NIOS market center; Missing price, in-place rent \u2014 basis/coverage/mark-to-market checks incomplete",
+      "notes": "Explicit 'Lots of outdoor storage (3.75 acres)' language. No price stated in OM.",
+      "src": "Egnyte OM - Cushman",
+      "lat": 41.37015,
+      "lon": -82.09314,
+      "geo": "nominatim",
+      "listingType": "Sale",
+      "stage0": "screened"
+    },
+    {
+      "id": "202-south-mount-zion-road-lebanon-in-214",
+      "sent": "2026-07-23",
+      "u": false,
+      "st": "IN",
+      "mkt": "Indianapolis-Carmel-Greenwood",
+      "nrank": 26.0,
+      "nscore": 6.3301,
+      "addr": "202 South Mount Zion Road, Lebanon, IN",
+      "type": "Industrial",
+      "bsf": 46800.0,
+      "asf": 46800.0,
+      "csf": 46800.0,
+      "ac": 9.0,
+      "yac": 7.925619835,
+      "cov": 11.9,
+      "yb": 1995.0,
+      "clr": "17.8",
+      "tenant": "Raymond Corporation (Toyota Industries), lease exp. 2028",
+      "rating": 2.0,
+      "up": "7.9 yard acres \u2014 majority of the lot is open storage; 1995 vintage",
+      "risk": "26mi from the nearest top-40 NIOS market center; Missing price, in-place rent \u2014 basis/coverage/mark-to-market checks incomplete",
+      "notes": "No explicit yard language, clears gate on FAR alone (~11.9%). 100% occupied, NOI $348,660. No price stated.",
+      "src": "Egnyte OM - Cushman",
+      "lat": 40.02545,
+      "lon": -86.51191,
+      "geo": "nominatim",
+      "listingType": "Sale",
+      "stage0": "screened"
+    },
+    {
+      "id": "2013-route-130-florence-nj-215",
+      "sent": "2026-07-23",
+      "u": false,
+      "st": "NJ",
+      "addr": "2013 Route 130, Florence, NJ",
+      "type": "Industrial",
+      "bsf": 33700.0,
+      "asf": 33700.0,
+      "csf": 33700.0,
+      "ac": 18.62,
+      "yac": 17.84635445,
+      "cov": 4.2,
+      "clr": "22",
+      "tenant": "Vacant",
+      "rating": 5.0,
+      "up": "22' clear height; 17.8 yard acres \u2014 majority of the lot is open storage",
+      "risk": "No confirmed coordinate \u2014 location not verified; Missing price, in-place rent \u2014 basis/coverage/mark-to-market checks incomplete",
+      "notes": "Modern Truck/Vehicle Fleet Maintenance Garage -- multiple tractor/trailer bays, truck-wash bay, 10,000-gallon fuel tank. FAR ~4.2%. Note: OM content is about this address, not the filename's '2130 Route 130, Burlington'.",
+      "src": "Egnyte OM - Cushman",
+      "geo": "N/A",
+      "listingType": "Sale",
+      "stage0": "screened"
+    },
+    {
+      "id": "218-feld-avenue-high-point-nc-216",
+      "sent": "2026-07-23",
+      "u": false,
+      "st": "NC",
+      "mkt": "Charlotte-Concord-Gastonia",
+      "nrank": 5.0,
+      "nscore": 8.3822,
+      "addr": "218 Feld Avenue, High Point, NC",
+      "type": "Industrial",
+      "bsf": 50580.0,
+      "asf": 50580.0,
+      "csf": 50580.0,
+      "ac": 4.6,
+      "yac": 3.438842975,
+      "cov": 25.2,
+      "yb": 1978.0,
+      "price": 3400000.0,
+      "psf": 67.22,
+      "tenant": "Vacant",
+      "rating": 2.0,
+      "up": "3.4 yard acres \u2014 majority of the lot is open storage; Favorable basis $67/SF",
+      "risk": "68mi from the nearest top-40 NIOS market center; Missing in-place rent \u2014 basis/coverage/mark-to-market checks incomplete",
+      "notes": "No explicit yard language, clears gate on FAR alone (~25.2%).",
+      "src": "Egnyte OM - Cushman",
+      "lat": 35.92159,
+      "lon": -79.98669,
+      "geo": "nominatim",
+      "listingType": "Sale",
+      "ppa": 739130.4347826088,
+      "stage0": "screened"
+    },
+    {
+      "id": "2226-campbell-street-oakland-ca-217",
+      "sent": "2026-07-23",
+      "u": false,
+      "st": "CA",
+      "mkt": "Sacramento-Roseville-Folsom",
+      "nrank": 37.0,
+      "nscore": 5.2738,
+      "addr": "2226 Campbell Street, Oakland, CA",
+      "type": "Industrial",
+      "bsf": 4000.0,
+      "asf": 4000.0,
+      "csf": 4000.0,
+      "ac": 1.84,
+      "yac": 1.748172635,
+      "cov": 5.0,
+      "tenant": "Vacant",
+      "rating": 1.0,
+      "up": "1.7 yard acres \u2014 majority of the lot is open storage",
+      "risk": "68mi from the nearest top-40 NIOS market center; Missing price, in-place rent \u2014 basis/coverage/mark-to-market checks incomplete",
+      "notes": "Site plan explicitly labels a 'YARD' zone with a 'GATE'. Land partially paved. No price stated (for lease or sale).",
+      "src": "Egnyte OM - Cushman",
+      "lat": 37.81756,
+      "lon": -122.29072,
+      "geo": "nominatim",
+      "listingType": "Sale",
+      "stage0": "screened"
+    },
+    {
+      "id": "2235-2255-spectra-dr-colorado-springs-co-218",
+      "sent": "2026-07-23",
+      "u": false,
+      "st": "CO",
+      "addr": "2235-2255 Spectra Dr, Colorado Springs, CO",
+      "type": "Industrial",
+      "bsf": 10000.0,
+      "asf": 10000.0,
+      "csf": 10000.0,
+      "ac": 1.2,
+      "yac": 0.9704315886,
+      "cov": 19.1,
+      "yb": 2004.0,
+      "clr": "14",
+      "price": 2800000.0,
+      "psf": 280.0,
+      "tenant": "Month-to-month tenants (2 buildings)",
+      "rating": 4.0,
+      "up": "1.0 yard acres \u2014 majority of the lot is open storage; 2004 vintage",
+      "risk": "No confirmed coordinate \u2014 location not verified; Elevated basis $280/SF; Missing in-place rent \u2014 basis/coverage/mark-to-market checks incomplete",
+      "notes": "Explicit 'Secured Outdoor Storage' in the listing title.",
+      "src": "Egnyte OM - Cushman",
+      "geo": "N/A",
+      "listingType": "Sale",
+      "ppa": 2333333.3333333335,
+      "stage0": "screened"
+    },
+    {
+      "id": "224-234-main-street-colusa-ca-219",
+      "sent": "2026-07-23",
+      "u": false,
+      "st": "CA",
+      "addr": "224-234 Main Street, Colusa, CA",
+      "type": "Industrial",
+      "bsf": 30431.0,
+      "asf": 30431.0,
+      "csf": 30431.0,
+      "ac": 4.12,
+      "yac": 3.421400367,
+      "cov": 17.0,
+      "price": 1200000.0,
+      "psf": 39.43,
+      "tenant": "Vacant",
+      "rating": 5.0,
+      "up": "3.4 yard acres \u2014 majority of the lot is open storage; Favorable basis $39/SF",
+      "risk": "No confirmed coordinate \u2014 location not verified; Missing in-place rent \u2014 basis/coverage/mark-to-market checks incomplete",
+      "notes": "No explicit yard language, clears gate on FAR alone (~17.0%). 2 buildings on 6 parcels.",
+      "src": "Egnyte OM - Cushman",
+      "geo": "N/A",
+      "listingType": "Sale",
+      "ppa": 291262.1359223301,
+      "stage0": "screened"
+    },
+    {
+      "id": "23044-state-road-37-noblesville-in-220",
+      "sent": "2026-07-23",
+      "u": true,
+      "st": "IN",
+      "addr": "23044 State Road 37, Noblesville, IN",
+      "type": "Industrial",
+      "bsf": 13329.0,
+      "asf": 13329.0,
+      "csf": 13329.0,
+      "ac": 1.44,
+      "yac": 1.134008264,
+      "cov": 21.2,
+      "clr": "24",
+      "price": 950000.0,
+      "psf": 71.27,
+      "tenant": "Vacant",
+      "rating": 7.0,
+      "up": "24' clear height; 1.1 yard acres \u2014 majority of the lot is open storage; Favorable basis $71/SF",
+      "risk": "No confirmed coordinate \u2014 location not verified; Missing in-place rent \u2014 basis/coverage/mark-to-market checks incomplete",
+      "notes": "No explicit yard language, clears gate on FAR alone (~21.3%).",
+      "src": "Egnyte OM - Cushman",
+      "geo": "N/A",
+      "listingType": "Sale",
+      "ppa": 659722.2222222222,
+      "stage0": "underwriting"
+    },
+    {
+      "id": "233-cane-creek-parkway-danville-va-221",
+      "sent": "2026-07-23",
+      "u": false,
+      "st": "VA",
+      "mkt": "Raleigh-Cary",
+      "nrank": 36.0,
+      "nscore": 5.4797,
+      "addr": "233 Cane Creek Parkway, Danville, VA",
+      "type": "Industrial",
+      "bsf": 100000.0,
+      "asf": 100000.0,
+      "csf": 100000.0,
+      "ac": 19.07,
+      "yac": 16.77431589,
+      "cov": 12.0,
+      "yb": 2020.0,
+      "clr": "26",
+      "tenant": "Vacant",
+      "rating": 4.0,
+      "up": "26' clear height; 16.8 yard acres \u2014 majority of the lot is open storage; 2020 vintage",
+      "risk": "67mi from the nearest top-40 NIOS market center; Missing price, in-place rent \u2014 basis/coverage/mark-to-market checks incomplete",
+      "notes": "Existing 100,000 SF Butler shell building (site plan confirms 'EXISTING SHELL'), not purely conceptual land. FAR ~12.0%, clears gate easily. No price stated.",
+      "src": "Egnyte OM - Cushman",
+      "lat": 36.58409,
+      "lon": -79.32169,
+      "geo": "nominatim",
+      "listingType": "Sale",
+      "stage0": "screened"
+    },
+    {
+      "id": "2330-e-jones-avenue-phoenix-az-222",
+      "sent": "2026-07-23",
+      "u": true,
+      "st": "AZ",
+      "mkt": "Phoenix-Mesa-Chandler",
+      "nrank": 4.0,
+      "nscore": 8.6586,
+      "addr": "2330 E Jones Avenue, Phoenix, AZ",
+      "type": "Industrial",
+      "bsf": 21167.0,
+      "asf": 21167.0,
+      "csf": 21167.0,
+      "ac": 1.76,
+      "yac": 1.274072544,
+      "cov": 27.6,
+      "clr": "18",
+      "tenant": "Vacant",
+      "rating": 7.0,
+      "up": "3.6mi from NIOS #4 market center; 18' clear height; 1.3 yard acres \u2014 majority of the lot is open storage",
+      "risk": "Missing price, in-place rent \u2014 basis/coverage/mark-to-market checks incomplete",
+      "notes": "Lease-only. Explicit 'Fully Fenced & Secured' + 'Potential Yard Area' language.",
+      "src": "Egnyte OM - Cushman",
+      "lat": 33.40994,
+      "lon": -112.03111,
+      "geo": "nominatim",
+      "listingType": "Lease",
+      "stage0": "underwriting"
+    },
+    {
+      "id": "2335-st-johns-road-lima-oh-223",
+      "sent": "2026-07-23",
+      "u": false,
+      "st": "OH",
+      "mkt": "Columbus",
+      "nrank": 19.0,
+      "nscore": 6.8935,
+      "addr": "2335 St. Johns Road, Lima, OH",
+      "type": "Industrial",
+      "bsf": 14000.0,
+      "asf": 14000.0,
+      "csf": 14000.0,
+      "ac": 8.25,
+      "yac": 7.928604224,
+      "cov": 3.9,
+      "yb": 1988.0,
+      "price": 1100000.0,
+      "psf": 78.57,
+      "tenant": "Vacant (40-door cross-dock facility)",
+      "rating": 3.0,
+      "up": "7.9 yard acres \u2014 majority of the lot is open storage; 1988 vintage; Favorable basis $79/SF",
+      "risk": "77mi from the nearest top-40 NIOS market center; Missing in-place rent \u2014 basis/coverage/mark-to-market checks incomplete",
+      "notes": "Explicit 'Outside Storage: Permitted by code; multiple trailer storage positions' plus 'Concrete, well lighted, fenced yard.'",
+      "src": "Egnyte OM - Cushman",
+      "lat": 40.70646,
+      "lon": -84.08976,
+      "geo": "nominatim",
+      "listingType": "Sale",
+      "ppa": 133333.33333333334,
+      "stage0": "screened"
+    },
+    {
+      "id": "2375-east-oakton-street-arlington-heights-il-224",
+      "sent": "2026-07-23",
+      "u": false,
+      "st": "IL",
+      "mkt": "Chicago-Naperville-Elgin",
+      "nrank": 15.0,
+      "nscore": 7.3315,
+      "addr": "2375 East Oakton Street, Arlington Heights, IL",
+      "type": "Industrial",
+      "bsf": 16177.0,
+      "asf": 16177.0,
+      "csf": 16177.0,
+      "ac": 1.57,
+      "yac": 1.198627181,
+      "cov": 23.7,
+      "clr": "13.5",
+      "price": 5400000.0,
+      "psf": 333.81,
+      "tenant": "Vacant (truck maintenance facility)",
+      "rating": 1.0,
+      "up": "1.2 yard acres \u2014 majority of the lot is open storage",
+      "risk": "20mi from the nearest top-40 NIOS market center; Low clear height (14'); Elevated basis $334/SF; Missing in-place rent \u2014 basis/coverage/mark-to-market checks incomplete",
+      "notes": "Explicit 'new trailer yard,' 'Trailer Parking: 19 Stalls (Expandable),' 'fully fenced and secure lot.'",
+      "src": "Egnyte OM - Cushman",
+      "lat": 42.02245,
+      "lon": -87.95199,
+      "geo": "nominatim",
+      "listingType": "Sale",
+      "ppa": 3439490.4458598723,
+      "stage0": "screened"
+    },
+    {
+      "id": "24455-aurora-road-bedford-heights-oh-225",
+      "sent": "2026-07-23",
+      "u": false,
+      "st": "OH",
+      "mkt": "Cleveland",
+      "nrank": 33.0,
+      "nscore": 5.5809,
+      "addr": "24455 Aurora Road, Bedford Heights, OH",
+      "type": "Industrial",
+      "bsf": 125238.0,
+      "asf": 125238.0,
+      "csf": 125238.0,
+      "ac": 6.24,
+      "yac": 3.364931129,
+      "cov": 46.1,
+      "clr": "20",
+      "tenant": "Vacant",
+      "rating": 5.0,
+      "up": "20' clear height; 3.4 yard acres \u2014 majority of the lot is open storage",
+      "risk": "Missing price, in-place rent \u2014 basis/coverage/mark-to-market checks incomplete",
+      "notes": "Titled 'Manufacturing Opportunity' but also explicit 'Ample dock and trailer parking to support high-volume logistics' -- flagged for manual confirmation given the mixed signal. Sale price negotiable.",
+      "src": "Egnyte OM - Cushman",
+      "lat": 41.41292,
+      "lon": -81.50557,
+      "geo": "nominatim",
+      "listingType": "Sale",
+      "stage0": "screened"
+    },
+    {
+      "id": "2450-canada-dr-colorado-springs-co-226",
+      "sent": "2026-07-23",
+      "u": false,
+      "st": "CO",
+      "mkt": "Denver-Aurora-Centennial",
+      "nrank": 23.0,
+      "nscore": 6.451,
+      "addr": "2450 Canada Dr, Colorado Springs, CO",
+      "type": "Industrial",
+      "bsf": 25230.0,
+      "asf": 25230.0,
+      "csf": 25230.0,
+      "ac": 2.12,
+      "yac": 1.540798898,
+      "cov": 27.3,
+      "yb": 1983.0,
+      "clr": "24",
+      "price": 4750000.0,
+      "psf": 188.27,
+      "tenant": "Vacant",
+      "rating": 4.0,
+      "up": "24' clear height; 1.5 yard acres \u2014 majority of the lot is open storage; 1983 vintage",
+      "risk": "62mi from the nearest top-40 NIOS market center; Missing in-place rent \u2014 basis/coverage/mark-to-market checks incomplete",
+      "notes": "Explicit 'fully fenced site offers potential for secured outdoor storage, or equipment lay-down.'",
+      "src": "Egnyte OM - Cushman",
+      "lat": 38.86641,
+      "lon": -104.69926,
+      "geo": "nominatim",
+      "listingType": "Sale",
+      "ppa": 2240566.037735849,
+      "stage0": "screened"
+    },
+    {
+      "id": "2501-annalisa-dr-concord-ca-227",
+      "sent": "2026-07-23",
+      "u": false,
+      "st": "CA",
+      "mkt": "Sacramento-Roseville-Folsom",
+      "nrank": 37.0,
+      "nscore": 5.2738,
+      "addr": "2501 Annalisa Dr, Concord, CA",
+      "type": "Industrial",
+      "bsf": 17500.0,
+      "asf": 17500.0,
+      "csf": 17500.0,
+      "ac": 2.51,
+      "yac": 2.10825528,
+      "cov": 16.0,
+      "clr": "22",
+      "price": 5800000.0,
+      "psf": 331.43,
+      "tenant": "Vacant",
+      "rating": 1.0,
+      "up": "22' clear height; 2.1 yard acres \u2014 majority of the lot is open storage",
+      "risk": "49mi from the nearest top-40 NIOS market center; Elevated basis $331/SF; Missing in-place rent \u2014 basis/coverage/mark-to-market checks incomplete",
+      "notes": "Broker literally titles the listing 'RARE IOS PROPERTY IN NORTH CONCORD' -- 'Ideal Contractor / Fleet Yard.' Flagged: $331/SF basis exceeds the firm's $300/SF cap despite the exceptionally strong signal.",
+      "src": "Egnyte OM - Cushman",
+      "lat": 38.01689,
+      "lon": -122.03341,
+      "geo": "nominatim",
+      "listingType": "Sale",
+      "ppa": 2310756.972111554,
+      "stage0": "screened"
+    },
+    {
+      "id": "2516-2530-w-3rd-street-cleveland-oh-228",
+      "sent": "2026-07-23",
+      "u": false,
+      "st": "OH",
+      "addr": "2516-2530 W. 3rd Street, Cleveland, OH",
+      "type": "Industrial",
+      "bsf": 16125.0,
+      "asf": 16125.0,
+      "csf": 16125.0,
+      "ac": 0.74,
+      "yac": 0.3698209366,
+      "cov": 50.0,
+      "yb": 1954.0,
+      "clr": "13.5",
+      "price": 975000.0,
+      "psf": 60.47,
+      "tenant": "Partially occupied",
+      "rating": 3.0,
+      "up": "0.4 yard acres of outdoor storage; Favorable basis $60/SF",
+      "risk": "No confirmed coordinate \u2014 location not verified; Low clear height (14'); Missing in-place rent \u2014 basis/coverage/mark-to-market checks incomplete",
+      "notes": "Site plan explicitly labels 'Fenced Outdoor Storage' for the 2530 building.",
+      "src": "Egnyte OM - Cushman",
+      "geo": "N/A",
+      "listingType": "Sale",
+      "ppa": 1317567.5675675676,
+      "stage0": "screened"
+    },
+    {
+      "id": "2500-2510-strunks-road-jackson-township-mn-229",
+      "sent": "2026-07-23",
+      "u": false,
+      "st": "MN",
+      "addr": "2500-2510 Strunks Road, Jackson Township, MN",
+      "type": "Industrial",
+      "bsf": 24300.0,
+      "asf": 24300.0,
+      "csf": 24300.0,
+      "ac": 54.58,
+      "yac": 54.02214876,
+      "cov": 1.0,
+      "clr": "15",
+      "tenant": "Vacant / multi-tenant available",
+      "rating": 4.0,
+      "up": "54.0 yard acres \u2014 majority of the lot is open storage",
+      "risk": "No confirmed coordinate \u2014 location not verified; Missing price, in-place rent \u2014 basis/coverage/mark-to-market checks incomplete",
+      "notes": "Extremely strong: title itself is 'Up to 12,000 SF & 24 Acres Outside Storage,' property table literally uses 'IOS' as a column header. 24 AC dedicated outdoor storage. Sale price negotiable.",
+      "src": "Egnyte OM - Cushman",
+      "geo": "N/A",
+      "listingType": "Sale",
+      "stage0": "screened"
+    },
+    {
+      "id": "2626-8th-avenue-garden-city-co-230",
+      "sent": "2026-07-23",
+      "u": false,
+      "st": "CO",
+      "mkt": "Denver-Aurora-Centennial",
+      "nrank": 23.0,
+      "nscore": 6.451,
+      "addr": "2626 8th Avenue, Garden City, CO",
+      "type": "Industrial",
+      "bsf": 39069.0,
+      "asf": 39069.0,
+      "csf": 39069.0,
+      "ac": 1.33,
+      "yac": 0.4330991736,
+      "cov": 67.4,
+      "clr": "10",
+      "price": 3400000.0,
+      "psf": 87.03,
+      "tenant": "Vacant / divisible",
+      "rating": 1.0,
+      "up": "0.4 yard acres of outdoor storage; Favorable basis $87/SF",
+      "risk": "48mi from the nearest top-40 NIOS market center; Low clear height (10'); Missing in-place rent \u2014 basis/coverage/mark-to-market checks incomplete",
+      "notes": "Explicit 'Storage: Outdoor and Mezzanine' line item, photo labeled 'Outside Storage.'",
+      "src": "Egnyte OM - Cushman",
+      "lat": 40.39489,
+      "lon": -104.6907,
+      "geo": "nominatim",
+      "listingType": "Sale",
+      "ppa": 2556390.977443609,
+      "stage0": "screened"
+    }
+  ],
+  "brokers": [
+    {
+      "name": "Al Caruana",
+      "company": "Cushman & Wakefield",
+      "email": "al.caruana@cushwake.com",
+      "phone": "+1 847 720 1326",
+      "market": "Chicago-Naperville-Elgin",
+      "allMarkets": "Chicago-Naperville-Elgin",
+      "count": 1,
+      "properties": [
+        "1900 Harrison Avenue, Rockford, IL"
+      ],
+      "rank": 1,
+      "updated": "2026-07-23"
+    },
+    {
+      "name": "Eliot Kijewski",
+      "company": "Cushman & Wakefield | CRESCO",
+      "email": "ekijewski@crescorealestate.com",
+      "phone": "+1 216 525 1487",
+      "market": "Cleveland",
+      "allMarkets": "Cleveland, Unknown market",
+      "count": 2,
+      "properties": [
+        "1200 E. 49th Street, Cleveland, OH",
+        "2516-2530 W. 3rd Street, Cleveland, OH"
+      ],
+      "rank": 1,
+      "updated": "2026-07-23"
+    },
+    {
+      "name": "Evan Cicirello",
+      "company": "Cushman & Wakefield",
+      "email": "evan.cicirello@cushwake.com",
+      "phone": "+1 412 697 6558",
+      "market": "Cleveland",
+      "allMarkets": "Cleveland",
+      "count": 1,
+      "properties": [
+        "127 Industry Blvd, Irwin, PA"
+      ],
+      "rank": 2,
+      "updated": "2026-07-23"
+    },
+    {
+      "name": "Fred W. Christie",
+      "company": "Cushman & Wakefield | CRESCO",
+      "email": "fchristie@crescorealestate.com",
+      "phone": "+1 216 525 1468",
+      "market": "Cleveland",
+      "allMarkets": "Cleveland",
+      "count": 1,
+      "properties": [
+        "14500 Industrial Avenue N., Maple Heights, OH"
+      ],
+      "rank": 3,
+      "updated": "2026-07-23"
+    },
+    {
+      "name": "Cole Sorenson",
+      "company": "Cushman & Wakefield | CRESCO",
+      "email": "csorenson@crescorealestate.com",
+      "phone": "+1 216 525 1470",
+      "market": "Cleveland",
+      "allMarkets": "Cleveland",
+      "count": 1,
+      "properties": [
+        "19100 Holland Road, Brook Park, OH"
+      ],
+      "rank": 4,
+      "updated": "2026-07-23"
+    },
+    {
+      "name": "Brian Smith",
+      "company": "Cushman & Wakefield | CRESCO",
+      "email": "bsmith@crescorealestate.com",
+      "phone": "+1 216 525 1476",
+      "market": "Cleveland",
+      "allMarkets": "Cleveland",
+      "count": 1,
+      "properties": [
+        "201 Williams Street, Lorain, OH"
+      ],
+      "rank": 5,
+      "updated": "2026-07-23"
+    },
+    {
+      "name": "Rico A. Pietro",
+      "company": "Cushman & Wakefield | CRESCO",
+      "email": "rpietro@crescorealestate.com",
+      "phone": "+1 216 525 1473",
+      "market": "Cleveland",
+      "allMarkets": "Cleveland",
+      "count": 1,
+      "properties": [
+        "24455 Aurora Road, Bedford Heights, OH"
+      ],
+      "rank": 6,
+      "updated": "2026-07-23"
+    },
+    {
+      "name": "Laurence P. Casey",
+      "company": "Cushman & Wakefield",
+      "email": "larry.casey@cushwake.com",
+      "phone": "+1 732 243 3103",
+      "market": "Connecticut",
+      "allMarkets": "Connecticut",
+      "count": 1,
+      "properties": [
+        "15 Middletown Avenue, North Haven, CT"
+      ],
+      "rank": 1,
+      "updated": "2026-07-23"
+    },
+    {
+      "name": "Sean P. Duffy",
+      "company": "Cushman & Wakefield",
+      "email": "sean.duffy@cushwake.com",
+      "phone": "+1 860 616 1435",
+      "market": "Connecticut",
+      "allMarkets": "Connecticut",
+      "count": 1,
+      "properties": [
+        "180 Goodwin Street, East Hartford, CT"
+      ],
+      "rank": 2,
+      "updated": "2026-07-23"
+    },
+    {
+      "name": "Aaron Horn",
+      "company": "Colorado Springs Commercial",
+      "email": "ahorn@coscommercial.com",
+      "phone": "+1 719 418 4070",
+      "market": "Denver-Aurora-Centennial",
+      "allMarkets": "Denver-Aurora-Centennial",
+      "count": 2,
+      "properties": [
+        "1833 E Platteville Blvd, Pueblo, CO",
+        "2450 Canada Dr, Colorado Springs, CO"
+      ],
+      "rank": 1,
+      "updated": "2026-07-23"
+    },
+    {
+      "name": "Nate Heckel",
+      "company": "Cushman & Wakefield",
+      "email": "nate.heckel@cushwake.com",
+      "phone": "+1 970 412 0225",
+      "market": "Denver-Aurora-Centennial",
+      "allMarkets": "Denver-Aurora-Centennial",
+      "count": 1,
+      "properties": [
+        "120 Hemlock Street, Fort Collins, CO"
+      ],
+      "rank": 2,
+      "updated": "2026-07-23"
+    },
+    {
+      "name": "Tyler Murray",
+      "company": "Cushman & Wakefield",
+      "email": "tyler.murray@cushwake.com",
+      "phone": "+1 970 267 7404",
+      "market": "Denver-Aurora-Centennial",
+      "allMarkets": "Denver-Aurora-Centennial",
+      "count": 1,
+      "properties": [
+        "2626 8th Avenue, Garden City, CO"
+      ],
+      "rank": 3,
+      "updated": "2026-07-23"
+    },
+    {
+      "name": "Andrew R. Spence",
+      "company": "Cushman & Wakefield",
+      "email": "andy.spence@cushwake.com",
+      "phone": "+1 713 877 1464",
+      "market": "Houston-Pasadena-The Woodlands",
+      "allMarkets": "Houston-Pasadena-The Woodlands",
+      "count": 1,
+      "properties": [
+        "928 S 1st Street, Conroe, TX"
+      ],
+      "rank": 1,
+      "updated": "2026-07-23"
+    },
+    {
+      "name": "Grant M. Lindley",
+      "company": "Cushman & Wakefield",
+      "email": "grant.lindley@cushwake.com",
+      "phone": "+1 317 639 0446",
+      "market": "Indianapolis-Carmel-Greenwood",
+      "allMarkets": "Indianapolis-Carmel-Greenwood",
+      "count": 1,
+      "properties": [
+        "17309 Westfield Park Rd, Westfield, IN"
+      ],
+      "rank": 1,
+      "updated": "2026-07-23"
+    },
+    {
+      "name": "Michael W.M. Weishaar",
+      "company": "Cushman & Wakefield",
+      "email": "michael.weishaar@cushwake.com",
+      "phone": "+1 317 413 6459",
+      "market": "Indianapolis-Carmel-Greenwood",
+      "allMarkets": "Indianapolis-Carmel-Greenwood",
+      "count": 1,
+      "properties": [
+        "202 South Mount Zion Road, Lebanon, IN"
+      ],
+      "rank": 2,
+      "updated": "2026-07-23"
+    },
+    {
+      "name": "Martin Patzner",
+      "company": "Lund Company (Cushman & Wakefield Alliance)",
+      "email": "martin.patzner@lundco.com",
+      "phone": "+1 402 548 4033",
+      "market": "Kansas City",
+      "allMarkets": "Kansas City",
+      "count": 1,
+      "properties": [
+        "14218 S. 220th Street, Gretna, NE"
+      ],
+      "rank": 1,
+      "updated": "2026-07-23"
+    },
+    {
+      "name": "Hudson Brothen",
+      "company": "Cushman & Wakefield",
+      "email": "hudson.brothen@cushwake.com",
+      "phone": "+1 952 893 8261",
+      "market": "Minneapolis-St. Paul-Bloomington",
+      "allMarkets": "Minneapolis-St. Paul-Bloomington",
+      "count": 2,
+      "properties": [
+        "118 W 60th St, Minneapolis, MN",
+        "1741 Radisson Road Northeast, Blaine, MN"
+      ],
+      "rank": 1,
+      "updated": "2026-07-23"
+    },
+    {
+      "name": "Brent Masica",
+      "company": "Cushman & Wakefield",
+      "email": "brent.masica@cushwake.com",
+      "phone": "+1 952 893 8231",
+      "market": "Minneapolis-St. Paul-Bloomington",
+      "allMarkets": "Minneapolis-St. Paul-Bloomington",
+      "count": 1,
+      "properties": [
+        "12940 Prosperity Avenue, Becker, MN"
+      ],
+      "rank": 2,
+      "updated": "2026-07-23"
+    },
+    {
+      "name": "John Gartland",
+      "company": "Cushman & Wakefield",
+      "email": "john.gartland@cushwake.com",
+      "phone": "+1 856 403 9535",
+      "market": "Philadelphia-Camden-Wilmington",
+      "allMarkets": "Philadelphia-Camden-Wilmington",
+      "count": 1,
+      "properties": [
+        "135 High Hill Road, Woolwich Township, NJ"
+      ],
+      "rank": 1,
+      "updated": "2026-07-23"
+    },
+    {
+      "name": "Steve Mardian",
+      "company": "Cushman & Wakefield",
+      "email": "steve.mardian@cushwake.com",
+      "phone": "+1 602 224 4460",
+      "market": "Phoenix-Mesa-Chandler",
+      "allMarkets": "Phoenix-Mesa-Chandler",
+      "count": 1,
+      "properties": [
+        "2330 E Jones Avenue, Phoenix, AZ"
+      ],
+      "rank": 1,
+      "updated": "2026-07-23"
+    },
+    {
+      "name": "Jason Ofsanko",
+      "company": "Cushman & Wakefield",
+      "email": "jason.ofsanko@cushwake.com",
+      "phone": "+1 336 812 3300",
+      "market": "Raleigh-Cary",
+      "allMarkets": "Charlotte-Concord-Gastonia, Raleigh-Cary",
+      "count": 2,
+      "properties": [
+        "164 Pointe South Dr, Randleman, NC",
+        "218 Feld Avenue, High Point, NC"
+      ],
+      "rank": 1,
+      "updated": "2026-07-23"
+    },
+    {
+      "name": "Tom Townes",
+      "company": "Cushman & Wakefield",
+      "email": "tom.townes@cushwake.com",
+      "phone": "+1 336 812 3302",
+      "market": "Raleigh-Cary",
+      "allMarkets": "Raleigh-Cary",
+      "count": 1,
+      "properties": [
+        "121 Maxine Road, Danville, VA"
+      ],
+      "rank": 2,
+      "updated": "2026-07-23"
+    },
+    {
+      "name": "Geoff Poston",
+      "company": "Cushman & Wakefield | Thalhimer",
+      "email": "geoff.poston@thalhimer.com",
+      "phone": "+1 757 650 8437",
+      "market": "Raleigh-Cary",
+      "allMarkets": "Raleigh-Cary",
+      "count": 1,
+      "properties": [
+        "1401 Progress Road, Suffolk, VA"
+      ],
+      "rank": 3,
+      "updated": "2026-07-23"
+    },
+    {
+      "name": "Price Gutshall",
+      "company": "Cushman & Wakefield | Thalhimer",
+      "email": "price.gutshall@thalhimer.com",
+      "phone": "+1 540 767 3011",
+      "market": "Raleigh-Cary",
+      "allMarkets": "Raleigh-Cary",
+      "count": 1,
+      "properties": [
+        "233 Cane Creek Parkway, Danville, VA"
+      ],
+      "rank": 4,
+      "updated": "2026-07-23"
+    },
+    {
+      "name": "Kyle Kehner",
+      "company": "Cushman & Wakefield",
+      "email": "kyle.kehner@cushwake.com",
+      "phone": "+1 909 942 4645",
+      "market": "Riverside-San Bernardino-Ontario",
+      "allMarkets": "Riverside-San Bernardino-Ontario",
+      "count": 1,
+      "properties": [
+        "16726 Slover Ave, Fontana, CA"
+      ],
+      "rank": 1,
+      "updated": "2026-07-23"
+    },
+    {
+      "name": "Jackson Hagglund",
+      "company": "Cushman & Wakefield",
+      "email": "jackson.hagglund@cushwake.com",
+      "phone": "+1 925 978 3142",
+      "market": "Sacramento-Roseville-Folsom",
+      "allMarkets": "Sacramento-Roseville-Folsom",
+      "count": 1,
+      "properties": [
+        "1429-1449 105th Ave, Oakland, CA"
+      ],
+      "rank": 1,
+      "updated": "2026-07-23"
+    },
+    {
+      "name": "Connor Bell",
+      "company": "Cushman & Wakefield",
+      "email": "connor.bell@cushwake.com",
+      "phone": "+1 916 662 4928",
+      "market": "Sacramento-Roseville-Folsom",
+      "allMarkets": "Sacramento-Roseville-Folsom",
+      "count": 1,
+      "properties": [
+        "1584 Silica Avenue, Sacramento, CA"
+      ],
+      "rank": 2,
+      "updated": "2026-07-23"
+    },
+    {
+      "name": "Jeff Powers",
+      "company": "Cushman & Wakefield",
+      "email": "jeff.powers@cushwake.com",
+      "phone": "+1 510 891 5821",
+      "market": "Sacramento-Roseville-Folsom",
+      "allMarkets": "Sacramento-Roseville-Folsom",
+      "count": 1,
+      "properties": [
+        "2226 Campbell Street, Oakland, CA"
+      ],
+      "rank": 3,
+      "updated": "2026-07-23"
+    },
+    {
+      "name": "Kris Hagar",
+      "company": "Cushman & Wakefield",
+      "email": "kris.hagar@cushwake.com",
+      "phone": "+1 925 627 2497",
+      "market": "Sacramento-Roseville-Folsom",
+      "allMarkets": "Sacramento-Roseville-Folsom",
+      "count": 1,
+      "properties": [
+        "2501 Annalisa Dr, Concord, CA"
+      ],
+      "rank": 4,
+      "updated": "2026-07-23"
+    },
+    {
+      "name": "Phillip Eilers",
+      "company": "Cushman & Wakefield",
+      "email": "phillip.eilers@cushwake.com",
+      "phone": "+1 801 303 5426",
+      "market": "Salt Lake City-Provo-Logan",
+      "allMarkets": "Salt Lake City-Provo-Logan",
+      "count": 1,
+      "properties": [
+        "1876 Fortune Road, Salt Lake City, UT"
+      ],
+      "rank": 1,
+      "updated": "2026-07-23"
+    },
+    {
+      "name": "Keith Ziercher",
+      "company": "Cushman & Wakefield",
+      "email": "keith.ziercher@cushwake.com",
+      "phone": "+1 314 746 0384",
+      "market": "St. Louis",
+      "allMarkets": "St. Louis",
+      "count": 2,
+      "properties": [
+        "1205 Paragon Drive, O'Fallon, IL",
+        "1530 Swantnerville Drive, Wentzville, MO"
+      ],
+      "rank": 1,
+      "updated": "2026-07-23"
+    },
+    {
+      "name": "Michael Magliano",
+      "company": "Cushman & Wakefield",
+      "email": "michael.magliano@cushwake.com",
+      "phone": "+1 847 518 3259",
+      "market": "Unknown market",
+      "allMarkets": "Chicago-Naperville-Elgin, Unknown market",
+      "count": 3,
+      "properties": [
+        "12007 N Smith Drive, Huntley, IL",
+        "1814-1830 North Laramie Avenue, Chicago, IL",
+        "1855 South Kilbourn Avenue, Chicago, IL"
+      ],
+      "rank": 1,
+      "updated": "2026-07-23"
+    },
+    {
+      "name": "Travis Ackerman",
+      "company": "Cushman & Wakefield",
+      "email": "travis.ackerman@cushwake.com",
+      "phone": "+1 970 267 7720",
+      "market": "Unknown market",
+      "allMarkets": "Denver-Aurora-Centennial, Unknown market",
+      "count": 2,
+      "properties": [
+        "1300 Lone Tree Lane, Nunn, CO",
+        "145 14th Street, Fort Lupton, CO"
+      ],
+      "rank": 2,
+      "updated": "2026-07-23"
+    },
+    {
+      "name": "Craig Herschel",
+      "company": "Cushman & Wakefield",
+      "email": "craig.herschel@cushwake.com",
+      "phone": "+1 419 944 5182",
+      "market": "Unknown market",
+      "allMarkets": "Unknown market",
+      "count": 1,
+      "properties": [
+        "1605-1611 James P Cole Boulevard, Flint, MI"
+      ],
+      "rank": 3,
+      "updated": "2026-07-23"
+    },
+    {
+      "name": "Blake Rasmussen",
+      "company": "Cushman & Wakefield",
+      "email": "blake.rasmussen@cushwake.com",
+      "phone": "+1 209 481 7044",
+      "market": "Unknown market",
+      "allMarkets": "Unknown market",
+      "count": 1,
+      "properties": [
+        "18846 N Highway 99, Acampo, CA"
+      ],
+      "rank": 4,
+      "updated": "2026-07-23"
+    },
+    {
+      "name": "Charles Fern",
+      "company": "Cushman & Wakefield",
+      "email": "chuck.fern@cushwake.com",
+      "phone": "+1 732 243 3191",
+      "market": "Unknown market",
+      "allMarkets": "Unknown market",
+      "count": 1,
+      "properties": [
+        "2013 Route 130, Florence, NJ"
+      ],
+      "rank": 5,
+      "updated": "2026-07-23"
+    },
+    {
+      "name": "Bryce Macdonald",
+      "company": "Cushman & Wakefield",
+      "email": "bryce.macdonald@cushwake.com",
+      "phone": "+1 916 288 4806",
+      "market": "Unknown market",
+      "allMarkets": "Unknown market",
+      "count": 1,
+      "properties": [
+        "224-234 Main Street, Colusa, CA"
+      ],
+      "rank": 6,
+      "updated": "2026-07-23"
+    },
+    {
+      "name": "Ryan Baker",
+      "company": "Cushman & Wakefield",
+      "email": "ryan.baker@cushwake.com",
+      "phone": "+1 317 979 7182",
+      "market": "Unknown market",
+      "allMarkets": "Unknown market",
+      "count": 1,
+      "properties": [
+        "23044 State Road 37, Noblesville, IN"
+      ],
+      "rank": 7,
+      "updated": "2026-07-23"
+    },
+    {
+      "name": "Theo Petrie",
+      "company": "Cushman & Wakefield",
+      "email": "theo.petrie@cushwake.com",
+      "phone": "+1 763 234 6362",
+      "market": "Unknown market",
+      "allMarkets": "Unknown market",
+      "count": 1,
+      "properties": [
+        "2500-2510 Strunks Road, Jackson Township, MN"
+      ],
+      "rank": 8,
+      "updated": "2026-07-23"
+    },
+    {
+      "name": "Allie Rank",
+      "company": "Cushman & Wakefield",
+      "email": "allie.rank@cushwake.com",
+      "phone": "+1 717 231 7461",
+      "market": "Washington-Arlington-Alexandria",
+      "allMarkets": "Washington-Arlington-Alexandria",
+      "count": 1,
+      "properties": [
+        "14 Barnhart Drive, Hanover, PA"
+      ],
+      "rank": 1,
+      "updated": "2026-07-23"
     }
   ]
 };
