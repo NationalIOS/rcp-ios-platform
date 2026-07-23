@@ -72,6 +72,7 @@ window.RCP_DATA = {
         "Modeled Sale Price": "3885938",
         "Assumption Notes": "Rating 7/10. Missing: Sale Price, Acres, In-Place Rent PSF, Lease Expiry, Broker Email. Broker contact needed. Rerun model once price confirmed."
       },
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
@@ -89,7 +90,6 @@ window.RCP_DATA = {
         "far_flag": "LOW (<=20%) - strong land component",
         "mapUrl": "https://app.pillar.codes/workspace?view=map&lat=30.089541&lon=-95.587047&zoom=17&parcel=9e268706-d053-4a80-9a56-a30b1db84508"
       },
-      "listingType": "Sale",
       "outreach_status": "Draft"
     },
     {
@@ -121,11 +121,11 @@ window.RCP_DATA = {
       "lon": -100.95637,
       "geo": "nominatim",
       "stage0": "screened",
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      },
-      "listingType": "Sale"
+      }
     },
     {
       "id": "115-industrial-way-fayetteville-ga-30215-3",
@@ -154,11 +154,11 @@ window.RCP_DATA = {
       "lon": -84.4426,
       "geo": "chase-import",
       "stage0": "underwriting",
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
       },
-      "listingType": "Sale",
       "winner": true
     },
     {
@@ -186,12 +186,12 @@ window.RCP_DATA = {
       "geo": "chase-import",
       "stage0": "screened",
       "lat": 38.54376,
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
       },
-      "lon": -90.4683,
-      "listingType": "Sale"
+      "lon": -90.4683
     },
     {
       "id": "1050-e-h-hwy-liberty-mo-64068-5",
@@ -217,12 +217,12 @@ window.RCP_DATA = {
       "geo": "chase-import",
       "stage0": "screened",
       "lat": 39.24648,
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
       },
-      "lon": -94.41908,
-      "listingType": "Sale"
+      "lon": -94.41908
     },
     {
       "id": "18596-longs-way-parker-co-80134-6",
@@ -252,11 +252,11 @@ window.RCP_DATA = {
       "lon": -104.77372,
       "geo": "chase-import",
       "stage0": "screened",
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      },
-      "listingType": "Sale"
+      }
     },
     {
       "id": "17300-w-valley-hwy-tukwila-wa-98188-7",
@@ -287,12 +287,12 @@ window.RCP_DATA = {
       "geo": "chase-import",
       "stage0": "screened",
       "lat": 47.44803,
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
       },
-      "lon": -122.24269,
-      "listingType": "Sale"
+      "lon": -122.24269
     },
     {
       "id": "5451-communications-pkwy-lakewood-ranch-fl-34240-8",
@@ -323,11 +323,11 @@ window.RCP_DATA = {
       "lon": -82.4266,
       "geo": "chase-import",
       "stage0": "screened",
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      },
-      "listingType": "Sale"
+      }
     },
     {
       "id": "400-s-heatherwilde-blvd-pflugerville-tx-78660-9",
@@ -394,6 +394,7 @@ window.RCP_DATA = {
         "Initial Rent PSF": 15,
         "Site Acres": 3.88
       },
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
@@ -410,8 +411,7 @@ window.RCP_DATA = {
         "far": "34.5%",
         "far_flag": "MODERATE",
         "mapUrl": "https://app.pillar.codes/workspace?view=map&lat=30.445040&lon=-97.641260&zoom=17&parcel=5cf7940f-994b-489d-a692-01d50b7ead14"
-      },
-      "listingType": "Sale"
+      }
     },
     {
       "id": "1808-barnett-dr-weatherford-tx-76087-10",
@@ -440,11 +440,11 @@ window.RCP_DATA = {
       "lon": -97.74614,
       "geo": "nominatim",
       "stage0": "screened",
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      },
-      "listingType": "Sale"
+      }
     },
     {
       "id": "808-rhoads-ave-columbus-oh-43205-11",
@@ -474,12 +474,12 @@ window.RCP_DATA = {
       "geo": "chase-import",
       "stage0": "screened",
       "lat": 39.95038,
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
       },
-      "lon": -82.94883,
-      "listingType": "Sale"
+      "lon": -82.94883
     },
     {
       "id": "11111-guard-ln-north-bend-oh-45052-12",
@@ -509,12 +509,12 @@ window.RCP_DATA = {
       "geo": "chase-import",
       "stage0": "screened",
       "lat": 39.15256,
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
       },
-      "lon": -84.748,
-      "listingType": "Sale"
+      "lon": -84.748
     },
     {
       "id": "4830-hovis-rd-charlotte-nc-28208-13",
@@ -543,11 +543,11 @@ window.RCP_DATA = {
       "lon": -80.89783,
       "geo": "nominatim",
       "stage0": "screened",
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
       },
-      "listingType": "Sale",
       "mla": {
         "Sent Date": "2026-06-10",
         "U Marker": "U",
@@ -610,11 +610,11 @@ window.RCP_DATA = {
       "lon": -80.86225,
       "geo": "nominatim",
       "stage0": "screened",
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
       },
-      "listingType": "Sale",
       "mla": {
         "Sent Date": "2026-06-10",
         "U Marker": "U",
@@ -673,12 +673,12 @@ window.RCP_DATA = {
       "geo": "chase-import",
       "stage0": "screened",
       "lat": 41.6573,
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
       },
-      "lon": -87.67987,
-      "listingType": "Sale"
+      "lon": -87.67987
     },
     {
       "id": "6701-ringwood-rd-oxford-oh-45056-16",
@@ -707,12 +707,12 @@ window.RCP_DATA = {
       "geo": "chase-import",
       "stage0": "screened",
       "lat": 39.52999,
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
       },
-      "lon": -84.77422,
-      "listingType": "Sale"
+      "lon": -84.77422
     },
     {
       "id": "10240-fm-1488-magnolia-tx-77354-17",
@@ -739,11 +739,11 @@ window.RCP_DATA = {
       "lon": -95.63038,
       "geo": "nominatim",
       "stage0": "screened",
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      },
-      "listingType": "Sale"
+      }
     },
     {
       "id": "11956-11980-oak-creek-pkwy-huntley-il-60142-18",
@@ -770,12 +770,12 @@ window.RCP_DATA = {
       "geo": "chase-import",
       "stage0": "screened",
       "lat": 42.17225,
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
       },
-      "lon": -88.42692,
-      "listingType": "Sale"
+      "lon": -88.42692
     },
     {
       "id": "16115-sh-123-san-marcos-tx-78666-19",
@@ -834,6 +834,7 @@ window.RCP_DATA = {
         "Exit Cap (e.g. 0.065)": "0.07",
         "Assumption Notes": "Confirmed from firm completed model"
       },
+      "listingType": "Sale",
       "pillar": {
         "confidence": "nearest",
         "owner": null,
@@ -847,7 +848,6 @@ window.RCP_DATA = {
         "far_flag": null,
         "mapUrl": "https://app.pillar.codes/workspace?view=map&lat=29.790920&lon=-97.945280&zoom=16"
       },
-      "listingType": "Sale",
       "outreach_status": "Draft"
     },
     {
@@ -876,12 +876,12 @@ window.RCP_DATA = {
       "geo": "chase-import",
       "stage0": "screened",
       "lat": 33.13845,
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
       },
-      "lon": -96.11081,
-      "listingType": "Sale"
+      "lon": -96.11081
     },
     {
       "id": "2200-e-eleven-mile-rd-warren-mi-48091-21",
@@ -911,12 +911,12 @@ window.RCP_DATA = {
       "geo": "chase-import",
       "stage0": "screened",
       "lat": 42.49326,
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
       },
-      "lon": -83.00627,
-      "listingType": "Sale"
+      "lon": -83.00627
     },
     {
       "id": "6416-33rd-st-e-sarasota-fl-34243-22",
@@ -945,11 +945,11 @@ window.RCP_DATA = {
       "lon": -82.53085,
       "geo": "chase-import",
       "stage0": "screened",
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      },
-      "listingType": "Sale"
+      }
     },
     {
       "id": "8002-n-83rd-ave-peoria-az-85345-23",
@@ -980,11 +980,11 @@ window.RCP_DATA = {
       "lon": -112.23769,
       "geo": "chase-import",
       "stage0": "screened",
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      },
-      "listingType": "Sale"
+      }
     },
     {
       "id": "3002-a-temtex-blvd-terrell-tx-75160-24",
@@ -1107,6 +1107,7 @@ window.RCP_DATA = {
         "Initial Rent PSF": 5.4,
         "Site Acres": 4.92
       },
+      "listingType": "Sale",
       "pillar": {
         "confidence": "exact",
         "owner": "Accurate Inc",
@@ -1120,7 +1121,6 @@ window.RCP_DATA = {
         "far_flag": "LOW (<=20%) - strong land component",
         "mapUrl": "https://app.pillar.codes/workspace?view=map&lat=30.572400&lon=-97.396080&zoom=17&parcel=8689c926-56ad-462e-9093-3030cf8fc709"
       },
-      "listingType": "Sale",
       "outreach_status": "Draft"
     },
     {
@@ -1149,11 +1149,11 @@ window.RCP_DATA = {
       "lon": -81.02508,
       "geo": "chase-import",
       "stage0": "screened",
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      },
-      "listingType": "Sale"
+      }
     },
     {
       "id": "10025-jacksboro-hwy-fort-worth-tx-76135-27",
@@ -1180,11 +1180,11 @@ window.RCP_DATA = {
       "lon": -97.49119,
       "geo": "nominatim",
       "stage0": "screened",
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      },
-      "listingType": "Sale"
+      }
     },
     {
       "id": "9701-9709-green-park-industrial-ct-saint-louis-mo--28",
@@ -1210,12 +1210,12 @@ window.RCP_DATA = {
       "geo": "chase-import",
       "stage0": "screened",
       "lat": 38.62541,
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
       },
-      "lon": -90.19001,
-      "listingType": "Sale"
+      "lon": -90.19001
     },
     {
       "id": "2316-n-san-fernando-rd-los-angeles-ca-90065-29",
@@ -1245,12 +1245,12 @@ window.RCP_DATA = {
       "geo": "chase-import",
       "stage0": "screened",
       "lat": 34.10593,
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
       },
-      "lon": -118.23921,
-      "listingType": "Sale"
+      "lon": -118.23921
     },
     {
       "id": "6030-ga-85-hwy-riverdale-ga-30274-30",
@@ -1373,6 +1373,7 @@ window.RCP_DATA = {
         "Modeled Sale Price": "2638462",
         "Assumption Notes": "Rating 7/10. Missing: Sale Price, Acres, In-Place Rent PSF, Lease Expiry, Broker Email. Truck terminal = purpose-built IOS. Broker contact needed. Rerun model once price confirmed."
       },
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
@@ -1390,7 +1391,6 @@ window.RCP_DATA = {
         "far_flag": null,
         "mapUrl": "https://app.pillar.codes/workspace?view=map&lat=33.263830&lon=-97.181010&zoom=16"
       },
-      "listingType": "Sale",
       "outreach_status": "Draft Ready \u2014 Needs Email"
     },
     {
@@ -1421,11 +1421,11 @@ window.RCP_DATA = {
       "lon": -81.9498,
       "geo": "chase-import",
       "stage0": "screened",
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      },
-      "listingType": "Sale"
+      }
     },
     {
       "id": "731-soechting-ln-new-braunfels-tx-78130-33",
@@ -1454,11 +1454,11 @@ window.RCP_DATA = {
       "lon": -98.01448,
       "geo": "nominatim",
       "stage0": "screened",
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      },
-      "listingType": "Sale"
+      }
     },
     {
       "id": "1815-w-500-s-salt-lake-city-ut-84104-34",
@@ -1486,12 +1486,12 @@ window.RCP_DATA = {
       "geo": "chase-import",
       "stage0": "screened",
       "lat": 40.75847,
+      "listingType": "Sale",
       "flood": {
         "zone": "AE",
         "sfha": true
       },
-      "lon": -111.92331,
-      "listingType": "Sale"
+      "lon": -111.92331
     },
     {
       "id": "1360-e-county-road-e-rd-e-vadnais-heights-mn-55110-35",
@@ -1519,12 +1519,12 @@ window.RCP_DATA = {
       "geo": "chase-import",
       "stage0": "screened",
       "lat": 45.05753,
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
       },
-      "lon": -93.0739,
-      "listingType": "Sale"
+      "lon": -93.0739
     },
     {
       "id": "8205-estates-pkwy-plain-city-oh-43064-36",
@@ -1554,12 +1554,12 @@ window.RCP_DATA = {
       "geo": "chase-import",
       "stage0": "screened",
       "lat": 40.10788,
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
       },
-      "lon": -83.26697,
-      "listingType": "Sale"
+      "lon": -83.26697
     },
     {
       "id": "5401-e-washington-st-phoenix-az-85034-37",
@@ -1589,11 +1589,11 @@ window.RCP_DATA = {
       "lon": -111.96524,
       "geo": "chase-import",
       "stage0": "screened",
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      },
-      "listingType": "Sale"
+      }
     },
     {
       "id": "3200-s-70th-st-philadelphia-pa-19153-38",
@@ -1620,12 +1620,12 @@ window.RCP_DATA = {
       "geo": "chase-import",
       "stage0": "screened",
       "lat": 39.90642,
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
       },
-      "lon": -75.22823,
-      "listingType": "Sale"
+      "lon": -75.22823
     },
     {
       "id": "540-558-s-falkenburg-rd-tampa-fl-33619-39",
@@ -1679,11 +1679,11 @@ window.RCP_DATA = {
       "lon": -98.41844,
       "geo": "nominatim",
       "stage0": "screened",
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      },
-      "listingType": "Sale"
+      }
     },
     {
       "id": "504-520-s-falkenburg-rd-tampa-fl-33619-41",
@@ -1736,12 +1736,12 @@ window.RCP_DATA = {
       "geo": "chase-import",
       "stage0": "screened",
       "lat": 38.62541,
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
       },
-      "lon": -90.19001,
-      "listingType": "Sale"
+      "lon": -90.19001
     },
     {
       "id": "6175-nw-102nd-ave-doral-fl-33178-43",
@@ -1768,11 +1768,11 @@ window.RCP_DATA = {
       "lon": -80.36197,
       "geo": "chase-import",
       "stage0": "screened",
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      },
-      "listingType": "Sale"
+      }
     },
     {
       "id": "1761-dobbs-rd-saint-augustine-fl-32084-44",
@@ -1802,11 +1802,11 @@ window.RCP_DATA = {
       "lon": -81.33493,
       "geo": "chase-import",
       "stage0": "screened",
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      },
-      "listingType": "Sale"
+      }
     },
     {
       "id": "901-s-2nd-ave-mansfield-tx-76063-45",
@@ -1834,6 +1834,7 @@ window.RCP_DATA = {
       "lon": -96.76583,
       "geo": "nominatim",
       "stage0": "underwriting",
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
@@ -1850,8 +1851,7 @@ window.RCP_DATA = {
         "far": "41.6%",
         "far_flag": "MODERATE",
         "mapUrl": "https://app.pillar.codes/workspace?view=map&lat=32.551447&lon=-97.141098&zoom=17&parcel=42d85159-307f-4814-b56a-8fadf50a6620"
-      },
-      "listingType": "Sale"
+      }
     },
     {
       "id": "1207-n-fm-3083-rd-conroe-tx-77303-46",
@@ -1909,12 +1909,12 @@ window.RCP_DATA = {
       "geo": "chase-import",
       "stage0": "screened",
       "lat": 44.98845,
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
       },
-      "lon": -93.29809,
-      "listingType": "Sale"
+      "lon": -93.29809
     },
     {
       "id": "3229-n-main-st-cleburne-tx-76033-48",
@@ -1943,11 +1943,11 @@ window.RCP_DATA = {
       "lon": -95.3685,
       "geo": "nominatim",
       "stage0": "underwriting",
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      },
-      "listingType": "Sale"
+      }
     },
     {
       "id": "9610-harney-rd-thonotosassa-fl-33592-49",
@@ -2013,6 +2013,7 @@ window.RCP_DATA = {
         "Initial Rent PSF": 10.5,
         "Site Acres": 2.73
       },
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
@@ -2029,8 +2030,7 @@ window.RCP_DATA = {
         "far": "26.0%",
         "far_flag": "MODERATE",
         "mapUrl": "https://app.pillar.codes/workspace?view=map&lat=28.044045&lon=-82.332315&zoom=17&parcel=fe782a1c-9d7b-4bae-a3e1-125bf299ff29"
-      },
-      "listingType": "Sale"
+      }
     },
     {
       "id": "18155-chisholm-trl-houston-tx-77060-50",
@@ -2093,11 +2093,11 @@ window.RCP_DATA = {
         "Modeled Sale Price": "3715385",
         "Assumption Notes": "Rating 7/10. Missing: Acres, Lease Expiry, Broker Email. Broker contact needed. Rerun model once price confirmed."
       },
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      },
-      "listingType": "Sale"
+      }
     },
     {
       "id": "420-s-16th-st-la-porte-tx-77571-51",
@@ -2126,11 +2126,11 @@ window.RCP_DATA = {
       "lon": -97.13857,
       "geo": "nominatim",
       "stage0": "screened",
+      "listingType": "Sale",
       "flood": {
         "zone": "AE",
         "sfha": true
-      },
-      "listingType": "Sale"
+      }
     },
     {
       "id": "5909-5915-broadway-st-denver-co-80216-52",
@@ -2183,12 +2183,12 @@ window.RCP_DATA = {
       "geo": "chase-import",
       "stage0": "screened",
       "lat": 42.86062,
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
       },
-      "lon": -70.87319,
-      "listingType": "Sale"
+      "lon": -70.87319
     },
     {
       "id": "987-n-highway-183-liberty-hill-tx-78842-54",
@@ -2251,6 +2251,7 @@ window.RCP_DATA = {
         "Initial Rent PSF": 10.5,
         "Site Acres": 1.34
       },
+      "listingType": "Sale",
       "pillar": {
         "confidence": "no_coverage",
         "owner": null,
@@ -2264,7 +2265,6 @@ window.RCP_DATA = {
         "far_flag": null,
         "mapUrl": "https://app.pillar.codes/workspace?view=map&lat=30.666390&lon=-97.880780&zoom=16"
       },
-      "listingType": "Sale",
       "needs_confirmation": true,
       "outreach_status": "Draft Ready \u2014 Needs Email"
     },
@@ -2294,11 +2294,11 @@ window.RCP_DATA = {
       "lon": -111.8974,
       "geo": "chase-import",
       "stage0": "screened",
+      "listingType": "Sale",
       "flood": {
         "zone": "AO",
         "sfha": true
-      },
-      "listingType": "Sale"
+      }
     },
     {
       "id": "17799-n-85th-st-scottsdale-az-85255-56",
@@ -2326,11 +2326,11 @@ window.RCP_DATA = {
       "lon": -111.89752,
       "geo": "chase-import",
       "stage0": "screened",
+      "listingType": "Sale",
       "flood": {
         "zone": "AO",
         "sfha": true
-      },
-      "listingType": "Sale"
+      }
     },
     {
       "id": "17821-n-85th-st-scottsdale-az-85255-57",
@@ -2358,11 +2358,11 @@ window.RCP_DATA = {
       "lon": -111.89791,
       "geo": "chase-import",
       "stage0": "screened",
+      "listingType": "Sale",
       "flood": {
         "zone": "AO",
         "sfha": true
-      },
-      "listingType": "Sale"
+      }
     },
     {
       "id": "90-1-bolt-st-lowell-ma-01852-59",
@@ -2389,12 +2389,12 @@ window.RCP_DATA = {
       "geo": "chase-import",
       "stage0": "screened",
       "lat": 42.62509,
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
       },
-      "lon": -71.29933,
-      "listingType": "Sale"
+      "lon": -71.29933
     },
     {
       "id": "19850-highway-72-arvada-co-80007-60",
@@ -2457,6 +2457,7 @@ window.RCP_DATA = {
         "Initial Rent PSF": 13,
         "Site Acres": 30.35
       },
+      "listingType": "Sale",
       "pillar": {
         "confidence": "nearest",
         "owner": null,
@@ -2470,7 +2471,6 @@ window.RCP_DATA = {
         "far_flag": null,
         "mapUrl": "https://app.pillar.codes/workspace?view=map&lat=39.863895&lon=-105.225647&zoom=16"
       },
-      "listingType": "Sale",
       "outreach_status": "Draft"
     },
     {
@@ -2502,11 +2502,11 @@ window.RCP_DATA = {
       "lon": -87.17126,
       "geo": "chase-import",
       "stage0": "screened",
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      },
-      "listingType": "Sale"
+      }
     },
     {
       "id": "2912-chambers-st-venus-tx-76084-62",
@@ -2536,11 +2536,11 @@ window.RCP_DATA = {
       "lon": -97.09986,
       "geo": "nominatim",
       "stage0": "screened",
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      },
-      "listingType": "Sale"
+      }
     },
     {
       "id": "1811-n-topping-ave-kansas-city-mo-64120-63",
@@ -2570,12 +2570,12 @@ window.RCP_DATA = {
       "geo": "chase-import",
       "stage0": "screened",
       "lat": 39.14064,
+      "listingType": "Sale",
       "flood": {
         "zone": "AH",
         "sfha": true
       },
-      "lon": -94.51292,
-      "listingType": "Sale"
+      "lon": -94.51292
     },
     {
       "id": "15116-fm-1518-selma-tx-78154-64",
@@ -2606,11 +2606,11 @@ window.RCP_DATA = {
       "lon": -98.30362,
       "geo": "nominatim",
       "stage0": "screened",
+      "listingType": "Sale",
       "flood": {
         "zone": "AE",
         "sfha": true
-      },
-      "listingType": "Sale"
+      }
     },
     {
       "id": "7176-15th-st-e-sarasota-fl-34243-65",
@@ -2642,11 +2642,11 @@ window.RCP_DATA = {
       "lon": -82.53085,
       "geo": "chase-import",
       "stage0": "screened",
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      },
-      "listingType": "Sale"
+      }
     },
     {
       "id": "529-sh-46-e-boerne-tx-78006-66",
@@ -2676,11 +2676,11 @@ window.RCP_DATA = {
       "lon": -98.6904,
       "geo": "chase-import",
       "stage0": "screened",
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      },
-      "listingType": "Sale"
+      }
     },
     {
       "id": "119-white-oak-dr-berlin-ct-06037-67",
@@ -2708,12 +2708,12 @@ window.RCP_DATA = {
       "geo": "chase-import",
       "stage0": "screened",
       "lat": 41.64011,
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
       },
-      "lon": -72.72565,
-      "listingType": "Sale"
+      "lon": -72.72565
     },
     {
       "id": "111-e-mccarty-ln-san-marcos-tx-78666-68",
@@ -2770,12 +2770,12 @@ window.RCP_DATA = {
       "geo": "chase-import",
       "stage0": "screened",
       "lat": 39.29511,
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
       },
-      "lon": -89.88154,
-      "listingType": "Sale"
+      "lon": -89.88154
     },
     {
       "id": "1000-harding-st-fort-worth-tx-76102-70",
@@ -2802,11 +2802,11 @@ window.RCP_DATA = {
       "lon": -97.32166,
       "geo": "nominatim",
       "stage0": "screened",
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
       },
-      "listingType": "Sale",
       "mla": {
         "Sent Date": "2026-06-19",
         "U Marker": "U",
@@ -2863,12 +2863,12 @@ window.RCP_DATA = {
       "geo": "chase-import",
       "stage0": "screened",
       "lat": 40.88232,
+      "listingType": "Sale",
       "flood": {
         "zone": "AE",
         "sfha": true
       },
-      "lon": -74.0832,
-      "listingType": "Sale"
+      "lon": -74.0832
     },
     {
       "id": "24348-n-11th-ave-phoenix-az-85085-72",
@@ -2928,6 +2928,7 @@ window.RCP_DATA = {
         "Modeled Sale Price": "3578462",
         "Assumption Notes": "Rating 8/10. Missing: Sale Price, Acres, Lease Expiry, Broker Email. Truck terminal = purpose-built IOS. Broker contact needed. Rerun model once price confirmed."
       },
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
@@ -2945,7 +2946,6 @@ window.RCP_DATA = {
         "far_flag": "LOW (<=20%) - strong land component",
         "mapUrl": "https://app.pillar.codes/workspace?view=map&lat=33.707050&lon=-112.087456&zoom=17&parcel=5ea6a839-ddcd-4ddc-b9d4-d4dec2e24705"
       },
-      "listingType": "Sale",
       "outreach_status": "Draft Ready \u2014 Needs Email"
     },
     {
@@ -2974,12 +2974,12 @@ window.RCP_DATA = {
       "geo": "chase-import",
       "stage0": "screened",
       "lat": 36.13617,
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
       },
-      "lon": -115.17379,
-      "listingType": "Sale"
+      "lon": -115.17379
     },
     {
       "id": "1003-atascocita-rd-humble-tx-77396-74",
@@ -3005,11 +3005,11 @@ window.RCP_DATA = {
       "lon": -95.25346,
       "geo": "nominatim",
       "stage0": "screened",
+      "listingType": "Sale",
       "flood": {
         "zone": "AE",
         "sfha": true
-      },
-      "listingType": "Sale"
+      }
     },
     {
       "id": "3630-s-highland-dr-las-vegas-nv-89103-75",
@@ -3037,12 +3037,12 @@ window.RCP_DATA = {
       "geo": "chase-import",
       "stage0": "screened",
       "lat": 36.13617,
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
       },
-      "lon": -115.17379,
-      "listingType": "Sale"
+      "lon": -115.17379
     },
     {
       "id": "608-riverside-pky-austell-ga-30168-76",
@@ -3069,11 +3069,11 @@ window.RCP_DATA = {
       "lon": -84.40549,
       "geo": "nominatim",
       "stage0": "screened",
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
       },
-      "listingType": "Sale",
       "mla": {
         "Sent Date": "2026-06-19",
         "U Marker": "U",
@@ -3128,12 +3128,12 @@ window.RCP_DATA = {
       "geo": "chase-import",
       "stage0": "screened",
       "lat": 41.81043,
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
       },
-      "lon": -87.67327,
-      "listingType": "Sale"
+      "lon": -87.67327
     },
     {
       "id": "2399-avon-industrial-dr-rochester-hills-mi-48309-78",
@@ -3160,12 +3160,12 @@ window.RCP_DATA = {
       "geo": "chase-import",
       "stage0": "screened",
       "lat": 42.64557,
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
       },
-      "lon": -83.17945,
-      "listingType": "Sale"
+      "lon": -83.17945
     },
     {
       "id": "707-sw-10th-st-blue-springs-mo-64015-79",
@@ -3191,12 +3191,12 @@ window.RCP_DATA = {
       "geo": "nominatim",
       "stage0": "screened",
       "lat": 39.01257,
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
       },
-      "lon": -94.2772,
-      "listingType": "Sale"
+      "lon": -94.2772
     },
     {
       "id": "2220-s-burleson-blvd-burleson-tx-76028-80",
@@ -3224,11 +3224,11 @@ window.RCP_DATA = {
       "lon": -97.28749,
       "geo": "nominatim",
       "stage0": "screened",
+      "listingType": "Sale",
       "flood": {
         "zone": "AE",
         "sfha": true
-      },
-      "listingType": "Sale"
+      }
     },
     {
       "id": "18614-18636-kermier-rd-hockley-tx-77447-81",
@@ -3255,11 +3255,11 @@ window.RCP_DATA = {
       "lon": -95.84521,
       "geo": "chase-import",
       "stage0": "screened",
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      },
-      "listingType": "Sale"
+      }
     },
     {
       "id": "15939-piuma-ave-cerritos-ca-90703-82",
@@ -3287,12 +3287,12 @@ window.RCP_DATA = {
       "geo": "chase-import",
       "stage0": "screened",
       "lat": 33.88647,
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
       },
-      "lon": -118.10574,
-      "listingType": "Sale"
+      "lon": -118.10574
     },
     {
       "id": "220-recker-hwy-auburndale-fl-33823-83",
@@ -3321,11 +3321,11 @@ window.RCP_DATA = {
       "lon": -81.8126,
       "geo": "chase-import",
       "stage0": "screened",
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      },
-      "listingType": "Sale"
+      }
     },
     {
       "id": "12307-woodworth-dr-cypress-tx-77429-84",
@@ -3388,6 +3388,7 @@ window.RCP_DATA = {
         "Initial Rent PSF": 10.5,
         "Site Acres": 2.5
       },
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
@@ -3404,8 +3405,7 @@ window.RCP_DATA = {
         "far": "118.7%",
         "far_flag": "HIGH - limited open land",
         "mapUrl": "https://app.pillar.codes/workspace?view=map&lat=29.955427&lon=-95.667904&zoom=17&parcel=3f16e2cf-1c92-4751-a3ef-4952c53435b1"
-      },
-      "listingType": "Sale"
+      }
     },
     {
       "id": "8400-colorado-st-merrillville-in-46410-85",
@@ -3435,12 +3435,12 @@ window.RCP_DATA = {
       "geo": "chase-import",
       "stage0": "screened",
       "lat": 41.46537,
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
       },
-      "lon": -87.29715,
-      "listingType": "Sale"
+      "lon": -87.29715
     },
     {
       "id": "12001-e-33rd-ave-aurora-co-80010-86",
@@ -3470,11 +3470,11 @@ window.RCP_DATA = {
       "lon": -104.84823,
       "geo": "chase-import",
       "stage0": "screened",
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      },
-      "listingType": "Sale"
+      }
     },
     {
       "id": "4809-century-dr-forest-hill-tx-76140-87",
@@ -3536,11 +3536,11 @@ window.RCP_DATA = {
         "Exit Cap": 0.0675,
         "Assumption Notes": "SUITE A (Primary, 11,826 SF, 0.68 AC yard): 4,750 SF office + 1,250 SF HVAC prod + 5,826 SF warehouse. 13' clear, 1 grade door, 2 docks. Heavy-office buildout needs partial demo for IOS use. Initial rent $9.00/SF (below $9.50 market to compensate for conversion). 6-mo downtime, 60-mo term, 2 free rent, $7 TI, 6% LC, 3% bumps, 40c capex, $5.00 NNN. | SUITE B (Secondary, 14,160 SF, 2.14 AC yard): 200 SF office + 13,960 SF warehouse. 13-16' clear, 3 grade doors \u2014 true IOS suite. Market rent $10.00/SF, initial $9.50/SF. 5-mo downtime, 60-mo term, 2 free rent, $5 TI, 6% LC, 3% bumps, 30c capex, $5.00 NNN. | DEAL: $3.4M / 3.62 AC = $939K/AC; $130/SF; 2.76 AC usable yard (76% of lot). DFW NIOS #1 \u2014 South Fort Worth secondary submarket vs I-35 corridor but strong. 1976 masonry vintage = elevated capex risk but low price compensates. Call Stream Realty (Matt Blackburn/Connor Land) to confirm acreage, truck access, fencing, and flood."
       },
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      },
-      "listingType": "Sale"
+      }
     },
     {
       "id": "12105-n-28th-st-saint-petersburg-fl-33716-88",
@@ -3570,11 +3570,11 @@ window.RCP_DATA = {
       "lon": -82.67057,
       "geo": "chase-import",
       "stage0": "screened",
+      "listingType": "Sale",
       "flood": {
         "zone": "AE",
         "sfha": true
-      },
-      "listingType": "Sale"
+      }
     },
     {
       "id": "7515-long-point-rd-houston-tx-77055-89",
@@ -3606,11 +3606,11 @@ window.RCP_DATA = {
       "lon": -95.47824,
       "geo": "chase-import",
       "stage0": "screened",
+      "listingType": "Sale",
       "flood": {
         "zone": "X",
         "sfha": false
-      },
-      "listingType": "Sale"
+      }
     },
     {
       "id": "2010-n-mcdonald-st-1",
@@ -8327,8 +8327,8 @@ window.RCP_DATA = {
       "company": "",
       "email": "",
       "phone": "",
-      "market": "Birmingham-Hoover, AL",
-      "allMarkets": "Birmingham-Hoover, AL",
+      "market": "Birmingham-Hoover",
+      "allMarkets": "Birmingham-Hoover",
       "count": 1,
       "properties": [
         "1838 Vanderbilt Road, Birmingham, AL"
@@ -8625,8 +8625,8 @@ window.RCP_DATA = {
       "company": "Matthews",
       "email": "",
       "phone": "",
-      "market": "Killeen-Temple, TX (Not in NIOS Top 40)",
-      "allMarkets": "Killeen-Temple, TX (Not in NIOS Top 40)",
+      "market": "Killeen-Temple",
+      "allMarkets": "Killeen-Temple",
       "count": 1,
       "properties": [
         "4301 E Stan Schlueter Loop, Killeen, TX 76542"
@@ -8639,8 +8639,8 @@ window.RCP_DATA = {
       "company": "Matthews",
       "email": "",
       "phone": "",
-      "market": "Killeen-Temple, TX (Not in NIOS Top 40)",
-      "allMarkets": "Killeen-Temple, TX (Not in NIOS Top 40)",
+      "market": "Killeen-Temple",
+      "allMarkets": "Killeen-Temple",
       "count": 1,
       "properties": [
         "4301 E Stan Schlueter Loop, Killeen, TX 76542"
@@ -8710,8 +8710,8 @@ window.RCP_DATA = {
       "company": "Matthews",
       "email": "",
       "phone": "",
-      "market": "Odessa, TX (Not in NIOS Top 40)",
-      "allMarkets": "Odessa, TX (Not in NIOS Top 40)",
+      "market": "Odessa",
+      "allMarkets": "Odessa",
       "count": 1,
       "properties": [
         "2409 W 2nd St, Odessa, TX 79763"
@@ -8724,8 +8724,8 @@ window.RCP_DATA = {
       "company": "Matthews",
       "email": "",
       "phone": "",
-      "market": "Odessa, TX (Not in NIOS Top 40)",
-      "allMarkets": "Odessa, TX (Not in NIOS Top 40)",
+      "market": "Odessa",
+      "allMarkets": "Odessa",
       "count": 1,
       "properties": [
         "2409 W 2nd St, Odessa, TX 79763"
@@ -8738,8 +8738,8 @@ window.RCP_DATA = {
       "company": "Matthews",
       "email": "",
       "phone": "",
-      "market": "Owatonna, MN (Not in NIOS Top 40)",
-      "allMarkets": "Owatonna, MN (Not in NIOS Top 40)",
+      "market": "Owatonna",
+      "allMarkets": "Owatonna",
       "count": 1,
       "properties": [
         "1060 26th Pl NW, Owatonna, MN 55060"
@@ -8752,8 +8752,8 @@ window.RCP_DATA = {
       "company": "Matthews",
       "email": "",
       "phone": "",
-      "market": "Owatonna, MN (Not in NIOS Top 40)",
-      "allMarkets": "Owatonna, MN (Not in NIOS Top 40)",
+      "market": "Owatonna",
+      "allMarkets": "Owatonna",
       "count": 1,
       "properties": [
         "1060 26th Pl NW, Owatonna, MN 55060"
@@ -8794,8 +8794,8 @@ window.RCP_DATA = {
       "company": "Matthews",
       "email": "",
       "phone": "",
-      "market": "Plover/Stevens Point, WI (Not in NIOS Top 40)",
-      "allMarkets": "Plover/Stevens Point, WI (Not in NIOS Top 40)",
+      "market": "Plover/Stevens Point",
+      "allMarkets": "Plover/Stevens Point",
       "count": 1,
       "properties": [
         "3020 Grant Ave, Plover, WI 54467"
@@ -8808,8 +8808,8 @@ window.RCP_DATA = {
       "company": "Matthews",
       "email": "",
       "phone": "",
-      "market": "Plover/Stevens Point, WI (Not in NIOS Top 40)",
-      "allMarkets": "Plover/Stevens Point, WI (Not in NIOS Top 40)",
+      "market": "Plover/Stevens Point",
+      "allMarkets": "Plover/Stevens Point",
       "count": 1,
       "properties": [
         "3020 Grant Ave, Plover, WI 54467"
