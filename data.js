@@ -72,6 +72,10 @@ window.RCP_DATA = {
         "Modeled Sale Price": "3885938",
         "Assumption Notes": "Rating 7/10. Missing: Sale Price, Acres, In-Place Rent PSF, Lease Expiry, Broker Email. Broker contact needed. Rerun model once price confirmed."
       },
+      "flood": {
+        "zone": "X",
+        "sfha": false
+      },
       "pillar": {
         "confidence": "exact",
         "owner": "Pelangi Properties LLC",
@@ -84,10 +88,6 @@ window.RCP_DATA = {
         "far": "16.8%",
         "far_flag": "LOW (<=20%) - strong land component",
         "mapUrl": "https://app.pillar.codes/workspace?view=map&lat=30.089541&lon=-95.587047&zoom=17&parcel=9e268706-d053-4a80-9a56-a30b1db84508"
-      },
-      "flood": {
-        "zone": "X",
-        "sfha": false
       },
       "listingType": "Sale",
       "outreach_status": "Draft"
@@ -185,12 +185,12 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "lon": -90.4683,
       "lat": 38.54376,
       "flood": {
         "zone": "X",
         "sfha": false
       },
+      "lon": -90.4683,
       "listingType": "Sale"
     },
     {
@@ -216,12 +216,12 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "lon": -94.41908,
       "lat": 39.24648,
       "flood": {
         "zone": "X",
         "sfha": false
       },
+      "lon": -94.41908,
       "listingType": "Sale"
     },
     {
@@ -286,12 +286,12 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "lon": -122.24269,
       "lat": 47.44803,
       "flood": {
         "zone": "X",
         "sfha": false
       },
+      "lon": -122.24269,
       "listingType": "Sale"
     },
     {
@@ -394,6 +394,10 @@ window.RCP_DATA = {
         "Initial Rent PSF": 15,
         "Site Acres": 3.88
       },
+      "flood": {
+        "zone": "X",
+        "sfha": false
+      },
       "pillar": {
         "confidence": "exact",
         "owner": "400 Heatherwilde Boulevard",
@@ -406,10 +410,6 @@ window.RCP_DATA = {
         "far": "34.5%",
         "far_flag": "MODERATE",
         "mapUrl": "https://app.pillar.codes/workspace?view=map&lat=30.445040&lon=-97.641260&zoom=17&parcel=5cf7940f-994b-489d-a692-01d50b7ead14"
-      },
-      "flood": {
-        "zone": "X",
-        "sfha": false
       },
       "listingType": "Sale"
     },
@@ -473,12 +473,12 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "lon": -82.94883,
       "lat": 39.95038,
       "flood": {
         "zone": "X",
         "sfha": false
       },
+      "lon": -82.94883,
       "listingType": "Sale"
     },
     {
@@ -508,12 +508,12 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "lon": -84.748,
       "lat": 39.15256,
       "flood": {
         "zone": "X",
         "sfha": false
       },
+      "lon": -84.748,
       "listingType": "Sale"
     },
     {
@@ -672,12 +672,12 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "lon": -87.67987,
       "lat": 41.6573,
       "flood": {
         "zone": "X",
         "sfha": false
       },
+      "lon": -87.67987,
       "listingType": "Sale"
     },
     {
@@ -706,12 +706,12 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "lon": -84.77422,
       "lat": 39.52999,
       "flood": {
         "zone": "X",
         "sfha": false
       },
+      "lon": -84.77422,
       "listingType": "Sale"
     },
     {
@@ -769,12 +769,12 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "lon": -88.42692,
       "lat": 42.17225,
       "flood": {
         "zone": "X",
         "sfha": false
       },
+      "lon": -88.42692,
       "listingType": "Sale"
     },
     {
@@ -875,12 +875,12 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "lon": -96.11081,
       "lat": 33.13845,
       "flood": {
         "zone": "X",
         "sfha": false
       },
+      "lon": -96.11081,
       "listingType": "Sale"
     },
     {
@@ -910,12 +910,12 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "lon": -83.00627,
       "lat": 42.49326,
       "flood": {
         "zone": "X",
         "sfha": false
       },
+      "lon": -83.00627,
       "listingType": "Sale"
     },
     {
@@ -1209,12 +1209,12 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "lon": -90.19001,
       "lat": 38.62541,
       "flood": {
         "zone": "X",
         "sfha": false
       },
+      "lon": -90.19001,
       "listingType": "Sale"
     },
     {
@@ -1244,12 +1244,12 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "lon": -118.23921,
       "lat": 34.10593,
       "flood": {
         "zone": "X",
         "sfha": false
       },
+      "lon": -118.23921,
       "listingType": "Sale"
     },
     {
@@ -1373,6 +1373,10 @@ window.RCP_DATA = {
         "Modeled Sale Price": "2638462",
         "Assumption Notes": "Rating 7/10. Missing: Sale Price, Acres, In-Place Rent PSF, Lease Expiry, Broker Email. Truck terminal = purpose-built IOS. Broker contact needed. Rerun model once price confirmed."
       },
+      "flood": {
+        "zone": "X",
+        "sfha": false
+      },
       "pillar": {
         "confidence": "nearest",
         "owner": null,
@@ -1385,10 +1389,6 @@ window.RCP_DATA = {
         "far": null,
         "far_flag": null,
         "mapUrl": "https://app.pillar.codes/workspace?view=map&lat=33.263830&lon=-97.181010&zoom=16"
-      },
-      "flood": {
-        "zone": "X",
-        "sfha": false
       },
       "listingType": "Sale",
       "outreach_status": "Draft Ready \u2014 Needs Email"
@@ -1485,12 +1485,12 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "lon": -111.92331,
       "lat": 40.75847,
       "flood": {
         "zone": "AE",
         "sfha": true
       },
+      "lon": -111.92331,
       "listingType": "Sale"
     },
     {
@@ -1518,12 +1518,12 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "lon": -93.0739,
       "lat": 45.05753,
       "flood": {
         "zone": "X",
         "sfha": false
       },
+      "lon": -93.0739,
       "listingType": "Sale"
     },
     {
@@ -1553,12 +1553,12 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "lon": -83.26697,
       "lat": 40.10788,
       "flood": {
         "zone": "X",
         "sfha": false
       },
+      "lon": -83.26697,
       "listingType": "Sale"
     },
     {
@@ -1619,12 +1619,12 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "lon": -75.22823,
       "lat": 39.90642,
       "flood": {
         "zone": "X",
         "sfha": false
       },
+      "lon": -75.22823,
       "listingType": "Sale"
     },
     {
@@ -1735,12 +1735,12 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "lon": -90.19001,
       "lat": 38.62541,
       "flood": {
         "zone": "X",
         "sfha": false
       },
+      "lon": -90.19001,
       "listingType": "Sale"
     },
     {
@@ -1834,6 +1834,10 @@ window.RCP_DATA = {
       "lon": -96.76583,
       "geo": "nominatim",
       "stage0": "underwriting",
+      "flood": {
+        "zone": "X",
+        "sfha": false
+      },
       "pillar": {
         "confidence": "exact",
         "owner": "BCB Transport Holdings Company",
@@ -1846,10 +1850,6 @@ window.RCP_DATA = {
         "far": "41.6%",
         "far_flag": "MODERATE",
         "mapUrl": "https://app.pillar.codes/workspace?view=map&lat=32.551447&lon=-97.141098&zoom=17&parcel=42d85159-307f-4814-b56a-8fadf50a6620"
-      },
-      "flood": {
-        "zone": "X",
-        "sfha": false
       },
       "listingType": "Sale"
     },
@@ -1908,12 +1908,12 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "lon": -93.29809,
       "lat": 44.98845,
       "flood": {
         "zone": "X",
         "sfha": false
       },
+      "lon": -93.29809,
       "listingType": "Sale"
     },
     {
@@ -2013,6 +2013,10 @@ window.RCP_DATA = {
         "Initial Rent PSF": 10.5,
         "Site Acres": 2.73
       },
+      "flood": {
+        "zone": "X",
+        "sfha": false
+      },
       "pillar": {
         "confidence": "exact",
         "owner": "Pc Acquisition Company Llc",
@@ -2025,10 +2029,6 @@ window.RCP_DATA = {
         "far": "26.0%",
         "far_flag": "MODERATE",
         "mapUrl": "https://app.pillar.codes/workspace?view=map&lat=28.044045&lon=-82.332315&zoom=17&parcel=fe782a1c-9d7b-4bae-a3e1-125bf299ff29"
-      },
-      "flood": {
-        "zone": "X",
-        "sfha": false
       },
       "listingType": "Sale"
     },
@@ -2182,12 +2182,12 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "lon": -70.87319,
       "lat": 42.86062,
       "flood": {
         "zone": "X",
         "sfha": false
       },
+      "lon": -70.87319,
       "listingType": "Sale"
     },
     {
@@ -2388,12 +2388,12 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "lon": -71.29933,
       "lat": 42.62509,
       "flood": {
         "zone": "X",
         "sfha": false
       },
+      "lon": -71.29933,
       "listingType": "Sale"
     },
     {
@@ -2569,12 +2569,12 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "lon": -94.51292,
       "lat": 39.14064,
       "flood": {
         "zone": "AH",
         "sfha": true
       },
+      "lon": -94.51292,
       "listingType": "Sale"
     },
     {
@@ -2707,12 +2707,12 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "lon": -72.72565,
       "lat": 41.64011,
       "flood": {
         "zone": "X",
         "sfha": false
       },
+      "lon": -72.72565,
       "listingType": "Sale"
     },
     {
@@ -2769,12 +2769,12 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "lon": -89.88154,
       "lat": 39.29511,
       "flood": {
         "zone": "X",
         "sfha": false
       },
+      "lon": -89.88154,
       "listingType": "Sale"
     },
     {
@@ -2862,12 +2862,12 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "lon": -74.0832,
       "lat": 40.88232,
       "flood": {
         "zone": "AE",
         "sfha": true
       },
+      "lon": -74.0832,
       "listingType": "Sale"
     },
     {
@@ -2928,6 +2928,10 @@ window.RCP_DATA = {
         "Modeled Sale Price": "3578462",
         "Assumption Notes": "Rating 8/10. Missing: Sale Price, Acres, Lease Expiry, Broker Email. Truck terminal = purpose-built IOS. Broker contact needed. Rerun model once price confirmed."
       },
+      "flood": {
+        "zone": "X",
+        "sfha": false
+      },
       "pillar": {
         "confidence": "exact",
         "owner": "27th Ave Business Park LLC",
@@ -2940,10 +2944,6 @@ window.RCP_DATA = {
         "far": "5.2%",
         "far_flag": "LOW (<=20%) - strong land component",
         "mapUrl": "https://app.pillar.codes/workspace?view=map&lat=33.707050&lon=-112.087456&zoom=17&parcel=5ea6a839-ddcd-4ddc-b9d4-d4dec2e24705"
-      },
-      "flood": {
-        "zone": "X",
-        "sfha": false
       },
       "listingType": "Sale",
       "outreach_status": "Draft Ready \u2014 Needs Email"
@@ -2973,12 +2973,12 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "lon": -115.17379,
       "lat": 36.13617,
       "flood": {
         "zone": "X",
         "sfha": false
       },
+      "lon": -115.17379,
       "listingType": "Sale"
     },
     {
@@ -3036,12 +3036,12 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "lon": -115.17379,
       "lat": 36.13617,
       "flood": {
         "zone": "X",
         "sfha": false
       },
+      "lon": -115.17379,
       "listingType": "Sale"
     },
     {
@@ -3127,12 +3127,12 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "lon": -87.67327,
       "lat": 41.81043,
       "flood": {
         "zone": "X",
         "sfha": false
       },
+      "lon": -87.67327,
       "listingType": "Sale"
     },
     {
@@ -3159,12 +3159,12 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "lon": -83.17945,
       "lat": 42.64557,
       "flood": {
         "zone": "X",
         "sfha": false
       },
+      "lon": -83.17945,
       "listingType": "Sale"
     },
     {
@@ -3190,12 +3190,12 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "nominatim",
       "stage0": "screened",
-      "lon": -94.2772,
       "lat": 39.01257,
       "flood": {
         "zone": "X",
         "sfha": false
       },
+      "lon": -94.2772,
       "listingType": "Sale"
     },
     {
@@ -3286,12 +3286,12 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "lon": -118.10574,
       "lat": 33.88647,
       "flood": {
         "zone": "X",
         "sfha": false
       },
+      "lon": -118.10574,
       "listingType": "Sale"
     },
     {
@@ -3388,6 +3388,10 @@ window.RCP_DATA = {
         "Initial Rent PSF": 10.5,
         "Site Acres": 2.5
       },
+      "flood": {
+        "zone": "X",
+        "sfha": false
+      },
       "pillar": {
         "confidence": "exact",
         "owner": "AMRJ Development LLC",
@@ -3400,10 +3404,6 @@ window.RCP_DATA = {
         "far": "118.7%",
         "far_flag": "HIGH - limited open land",
         "mapUrl": "https://app.pillar.codes/workspace?view=map&lat=29.955427&lon=-95.667904&zoom=17&parcel=3f16e2cf-1c92-4751-a3ef-4952c53435b1"
-      },
-      "flood": {
-        "zone": "X",
-        "sfha": false
       },
       "listingType": "Sale"
     },
@@ -3434,12 +3434,12 @@ window.RCP_DATA = {
       "src": "CoStar Screen",
       "geo": "chase-import",
       "stage0": "screened",
-      "lon": -87.29715,
       "lat": 41.46537,
       "flood": {
         "zone": "X",
         "sfha": false
       },
+      "lon": -87.29715,
       "listingType": "Sale"
     },
     {
@@ -8678,7 +8678,7 @@ window.RCP_DATA = {
       "updated": "2026-07-23"
     },
     {
-      "name": "Jay Reeves SIOR",
+      "name": "Jay Reeves",
       "company": "Matthews",
       "email": "",
       "phone": "",
