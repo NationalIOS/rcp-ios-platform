@@ -297,6 +297,13 @@ td.dimc{color:var(--dim)}
 .br-drawer p{margin:3px 0 0;font-size:12.5px;line-height:1.5;color:var(--txt)}
 .br-drawer .cat{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:5px;flex:none}
 
+/* broker tracker — inline expandable row */
+.broker-row td.broker-caret{width:20px;color:var(--faint);font-size:11px;text-align:center}
+.broker-row.expanded{background:var(--surf2)}
+.broker-row.expanded td.broker-caret{color:var(--acc)}
+tr.broker-detail-row td{padding:0;border-bottom:1px solid var(--line)}
+.broker-detail{padding:16px 18px;background:var(--bg2);animation:fadein .18s ease}
+
 /* kanban */
 #board{display:grid;grid-template-columns:repeat(6,minmax(215px,1fr));gap:12px;overflow-x:auto;align-items:start}
 .kcol{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);min-height:220px;display:flex;flex-direction:column}
@@ -1705,12 +1712,12 @@ function viewBrain(el){
 /* BROKER TRACKER */
 function buildBrokerEmailDraft(b){
   const hasContact=!!b.email;
-  const firstName=hasContact?((b.name||'').trim().split(' ')[0]||'there'):null;
+  const firstName=(b.name||'').trim().split(' ')[0]||'there';
   const shortAddr=p=>String(p).split(',')[0];
   const sample=b.properties&&b.properties.length?shortAddr(b.properties[0]):'your recent listings';
   const marketRef=b.market||'your market';
   const extra=(b.properties&&b.properties.length>1)?` and a few others you've had on the market`:'';
-  const greeting=hasContact?`Hi ${firstName},`:`Hi there,\n\n(Note: we only have "${b.name}" as a company name from CoStar for this listing, not an individual agent — address this to whoever the listing agent turns out to be once you look them up.)`;
+  const greeting=hasContact?`Hi ${firstName},`:`Hi ${firstName},\n\n(Note: no email/phone on file yet for ${b.name} — this came from a CoStar listing-company field, not a full contact record. Look up their direct contact before sending.)`;
   return `Subject: IOS / Industrial Outdoor Storage Opportunities in ${marketRef}
 
 ${greeting}
@@ -1742,8 +1749,7 @@ function viewBrokers(el){
     <div class="kpi"><div class="v">${canonMarkets.length+extraMarkets.length}</div><div class="l">Total Markets Shown</div></div>
     <div class="kpi"><div class="v">${totalProps}</div><div class="l">Properties Represented</div></div>
   </div>
-  <div id="brokerlist"></div>
-  <div id="brokerdrawer"></div>`;
+  <div id="brokerlist"></div>`;
 
   function render(q){
     q=(q||'').toLowerCase();
@@ -1771,42 +1777,51 @@ function viewBrokers(el){
         return `<div class="daysec"><h3>${rankTag}${esc(name)} <span class="count">no brokers tracked yet</span></h3></div>`;
       }
       return `<div class="daysec"><h3>${rankTag}${esc(name)} <span class="count">${list.length} broker${list.length===1?'':'s'}</span></h3>
-        <div class="tablewrap"><table><thead><tr><th>#</th><th>Broker</th><th>Company</th><th>Properties</th><th>Contact</th></tr></thead>
-        <tbody>${list.map(b=>`<tr class="deal" data-key="${esc(b._key)}"><td class="num">${b.rank}</td><td style="font-weight:600">${esc(b.name)}</td><td class="dimc">${esc(b.company)}</td>
+        <div class="tablewrap"><table><thead><tr><th></th><th>#</th><th>Broker</th><th>Company</th><th>Properties</th><th>Contact</th></tr></thead>
+        <tbody>${list.map(b=>`<tr class="deal broker-row" data-key="${esc(b._key)}"><td class="broker-caret">▸</td><td class="num">${b.rank}</td><td style="font-weight:600">${esc(b.name)}</td><td class="dimc">${esc(b.company)}</td>
           <td class="num">${b.count}</td><td class="dimc">${b.email?esc(b.email):'<span class=\"p-na pill\">company only — no contact yet</span>'}</td></tr>`).join('')}</tbody></table></div></div>`;
     }).join('');
     $('#brokerlist').innerHTML=html||'<div class="note">No brokers or markets match.</div>';
-    $$('#brokerlist tr.deal').forEach(tr=>tr.addEventListener('click',()=>openBrokerDrawer(tr.dataset.key)));
+    $$('#brokerlist tr.broker-row').forEach(tr=>tr.addEventListener('click',()=>toggleBrokerRow(tr)));
   }
   render('');
   $('#brokersearch').addEventListener('input',e=>render(e.target.value));
 
-  function openBrokerDrawer(key){
-    const b=brokers.find(x=>x._key===key);if(!b)return;
+  function toggleBrokerRow(tr){
+    const already=tr.classList.contains('expanded');
+    $$('#brokerlist tr.broker-detail-row').forEach(r=>r.remove());
+    $$('#brokerlist tr.broker-row').forEach(r=>{r.classList.remove('expanded');r.querySelector('.broker-caret').textContent='▸'});
+    if(already)return;
+    const b=brokers.find(x=>x._key===tr.dataset.key);if(!b)return;
+    tr.classList.add('expanded');
+    tr.querySelector('.broker-caret').textContent='▾';
     const propsHtml=(b.properties||[]).map(p=>`<li>${esc(p)}</li>`).join('');
-    $('#brokerdrawer').innerHTML=`<div class="card" style="margin-top:16px">
-      <h3>${esc(b.name)}</h3>
+    const detailTr=document.createElement('tr');
+    detailTr.className='broker-detail-row';
+    const td=document.createElement('td');
+    td.colSpan=6;
+    td.innerHTML=`<div class="broker-detail">
       <div class="kv">
-        <div class="k">Company</div><div class="v">${esc(b.company)||'—'}</div>
         <div class="k">Email</div><div class="v">${b.email?`<a href="mailto:${esc(b.email)}">${esc(b.email)}</a>`:'—'}</div>
         <div class="k">Phone</div><div class="v">${esc(b.phone)||'—'}</div>
         <div class="k">Primary market</div><div class="v">${esc(b.market)||'—'}</div>
         <div class="k">All markets</div><div class="v">${esc(b.allMarkets)||'—'}</div>
-        <div class="k">Properties represented</div><div class="v">${b.count}</div>
       </div>
-      <div class="note"><b>Properties</b><ul style="margin:6px 0 0 18px;padding:0">${propsHtml}</ul></div>
+      <div class="note"><b>Properties (${b.count})</b><ul style="margin:6px 0 0 18px;padding:0">${propsHtml}</ul></div>
       <div class="linkrow">
         <button class="btn primary sm" id="draftemailbtn">✉ Draft Outreach Email</button>
         ${b.email?`<a class="btn sm" href="mailto:${esc(b.email)}">Open in Mail App</a>`:''}
       </div>
       <div id="emaildraftbox"></div>
     </div>`;
-    $('#brokerdrawer').scrollIntoView({behavior:'smooth',block:'nearest'});
-    $('#draftemailbtn').onclick=()=>{
+    detailTr.appendChild(td);
+    tr.after(detailTr);
+    detailTr.querySelector('#draftemailbtn').onclick=()=>{
       const draft=buildBrokerEmailDraft(b);
-      $('#emaildraftbox').innerHTML=`<div class="note" style="margin-top:12px"><b>Draft — review before sending, never auto-sent</b><pre style="white-space:pre-wrap;font-family:var(--f-body);font-size:13px;margin:0;color:var(--txt)">${esc(draft)}</pre>
+      const box=detailTr.querySelector('#emaildraftbox');
+      box.innerHTML=`<div class="note" style="margin-top:12px"><b>Draft — review before sending, never auto-sent</b><pre style="white-space:pre-wrap;font-family:var(--f-body);font-size:13px;margin:0;color:var(--txt)">${esc(draft)}</pre>
         <div class="linkrow"><button class="btn sm" id="copydraftbtn">📋 Copy</button></div></div>`;
-      $('#copydraftbtn').onclick=()=>{navigator.clipboard.writeText(draft);toast('Draft copied to clipboard','good')};
+      box.querySelector('#copydraftbtn').onclick=()=>{navigator.clipboard.writeText(draft);toast('Draft copied to clipboard','good')};
     };
   }
 }
