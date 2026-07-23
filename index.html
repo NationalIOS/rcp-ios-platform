@@ -50,7 +50,7 @@ async function tryLiveSync(silent=false) {
       try {
         const headers2 = base===LOCAL_API_BASE ? {} : {'X-API-Key': apiKey()};
         const br = await fetch(base+'/brokers', {signal: AbortSignal.timeout(4000), headers: headers2});
-        if (br.ok) { const bj = await br.json(); RCP_DATA.brokers = bj.brokers || RCP_DATA.brokers || []; }
+        if (br.ok) { const bj = await br.json(); RCP_DATA.brokers = bj.brokers || RCP_DATA.brokers || []; RCP_DATA.allMarkets = bj.allMarkets || RCP_DATA.allMarkets || []; }
       } catch {}
       return true;
     } catch {}
@@ -1704,14 +1704,16 @@ function viewBrain(el){
 
 /* BROKER TRACKER */
 function buildBrokerEmailDraft(b){
-  const firstName=(b.name||'').trim().split(' ')[0]||'there';
+  const hasContact=!!b.email;
+  const firstName=hasContact?((b.name||'').trim().split(' ')[0]||'there'):null;
   const shortAddr=p=>String(p).split(',')[0];
   const sample=b.properties&&b.properties.length?shortAddr(b.properties[0]):'your recent listings';
   const marketRef=b.market||'your market';
   const extra=(b.properties&&b.properties.length>1)?` and a few others you've had on the market`:'';
+  const greeting=hasContact?`Hi ${firstName},`:`Hi there,\n\n(Note: we only have "${b.name}" as a company name from CoStar for this listing, not an individual agent — address this to whoever the listing agent turns out to be once you look them up.)`;
   return `Subject: IOS / Industrial Outdoor Storage Opportunities in ${marketRef}
 
-Hi ${firstName},
+${greeting}
 
 I've been following your listings in ${marketRef} — ${sample}${extra} caught my eye. We're an active buyer of industrial outdoor storage and yard-heavy industrial assets, and properties like these are exactly what we look for.
 
@@ -1725,47 +1727,62 @@ Jake Pistone
 Reserve Capital Partners`;
 }
 function viewBrokers(el){
-  const brokers=(RCP_DATA.brokers||[]).slice();
-  const totalMarkets=new Set(brokers.map(b=>b.market).filter(Boolean)).size;
+  const brokers=(RCP_DATA.brokers||[]).map((b,i)=>({...b,_key:String(i)}));
+  const canonMarkets=(RCP_DATA.allMarkets||[]).slice().sort((a,b)=>a.rank-b.rank);
+  const trackedMarketNames=new Set(brokers.map(b=>b.market).filter(Boolean));
+  const extraMarkets=[...trackedMarketNames].filter(m=>!canonMarkets.some(c=>c.name===m)).sort();
   const totalProps=new Set(brokers.flatMap(b=>b.properties||[])).size;
-  el.innerHTML=`<div class="pagehead"><h2>Broker Tracker</h2><div class="sub">Top brokers by market, representing deals already in our pipeline — the goal is relationships that surface off-market deals before they hit CoStar</div>
+  el.innerHTML=`<div class="pagehead"><h2>Broker Tracker</h2><div class="sub">Every NIOS top-40 market, ranked by the brokers already representing deals in our pipeline — the goal is relationships that surface off-market deals before they hit CoStar</div>
     <span class="spacer"></span>
-    <input class="inp" id="brokersearch" placeholder="Search broker or company…" style="width:240px">
+    <input class="inp" id="brokersearch" placeholder="Search broker, company, or market…" style="width:260px">
   </div>
   <div class="kpis">
-    <div class="kpi"><div class="v">${brokers.length}</div><div class="l">Brokers Tracked</div></div>
-    <div class="kpi"><div class="v">${totalMarkets}</div><div class="l">Markets</div></div>
+    <div class="kpi"><div class="v">${brokers.length}</div><div class="l">Brokers / Companies Tracked</div></div>
+    <div class="kpi"><div class="v">${trackedMarketNames.size}</div><div class="l">Markets With Coverage</div></div>
+    <div class="kpi"><div class="v">${canonMarkets.length+extraMarkets.length}</div><div class="l">Total Markets Shown</div></div>
     <div class="kpi"><div class="v">${totalProps}</div><div class="l">Properties Represented</div></div>
   </div>
   <div id="brokerlist"></div>
   <div id="brokerdrawer"></div>`;
 
-  if(!brokers.length){
-    $('#brokerlist').innerHTML='<div class="note">No brokers tracked yet — the Brokers tab fills in automatically as Egnyte OM winners with a listed broker contact get imported. Run <code>python3 broker_tracker.py</code> after your next batch.</div>';
-    return;
-  }
-
   function render(q){
     q=(q||'').toLowerCase();
-    const filtered=q?brokers.filter(b=>(b.name+' '+b.company).toLowerCase().includes(q)):brokers;
     const byMarket={};
-    filtered.forEach(b=>{(byMarket[b.market]=byMarket[b.market]||[]).push(b)});
-    const marketNames=Object.keys(byMarket).sort();
-    if(!marketNames.length){$('#brokerlist').innerHTML='<div class="note">No brokers match.</div>';return}
-    $('#brokerlist').innerHTML=marketNames.map(m=>{
-      const list=byMarket[m].slice().sort((a,b)=>a.rank-b.rank);
-      return `<div class="daysec"><h3>${esc(m)} <span class="count">${list.length} broker${list.length===1?'':'s'}</span></h3>
-        <div class="tablewrap"><table><thead><tr><th>#</th><th>Broker</th><th>Company</th><th>Properties</th><th>Email</th></tr></thead>
-        <tbody>${list.map(b=>`<tr class="deal" data-email="${esc(b.email)}"><td class="num">${b.rank}</td><td style="font-weight:600">${esc(b.name)}</td><td class="dimc">${esc(b.company)}</td>
-          <td class="num">${b.count}</td><td class="dimc">${esc(b.email)}</td></tr>`).join('')}</tbody></table></div></div>`;
+    brokers.forEach(b=>{(byMarket[b.market]=byMarket[b.market]||[]).push(b)});
+
+    // canonical top-40 markets first (in NIOS rank order), then any real
+    // market with tracked brokers outside the top-40 list, alphabetically
+    const sections=[
+      ...canonMarkets.map(c=>({name:c.name,rank:c.rank})),
+      ...extraMarkets.map(name=>({name,rank:null})),
+    ];
+
+    const matchesQuery=(name,list)=>{
+      if(!q)return true;
+      if(name.toLowerCase().includes(q))return true;
+      return list.some(b=>(b.name+' '+b.company).toLowerCase().includes(q));
+    };
+
+    const html=sections.map(({name,rank})=>{
+      const list=(byMarket[name]||[]).slice().sort((a,b)=>a.rank-b.rank);
+      if(!matchesQuery(name,list))return '';
+      const rankTag=rank?`<span class="dimc" style="font-weight:400">NIOS #${rank}</span> `:'';
+      if(!list.length){
+        return `<div class="daysec"><h3>${rankTag}${esc(name)} <span class="count">no brokers tracked yet</span></h3></div>`;
+      }
+      return `<div class="daysec"><h3>${rankTag}${esc(name)} <span class="count">${list.length} broker${list.length===1?'':'s'}</span></h3>
+        <div class="tablewrap"><table><thead><tr><th>#</th><th>Broker</th><th>Company</th><th>Properties</th><th>Contact</th></tr></thead>
+        <tbody>${list.map(b=>`<tr class="deal" data-key="${esc(b._key)}"><td class="num">${b.rank}</td><td style="font-weight:600">${esc(b.name)}</td><td class="dimc">${esc(b.company)}</td>
+          <td class="num">${b.count}</td><td class="dimc">${b.email?esc(b.email):'<span class=\"p-na pill\">company only — no contact yet</span>'}</td></tr>`).join('')}</tbody></table></div></div>`;
     }).join('');
-    $$('#brokerlist tr.deal').forEach(tr=>tr.addEventListener('click',()=>openBrokerDrawer(tr.dataset.email)));
+    $('#brokerlist').innerHTML=html||'<div class="note">No brokers or markets match.</div>';
+    $$('#brokerlist tr.deal').forEach(tr=>tr.addEventListener('click',()=>openBrokerDrawer(tr.dataset.key)));
   }
   render('');
   $('#brokersearch').addEventListener('input',e=>render(e.target.value));
 
-  function openBrokerDrawer(email){
-    const b=brokers.find(x=>x.email===email);if(!b)return;
+  function openBrokerDrawer(key){
+    const b=brokers.find(x=>x._key===key);if(!b)return;
     const propsHtml=(b.properties||[]).map(p=>`<li>${esc(p)}</li>`).join('');
     $('#brokerdrawer').innerHTML=`<div class="card" style="margin-top:16px">
       <h3>${esc(b.name)}</h3>
