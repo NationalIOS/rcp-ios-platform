@@ -980,7 +980,7 @@ function cellv(k,d){const v=d[k];
   if(k==='rating')return ratingPill(v);
   if(k==='stars')return v==null?'—':`<span class="num">${v}</span>`;
   if(k==='sent')return `<span class="dimc num">${fmt.date(v)}</span>`;
-  if(k==='addr')return esc(v);
+  if(k==='addr')return esc(v)+(d.listingType==='Lease'?' <span class="pill p-md" style="font-size:9.5px;padding:1px 6px;vertical-align:middle">🔑 Lease</span>':'');
   if(k==='mkt'||k==='type')return `<span class="dimc">${esc(fmt.raw(v))}</span>`;
   return esc(fmt.raw(v));}
 
@@ -1051,6 +1051,7 @@ function showDeal(id){
             <span class="pill ${d.em>=T.em?'p-hi':'p-lo'}" style="font-size:13px;padding:4px 12px">EM ${fmt.x(d.em)}</span>`:''}
           ${d.needsNewDeck?'<span class="pill p-md" style="font-size:13px;padding:4px 12px">⚠ Deck needs regeneration</span>':''}
           ${d.flood?`<span class="pill ${d.flood.sfha?'p-lo':'p-hi'}" style="font-size:13px;padding:4px 12px">🌊 FEMA Zone ${esc(d.flood.zone)}${d.flood.sfha?' — Special Flood Hazard Area':' — minimal risk'}</span>`:''}
+          ${d.listingType==='Lease'?'<span class="pill p-md" style="font-size:13px;padding:4px 12px">🔑 FOR LEASE — needs outreach</span>':''}
         </div></div>
       <div class="noprint"><label style="font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:4px">Pipeline stage</label>
         <select class="stagesel" onchange="stageFromPage('${d.id}',this.value)">${STAGES.map(([k,n])=>`<option value="${k}" ${stage===k?'selected':''}>${n}</option>`).join('')}</select></div>
@@ -1061,7 +1062,8 @@ function showDeal(id){
         <div class="card"><h3>Property</h3>${kv([['Type',d.type],['Building SF',d.bsf&&fmt.num(d.bsf)],['Available SF',d.asf&&fmt.num(d.asf)],['Acres',d.ac],['Yard acres',d.yac],['Site coverage',d.cov],['Year built',d.yb&&Math.round(d.yb)],['Year renovated',d.yr&&Math.round(d.yr)],['Clear height',d.clr]])}</div>
         ${d.pillar?`<div class="card"><h3>Property Records <span class="pill ${d.pillar.confidence==='exact'?'p-hi':'p-md'}" style="font-size:10px;padding:2px 8px;margin-left:6px;vertical-align:middle">${d.pillar.confidence==='exact'?'Pillar-verified parcel':'⚠ Unconfirmed match'}</span></h3>
           ${d.pillar.note?`<div class="note" style="margin-bottom:10px"><b>Note</b>${esc(d.pillar.note)}</div>`:''}
-          ${kv([['Owner of record',d.pillar.owner],['APN',d.pillar.apn],['Parcel acres',d.pillar.lot_acres],['Zoning',d.pillar.zoning],['Land use',d.pillar.use],['Last sale date',d.pillar.last_sale_date],['Mailing address',d.pillar.mailing_address]])}
+          ${d.pillar.far_flag?`<div class="note" style="margin-bottom:10px;border-color:${d.pillar.far_flag.startsWith('LOW')?'var(--green)':d.pillar.far_flag.startsWith('HIGH')?'var(--red)':'var(--line)'}"><b>Coverage / FAR</b>${esc(d.pillar.far||'')} — ${esc(d.pillar.far_flag)}</div>`:''}
+          ${kv([['Owner of record',d.pillar.owner],['APN',d.pillar.apn],['Parcel acres',d.pillar.lot_acres],['Zoning',d.pillar.zoning],['Land use',d.pillar.use],['Last sale date',d.pillar.last_sale_date],['Last sale price',d.pillar.last_sale_price&&fmt.money(d.pillar.last_sale_price)],['Mailing address',d.pillar.mailing_address]])}
           <div class="linkrow" style="margin-top:10px"><a class="btn sm ghost" target="_blank" href="${esc(d.pillar.mapUrl||'')}">Open in Pillar ↗</a></div>
         </div>`:''}
         <div class="card"><h3>Pricing & Tenancy</h3>${kv([['Sale price',d.price&&fmt.money(d.price)],['Sale $/SF',d.psf&&'$'+fmt.dec(d.psf,0)],['In-place rent PSF',d.rent&&'$'+fmt.dec(d.rent,2)],['Rent range',d.rrange],['Tenant',d.tenant],['Lease / rollover',d.lease],['Listing company',d.broker]])}</div>
@@ -1092,6 +1094,8 @@ function showDeal(id){
             <a class="btn sm" target="_blank" href="https://www.google.com/maps/search/?api=1&query=${gq}">Google Maps ↗</a>
             <a class="btn sm" target="_blank" href="https://www.bing.com/maps?q=${gq}&style=h">Bing Aerial ↗</a>
             <a class="btn sm" target="_blank" href="https://www.costar.com/search?q=${gq}">CoStar ↗</a>
+            ${d.brochureLink?`<a class="btn sm primary" target="_blank" href="${esc(d.brochureLink)}">📄 Download Brochure ↗</a>`:''}
+            ${d.propertyUrl?`<a class="btn sm" target="_blank" href="${esc(d.propertyUrl)}">🔗 Property Listing ↗</a>`:''}
           </div></div>
         <div class="card"><h3>Screen Checklist</h3>
           <div class="kv">
@@ -1609,7 +1613,8 @@ function dcard(d,opts={}){
         ${completenessDots(d)}
         ${d.stars?`<span style="color:var(--faint);font-size:12px">${d.stars}★</span>`:''}
         ${d.irr!=null?`<span class="num ${d.irr>=T.irr?'pass':'fail'}" style="font-size:12px">${fmt.pct(d.irr)} IRR</span>`:''}
-        ${d.needsNewDeck?'<span class="pill p-md" style="font-size:10.5px">⚠ Deck stale</span>':''}</div>
+        ${d.needsNewDeck?'<span class="pill p-md" style="font-size:10.5px">⚠ Deck stale</span>':''}
+        ${d.listingType==='Lease'?'<span class="pill p-md" style="font-size:10.5px">🔑 For Lease</span>':''}</div>
     </div>
     ${showActions?`<div class="noprint" style="display:flex;gap:8px;margin-top:11px">
       <button class="btn sm primary" onclick="event.stopPropagation();approveDeal('${d.id}')">✓ Approve</button>
