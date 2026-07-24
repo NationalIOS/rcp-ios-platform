@@ -1296,14 +1296,12 @@ async function approveDeal(id){
 
 async function rejectDeal(id){
   const d=DEALS.find(x=>x.id===id);if(!d)return;
-  const reason=prompt(`Reason for rejecting ${String(d.addr).split(',')[0]}?`,'');
-  if(reason===null)return;
   try{
-    await callAction('/api/reject',{address:d.addr,reason:reason||'No reason given'});
+    await callAction('/api/reject',{address:d.addr,reason:''});
     d.stageX='dead';
     const shortAddr=esc(String(d.addr).split(',')[0]);
     toast(`<b>${shortAddr}</b> rejected`,'good');
-    logActivity(`Rejected <b>${shortAddr}</b> — ${esc(reason||'No reason given')}`,'bad');
+    logActivity(`Rejected <b>${shortAddr}</b>`,'bad');
     refreshIfOpen(id);
   }catch(e){toast('<b>Reject failed</b> — '+esc(e.message),'bad')}
 }
